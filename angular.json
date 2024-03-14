@@ -26,11 +26,11 @@
             ],
             "styles": [
               "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/app/maps_files/dist/jqvmap.css"
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "node_modules/jquery/dist/jquery.min.js",
               "src/app/maps_files/dist/jquery.vmap.js",
               "src/app/maps_files/dist/maps/jquery.vmap.world.js"
             ]
