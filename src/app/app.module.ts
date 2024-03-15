@@ -3,10 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MapViewerComponent } from './components/map-viewer/map-viewer.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MapViewerComponent
   ],
   imports: [
     BrowserModule,
