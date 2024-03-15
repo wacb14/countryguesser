@@ -38,7 +38,8 @@
               "src/app/maps_files/dist/maps/continents/jquery.vmap.australia.js",
               "src/app/maps_files/dist/maps/continents/jquery.vmap.europe.js",
               "src/app/maps_files/dist/maps/continents/jquery.vmap.north-america.js",
-              "src/app/maps_files/dist/maps/continents/jquery.vmap.south-america.js"
+              "src/app/maps_files/dist/maps/continents/jquery.vmap.south-america.js",
+              "src/app/maps_files/dist/maps/jquery.vmap.world.js"
             ]
           },
           "configurations": {
