@@ -19,12 +19,43 @@ export class QuestionsGeneratorService {
     let max = maximum;
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
-  generateQuestions(quantity: number) {
+  generateQuestions(quantity: number, region: string) {
     let questions = [];
+    let countries:Array<string> = [];
+    switch (region) {
+      case 'africa':
+        countries = this.africa;
+        break;
+      case 'asia':
+        countries = this.asia;
+        break;
+      case 'australia':
+        countries = this.australia;
+        break;
+      case 'europe':
+        countries = this.europe;
+        break;
+      case 'north-america':
+        countries = this.northA;
+        break;
+      case 'south-america':
+        countries = this.southA;
+        break;
+      case 'world':
+        countries = this.africa.concat(
+          this.asia,
+          this.australia,
+          this.europe,
+          this.northA,
+          this.southA
+        );
+        break;
+    }
+    
     for (let i = 0; i < quantity; i++) {
-      let random = this.generateRandom(this.africa.length-1);
-      questions.push(this.africa[random]);
-      this.africa.splice(random,1);
+      let random = this.generateRandom(countries.length - 1);
+      questions.push(countries[random]);
+      countries.splice(random, 1);
     }
     return questions;
   }

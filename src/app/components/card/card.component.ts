@@ -9,6 +9,6 @@ import { QuestionsGeneratorService } from 'src/app/services/questions-generator.
 export class CardComponent implements OnInit{
   constructor(private questionsGeneratorService: QuestionsGeneratorService){}
   ngOnInit(): void {
-    console.log(this.questionsGeneratorService.generateQuestions(23));
+    console.log(this.questionsGeneratorService.generateQuestions(10,'south-america'));
   }
 }
