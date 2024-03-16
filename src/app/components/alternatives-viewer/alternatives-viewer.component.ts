@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 @Component({
   selector: 'app-alternatives-viewer',
   templateUrl: './alternatives-viewer.component.html',
-  styleUrls: ['./alternatives-viewer.component.css']
+  styleUrls: ['./alternatives-viewer.component.css'],
 })
 export class AlternativesViewerComponent {
+  @Input() countryCode: string = '';
 }

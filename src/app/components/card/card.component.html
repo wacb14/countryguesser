@@ -1,4 +1,9 @@
 <div class="container card">
-    <app-map-viewer></app-map-viewer>
-    <app-alternatives-viewer></app-alternatives-viewer>
+  <app-map-viewer
+    [continentName]="currentContinent"
+    [countryCode]="currentCountry"
+  ></app-map-viewer>
+  <app-alternatives-viewer
+    [countryCode]="currentCountry"
+  ></app-alternatives-viewer>
 </div>

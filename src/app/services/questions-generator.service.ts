@@ -14,34 +14,36 @@ export class QuestionsGeneratorService {
   world = Object.keys(codes['world_en']);
 
   constructor() {}
+
   generateRandom(maximum: number) {
     let min = 0;
     let max = maximum;
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
+
   generateQuestions(quantity: number, region: string) {
     let questions = [];
-    let countries:Array<string> = [];
+    let countries: Array<string> = [];
     switch (region) {
-      case 'africa':
+      case 'africa_en':
         countries = this.africa;
         break;
-      case 'asia':
+      case 'asia_en':
         countries = this.asia;
         break;
-      case 'australia':
+      case 'australia_en':
         countries = this.australia;
         break;
-      case 'europe':
+      case 'europe_en':
         countries = this.europe;
         break;
-      case 'north-america':
+      case 'north-america_en':
         countries = this.northA;
         break;
-      case 'south-america':
+      case 'south-america_en':
         countries = this.southA;
         break;
-      case 'world':
+      case 'world_en':
         countries = this.africa.concat(
           this.asia,
           this.australia,
@@ -51,7 +53,7 @@ export class QuestionsGeneratorService {
         );
         break;
     }
-    
+
     for (let i = 0; i < quantity; i++) {
       let random = this.generateRandom(countries.length - 1);
       questions.push(countries[random]);
