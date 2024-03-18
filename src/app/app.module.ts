@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { MapViewerComponent } from './components/map-viewer/map-viewer.component';
 import { AlternativesViewerComponent } from './components/alternatives-viewer/alternatives-viewer.component';
 import { CardComponent } from './components/card/card.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -16,6 +18,7 @@ import { CardComponent } from './components/card/card.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [],
