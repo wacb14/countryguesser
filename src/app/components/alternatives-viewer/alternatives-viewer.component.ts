@@ -5,5 +5,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./alternatives-viewer.component.css'],
 })
 export class AlternativesViewerComponent {
-  @Input() countryCode: string = '';
+  @Input() alternatives: Array<string> = [];
+  @Input() answer = '';
 }

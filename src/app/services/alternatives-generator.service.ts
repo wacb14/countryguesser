@@ -4,7 +4,7 @@ import codes from '../../assets/maps_files/codes_name_continent_en.json';
 @Injectable({
   providedIn: 'root',
 })
-export class QuestionsGeneratorService {
+export class AlternativesGeneratorService {
   africa = Object.keys(codes['africa_en']);
   asia = Object.keys(codes['asia_en']);
   australia = Object.keys(codes['australia_en']);
@@ -53,15 +53,22 @@ export class QuestionsGeneratorService {
     }
     return countries;
   }
-  generateQuestions(quantity: number, region: string) {
-    let questions = [];
+  generateAlternatives(countryCode: string, region: string) {
+    let alternatives: Array<string> = [];
     let countries: Array<string> = this.getCountriesByContinent(region);
-
-    for (let i = 0; i < quantity; i++) {
+    //-- Choose countries
+    let i = 0;
+    while (i < 3) {
       let random = this.generateRandom(countries.length - 1);
-      questions.push(countries[random]);
-      countries.splice(random, 1);
+      if (countries[random] != countryCode) {
+        alternatives.push(countries[random]);
+        countries.splice(random, 1);
+        i++;
+      }
     }
-    return questions;
+    //-- Randomize alternatives
+    alternatives.push(countryCode);
+    alternatives.sort(() => Math.random() - 0.5);
+    return alternatives;
   }
 }
