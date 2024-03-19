@@ -1,4 +1,18 @@
-.card{
+.card {
+  border-radius: var(--border-radius);
+  height: 45vh;
+}
+.map{
+    height: 90%;
     border-radius: var(--border-radius);
-    height: 45vh;
+}
+@media (min-width: 768px) {
+  .card {
+    height: 55vh;
+  }
+}
+@media (min-width: 992px) {
+  .card {
+    height: 65vh;
+  }
 }

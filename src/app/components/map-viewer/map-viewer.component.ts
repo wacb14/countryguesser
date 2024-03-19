@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, Input } from '@angular/core';
+import { QuestionsGeneratorService } from 'src/app/services/questions-generator.service';
 declare var $: any;
 
 @Component({
@@ -7,11 +8,18 @@ declare var $: any;
   styleUrls: ['./map-viewer.component.css'],
 })
 export class MapViewerComponent implements AfterViewInit {
-  @Input() countryCode: string = '';
-  @Input() continentName: string = '';
+  
+  countryCode: string = '';
+  continentName: string = '';
+
+  constructor(private questionsGeneratorService: QuestionsGeneratorService) {}
 
   ngAfterViewInit(): void {
-    this.loadMap(this.continentName, this.countryCode);
+    this.questionsGeneratorService.questionSender.subscribe((response) => {
+      this.countryCode = response.code;
+      this.continentName = response.continent;
+      this.loadMap(response.continent,response.code);
+    });
   }
 
   //-- Changes the map showed in the card

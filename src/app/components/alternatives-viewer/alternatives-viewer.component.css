@@ -1,0 +1,30 @@
+.btn-alternative {
+  background-color: var(--primary-color);
+}
+.btn {
+  font-size: larger;
+  border: 0px;
+  padding: 0.5rem;
+  width: 85%;
+  height: 3rem;
+  border-radius: 15px;
+  text-align: center;
+  color: var(--text-color);
+  font-style: bold;
+  cursor: pointer;
+}
+.btn:hover{
+  background-color: #0278c1;
+}
+
+
+@media (min-width: 768px) {
+  .btn {
+    width: 80%;
+  }
+}
+@media (min-width: 992px) {
+  .btn {
+    width: 60%;
+  }
+}
