@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import codes from '../../assets/maps_files/codes_name_continent_en.json';
+import { Country } from '../models/country';
+import { RestCountriesService } from './rest-countries.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +15,7 @@ export class AlternativesGeneratorService {
   southA = Object.keys(codes['south-america_en']);
   world = Object.keys(codes['world_en']);
 
-  constructor() {}
+  constructor(private restCountriesService: RestCountriesService) {}
 
   generateRandom(maximum: number) {
     let min = 0;
@@ -54,21 +56,30 @@ export class AlternativesGeneratorService {
     return countries;
   }
   generateAlternatives(countryCode: string, region: string) {
-    let alternatives: Array<string> = [];
+    let generated: Array<string> = [];
+    let alternatives: Array<Country> = [];
     let countries: Array<string> = this.getCountriesByContinent(region);
     //-- Choose countries
     let i = 0;
     while (i < 3) {
       let random = this.generateRandom(countries.length - 1);
       if (countries[random] != countryCode) {
-        alternatives.push(countries[random]);
+        generated.push(countries[random]);
         countries.splice(random, 1);
         i++;
       }
     }
     //-- Randomize alternatives
-    alternatives.push(countryCode);
-    alternatives.sort(() => Math.random() - 0.5);
+    generated.push(countryCode);
+    generated.sort(() => Math.random() - 0.5);
+
+    for (const item of generated) {
+      this.restCountriesService.getInfoByCode(item).subscribe((response) => {
+        alternatives.push(
+          new Country(generated[i], response[0].name.common, region)
+        );
+      });
+    }
     return alternatives;
   }
 }

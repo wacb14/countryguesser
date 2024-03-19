@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class RestCountriesService {
   constructor(private htpp: HttpClient) {}
 
-  getNameByCode(code: string): Observable<any> {
+  getInfoByCode(code: string): Observable<any> {
     return this.htpp.get<any>(environment.apiURL + code);
   }
 }

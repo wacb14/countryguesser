@@ -1,5 +1,7 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import codes from '../../assets/maps_files/codes_name_continent_en.json';
+import { Country } from '../models/country';
+import { RestCountriesService } from './rest-countries.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,14 +14,16 @@ export class QuestionsGeneratorService {
   northA = Object.keys(codes['north-america_en']);
   southA = Object.keys(codes['south-america_en']);
   world = Object.keys(codes['world_en']);
+  @Output() questionSender = new EventEmitter<Country>();
 
-  constructor() {}
+  constructor(private restCountriesService: RestCountriesService) {}
 
   generateRandom(maximum: number) {
     let min = 0;
     let max = maximum;
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
+
   getCountriesByContinent(region: string) {
     let countries: Array<string> = [];
     switch (region) {
@@ -53,14 +57,29 @@ export class QuestionsGeneratorService {
     }
     return countries;
   }
+
   generateQuestions(quantity: number, region: string) {
-    let questions = [];
+    let generated: Array<string> = [];
+    let questions: Array<Country> = [];
     let countries: Array<string> = this.getCountriesByContinent(region);
 
     for (let i = 0; i < quantity; i++) {
       let random = this.generateRandom(countries.length - 1);
-      questions.push(countries[random]);
+      generated.push(countries[random]);
       countries.splice(random, 1);
+
+      //-- Complete countries' info
+      this.restCountriesService
+        .getInfoByCode(generated[i])
+        .subscribe((response) => {
+          questions.push(
+            new Country(generated[i], response[0].name.common, region)
+          );
+          //-- Send the first question to map viewer
+          if (i == 0) {
+            this.questionSender.emit(questions[0]);
+          }
+        });
     }
     return questions;
   }
