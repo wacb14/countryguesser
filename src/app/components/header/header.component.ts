@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -9,9 +9,13 @@ export class HeaderComponent implements OnInit {
   time: number = 3;
   timeRemaining: number = 3;
   timeEnded = false;
+  @Input() questions: Array<string> = [];
+  @Input() score: string = '';
+
   ngOnInit(): void {
     this.startCountDown();
   }
+
   startCountDown() {
     this.timeRemaining = this.time;
     let interval: any = setInterval(() => {
