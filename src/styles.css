@@ -13,3 +13,7 @@
 .text-center{
     text-align: center;
 }
+body{
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: var(--background-color);
+}
