@@ -17,7 +17,7 @@ export class CardComponent implements OnInit {
     private questionsGeneratorService: QuestionsGeneratorService
   ) {}
   ngOnInit(): void {
-    let continent = 'africa_en';
+    let continent = 'south-america_en';
     let number_questions = 10;
     this.questions = this.questionsGeneratorService.generateQuestions(
       number_questions,
