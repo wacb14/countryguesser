@@ -1,6 +1,3 @@
-.btn-alternative {
-  background-color: var(--primary-color);
-}
 .btn {
   font-size: larger;
   border: 0px;
@@ -13,11 +10,20 @@
   font-style: bold;
   cursor: pointer;
 }
-.btn:hover{
+.btn:hover {
   background-color: #0078c3;
 }
-
-
+.btn-alternative {
+  background-color: var(--primary-color);
+}
+.btn-correct {
+  background-color: var(--confirmation-color);
+  color: var(--aux-text-color);
+}
+.btn-wrong {
+  background-color: var(--warning-color);
+  color: var(--aux-text-color);
+}
 @media (min-width: 768px) {
   .btn {
     width: 80%;

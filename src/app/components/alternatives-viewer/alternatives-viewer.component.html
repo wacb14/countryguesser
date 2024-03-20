@@ -4,7 +4,16 @@
       class="col-sm-12 col-md-6 text-center p-0"
       *ngFor="let i = index; let alternative; of: alternatives"
     >
-    <button class="btn btn-alternative">{{alternative.name}}</button>
+      <button
+        class="btn btn-alternative"
+        (click)="rateQuestion(i)"
+        [ngClass]="{
+          'btn-correct': colors[i] == 'c',
+          'btn-wrong': colors[i] == 'w'
+        }"
+      >
+        {{ alternative.name }}
+      </button>
     </div>
   </div>
 </div>
