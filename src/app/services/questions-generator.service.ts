@@ -18,6 +18,16 @@ export class QuestionsGeneratorService {
 
   constructor(private restCountriesService: RestCountriesService) {}
 
+  loadAllCountries() {
+    this.africa = Object.keys(codes['africa_en']);
+    this.asia = Object.keys(codes['asia_en']);
+    this.australia = Object.keys(codes['australia_en']);
+    this.europe = Object.keys(codes['europe_en']);
+    this.northA = Object.keys(codes['north-america_en']);
+    this.southA = Object.keys(codes['south-america_en']);
+    this.world = Object.keys(codes['world_en']);
+  }
+
   generateRandom(maximum: number) {
     let min = 0;
     let max = maximum;
@@ -59,6 +69,7 @@ export class QuestionsGeneratorService {
   }
 
   generateQuestions(quantity: number, region: string) {
+    this.loadAllCountries(); //-- To avoid the disappearance of countries
     let generated: Array<string> = [];
     let questions: Array<Country> = [];
     let countries: Array<string> = this.getCountriesByContinent(region);
