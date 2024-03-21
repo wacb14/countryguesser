@@ -9,8 +9,10 @@
         (click)="rateQuestion(i)"
         [ngClass]="{
           'btn-correct': colors[i] == 'c',
-          'btn-wrong': colors[i] == 'w'
+          'btn-wrong': colors[i] == 'w',
+          'btn-disabled': colors[i] == 'b'
         }"
+        [disabled]="disableButtons"
       >
         {{ alternative.name }}
       </button>

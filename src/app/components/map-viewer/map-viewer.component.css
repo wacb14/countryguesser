@@ -8,7 +8,7 @@
 }
 @media (min-width: 768px) {
   .card {
-    height: 55vh;
+    height: 50vh;
   }
 }
 @media (min-width: 992px) {

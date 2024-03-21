@@ -10,17 +10,20 @@
   font-style: bold;
   cursor: pointer;
 }
-.btn:hover {
+.btn-alternative:hover {
   background-color: #0078c3;
 }
 .btn-alternative {
   background-color: var(--primary-color);
 }
-.btn-correct {
-  background-color: var(--confirmation-color);
-  color: var(--aux-text-color);
+.btn-disabled{
+  background-color: #0078c3;
 }
-.btn-wrong {
+.btn-correct,.btn-correct:hover {
+  background-color: var(--confirmation-color);
+  color: black;
+}
+.btn-wrong,.btn-wrong:hover {
   background-color: var(--warning-color);
   color: var(--aux-text-color);
 }
