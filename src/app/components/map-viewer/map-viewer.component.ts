@@ -30,7 +30,6 @@ export class MapViewerComponent implements AfterViewInit {
       map: continentName,
       color: '#f4f3f0',
       enableZoom: true,
-      hoverColor: '#c9dfaf',
       hoverOpacity: true,
       normalizeFunction: 'linear',
       selectedColor: null,
@@ -40,7 +39,7 @@ export class MapViewerComponent implements AfterViewInit {
       // },
       showTooltip: false,
     });
-    map.vectorMap('set', 'colors', countryCode, '#ff0000');
+    map.vectorMap('set', 'colors', countryCode, '#f63340');
   }
 
   //-- Clear the viewer

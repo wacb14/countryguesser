@@ -21,16 +21,23 @@ export class AlternativesViewerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.questionsGeneratorService.questionSender.subscribe((response) => {
-      this.answer = response;
+    this.showNewAlternatives();
+    this.ratingService.timeOverSender.subscribe((timeOver) => {
+      if (timeOver) this.rateQuestion(-1);
+    });
+  }
+
+  showNewAlternatives() {
+    this.questionsGeneratorService.questionSender.subscribe((question) => {
+      this.answer = question;
       this.alternatives =
         this.alternativesGeneratorService.generateAlternatives(
           this.answer.code,
           this.answer.continent
         );
-    });
-    this.ratingService.timeOverSender.subscribe((timeOver) => {
-      if (timeOver) this.rateQuestion(-1);
+      //-- Reset attributes
+      this.colors = ['a', 'a', 'a', 'a'];
+      this.disableButtons = false;
     });
   }
 
