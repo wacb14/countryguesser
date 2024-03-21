@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { QuestionsGeneratorService } from 'src/app/services/questions-generator.service';
 import { RatingService } from 'src/app/services/rating.service';
 
 @Component({
@@ -16,10 +17,13 @@ export class HeaderComponent implements OnInit {
   @Input() questions: Array<number> = [];
   @Input() score: number = 0;
 
-  constructor(private ratingService: RatingService) {}
+  constructor(
+    private ratingService: RatingService,
+    private questionGeneratorService: QuestionsGeneratorService
+  ) {}
 
   ngOnInit(): void {
-    this.startCountDown();
+    this.startTimer();
     this.showResult();
   }
 
@@ -36,8 +40,19 @@ export class HeaderComponent implements OnInit {
       }
     }, 1000);
   }
+
   stopTimer() {
     clearInterval(this.interval);
+  }
+
+  startTimer() {
+    this.questionGeneratorService.questionSender.subscribe((question) => {
+      this.timeRemaining = this.timeRemaining;
+      this.showTimer = true;
+      this.message = '';
+      this.timeOver = false;
+      this.startCountDown();
+    });
   }
 
   showResult() {
