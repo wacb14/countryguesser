@@ -1,19 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-    --border-radius: 0.8rem;
-    
-    --background-color: #7EDCD5;
-    --primary-color: #328BC3;
-    --secondary-color: #0B3C5D;
-    --warning-color: #F63340;
-    --confirmation-color: #02C9A8;
-    --text-color: #E0DCE4;
-    --aux-text-color: #F9BE03;
+  --border-radius: 0.8rem;
+
+  --background-color: #7edcd5;
+  --primary-color: #328bc3;
+  --primary-hover:#0078c3;
+  --secondary-color: #0b3c5d;
+  --warning-color: #f63340;
+  --confirmation-color: #02c9a8;
+  --text-color: #e0dce4;
+  --aux-text-color: #f9be03;
 }
-.text-center{
-    text-align: center;
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: var(--background-color);
 }
-body{
-    font-family: "Segoe UI", Arial, sans-serif;
-    background-color: var(--background-color);
+.text-center {
+  text-align: center;
+}
+.btn {
+  font-size: larger;
+  border: 0px;
+  padding: 0.5rem;
+  height: 3rem;
+  border-radius: 15px;
+  font-style: bold;
+  cursor: pointer;
 }

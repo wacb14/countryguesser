@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Country } from 'src/app/models/country';
 import { AlternativesGeneratorService } from 'src/app/services/alternatives-generator.service';
 import { QuestionsGeneratorService } from 'src/app/services/questions-generator.service';
+import { RatingService } from 'src/app/services/rating.service';
 @Component({
   selector: 'app-alternatives-viewer',
   templateUrl: './alternatives-viewer.component.html',
@@ -12,11 +13,11 @@ export class AlternativesViewerComponent implements OnInit {
   answer = new Country('', '', '');
   colors = ['a', 'a', 'a', 'a'];
   disableButtons = false;
-  @Output() rate = new EventEmitter<boolean>();
 
   constructor(
     private alternativesGeneratorService: AlternativesGeneratorService,
-    private questionsGeneratorService: QuestionsGeneratorService
+    private questionsGeneratorService: QuestionsGeneratorService,
+    private ratingService: RatingService
   ) {}
 
   ngOnInit(): void {
@@ -27,6 +28,9 @@ export class AlternativesViewerComponent implements OnInit {
           this.answer.code,
           this.answer.continent
         );
+    });
+    this.ratingService.timeOverSender.subscribe((timeOver) => {
+      if (timeOver) this.rateQuestion(-1);
     });
   }
 
@@ -46,15 +50,14 @@ export class AlternativesViewerComponent implements OnInit {
 
   rateQuestion(index: number) {
     this.colors = ['b', 'b', 'b', 'b'];
-    if (this.alternatives[index].code == this.answer.code) {
-      this.rate.emit(true);
-      this.colors[index] = 'c';
-    } else {
-      this.rate.emit(false);
+    if (index == -1 || this.alternatives[index].code != this.answer.code) {
+      this.ratingService.ratingSender.emit(false); //-- If didn't answered or answered wrong
       this.colors[index] = 'w';
       let correctIndex = this.findAnswerIndex();
-      console.log(correctIndex);
       this.colors[correctIndex] = 'c';
+    } else {
+      this.ratingService.ratingSender.emit(true); //-- Answered correctly
+      this.colors[index] = 'c';
     }
     this.disableButtons = true;
   }
