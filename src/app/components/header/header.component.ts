@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { RatingService } from 'src/app/services/rating.service';
 
 @Component({
   selector: 'app-header',
@@ -6,25 +7,53 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
+  interval: any;
   time: number = 3;
   timeRemaining: number = 3;
-  timeEnded = false;
-  @Input() questions: Array<string> = [];
-  @Input() score: string = '';
+  showTimer: boolean = true;
+  message: string = '';
+  timeOver = false;
+  @Input() questions: Array<number> = [];
+  @Input() score: number = 0;
+
+  constructor(private ratingService: RatingService) {}
 
   ngOnInit(): void {
     this.startCountDown();
+    this.showResult();
   }
 
   startCountDown() {
     this.timeRemaining = this.time;
-    let interval: any = setInterval(() => {
+
+    this.interval = setInterval(() => {
       if (this.timeRemaining == 0) {
-        clearInterval(interval);
-        this.timeEnded = true;
+        this.stopTimer();
+        this.timeOver = true;
+        this.ratingService.timeOverSender.emit(this.timeOver);
       } else {
         this.timeRemaining--;
       }
     }, 1000);
+  }
+  stopTimer() {
+    clearInterval(this.interval);
+  }
+
+  showResult() {
+    this.ratingService.ratingSender.subscribe((rating) => {
+      this.showTimer = false;
+      if (rating) {
+        this.message = 'CORRECT!';
+        this.stopTimer();
+      } else {
+        if (this.timeOver) {
+          this.message = "TIME'S UP!";
+        } else {
+          this.message = 'WRONG!';
+          this.stopTimer();
+        }
+      }
+    });
   }
 }

@@ -1,5 +1,13 @@
 <div class="container card px-0 pb-3">
-  <app-header></app-header>
+  <app-header
+    [score]="score"
+    [questions]="[currentIndex + 1, questions.length]"
+  ></app-header>
   <app-map-viewer></app-map-viewer>
   <app-alternatives-viewer></app-alternatives-viewer>
+  <div class="row p-0 m-0" *ngIf="showNext">
+    <div class="col p-0 m-0 text-center">
+      <button class="btn btn-next" (click)="nextQuestion()">Next</button>
+    </div>
+  </div>
 </div>
