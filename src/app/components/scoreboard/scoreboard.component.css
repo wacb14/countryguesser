@@ -1,0 +1,17 @@
+.card{
+    border-radius: var(--border-radius);
+    background-color: var(--secondary-color);
+}
+.title{
+    color: var(--text-color);
+    font-size: x-large;
+    font-weight: bolder;
+}
+.btn-again{
+    width: 10rem;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+.btn-again:hover{
+    background-color: var(--primary-hover);
+}
