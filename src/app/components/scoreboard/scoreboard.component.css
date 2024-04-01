@@ -30,13 +30,17 @@
   width: 100%;
   z-index: 1;
 }
-.btn-congrats {
+.card-congrats {
   width: 9rem;
+  border: 0px;
+  padding: 0.9rem 0.5rem;
+  border-radius: 15px;
+  font-style: bold;
   background-color: var(--confirmation-color);
   color: var(--text-color);
   font-size: x-large;
-  height: 3.5rem;
-  cursor: default;
+  display: block;
+  margin: 0 auto;
 }
 .rating {
   font-size: 4rem;
