@@ -8,6 +8,7 @@ import { AlternativesViewerComponent } from './components/alternatives-viewer/al
 import { CardComponent } from './components/card/card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
+import { ScoreboardComponent } from './components/scoreboard/scoreboard.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { HeaderComponent } from './components/header/header.component';
     MapViewerComponent,
     AlternativesViewerComponent,
     CardComponent,
-    HeaderComponent
+    HeaderComponent,
+    ScoreboardComponent
   ],
   imports: [
     BrowserModule,
