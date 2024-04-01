@@ -1,17 +1,49 @@
-.card{
-    border-radius: var(--border-radius);
-    background-color: var(--secondary-color);
+.card {
+  border-radius: var(--border-radius);
+  background-color: var(--secondary-color);
 }
-.title{
-    color: var(--text-color);
-    font-size: x-large;
-    font-weight: bolder;
+.title {
+  color: var(--text-color);
+  font-size: xx-large;
+  font-weight: bolder;
 }
-.btn-again{
-    width: 10rem;
-    background-color: var(--primary-color);
-    color: var(--text-color);
+.btn-again {
+  width: 9rem;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
-.btn-again:hover{
-    background-color: var(--primary-hover);
+.btn-again:hover {
+  background-color: var(--primary-hover);
+}
+.spinner-container {
+  position: relative;
+}
+.spinner {
+  display: flex;
+  justify-content: center;
+}
+.spinner-title {
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+.btn-congrats {
+  width: 9rem;
+  background-color: var(--confirmation-color);
+  color: var(--text-color);
+  font-size: x-large;
+  height: 3.5rem;
+  cursor: default;
+}
+.rating {
+  font-size: 4rem;
+  color: var(--text-color);
+  font-weight: bolder;
+}
+.points {
+  font-size: x-large;
+  color: var(--text-color);
 }
