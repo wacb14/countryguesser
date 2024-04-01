@@ -1,7 +1,6 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -12,7 +11,43 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$countryguesser-primary: mat.define-palette(mat.$indigo-palette);
+
+// Paleta de colores personalizada
+$primary-palette: (
+  50: #ddf6f1,
+  100: #abe8d9,
+  200: #70d9c1,
+  300: #02c9a8,
+  400: #00bc95,
+  500: #00ad83,
+  600: #009f76,
+  700: #008e65,
+  800: #007e57,
+  900: #00603a,
+  A100: #b3e4f9,
+  A200: #81d3f5,
+  A400: #2eb4ee,
+  A700: #0287c9,
+  contrast: (
+    50: #ffeaee,
+    100: #ffcad1,
+    200: #f19598,
+    300: #e76b70,
+    400: #f2454c,
+    500: #f72d31,
+    600: #e82131,
+    700: #d6122b,
+    800: #c90223,
+    900: #bb0016,
+    A100: #c5efc9,
+    A200: #9fe5a7,
+    A400: #4ad264,
+    A700: #00a62e,
+  ),
+);
+
+$countryguesser-primary: mat.define-palette($primary-palette, 300, 200, 500);
+
 $countryguesser-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
@@ -20,13 +55,15 @@ $countryguesser-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$countryguesser-theme: mat.define-light-theme((
-  color: (
-    primary: $countryguesser-primary,
-    accent: $countryguesser-accent,
-    warn: $countryguesser-warn,
+$countryguesser-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $countryguesser-primary,
+      accent: $countryguesser-accent,
+      warn: $countryguesser-warn,
+    ),
   )
-));
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component

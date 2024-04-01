@@ -12,5 +12,5 @@ export class ScoreboardComponent {
   mode: ProgressSpinnerMode = 'determinate';
   value = 100;
   diameter = 300;
-  strokeWidth=16;
+  strokeWidth = 16;
 }
