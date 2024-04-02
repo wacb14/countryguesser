@@ -11,6 +11,8 @@ import { ScoreboardComponent } from './components/scoreboard/scoreboard.componen
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
+import { AnswerCardComponent } from './components/answer-card/answer-card.component';
+
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { MatIconModule } from '@angular/material/icon';
     CardComponent,
     HeaderComponent,
     ScoreboardComponent,
+    AnswerCardComponent
   ],
   imports: [
     BrowserModule,

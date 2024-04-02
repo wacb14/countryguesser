@@ -1,0 +1,16 @@
+.capital-number {
+  font-size: 3rem;
+  color: var(--text-color);
+}
+.text-correct {
+  color: var(--confirmation-color);
+}
+.text-wrong {
+  color: var(--warning-color);
+}
+.text-correction {
+  color: var(--aux-text-color);
+}
+.text-answer{
+    font-weight: bold;
+}
