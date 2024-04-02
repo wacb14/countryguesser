@@ -51,3 +51,10 @@
   font-size: x-large;
   color: var(--text-color);
 }
+.scroll-window{
+  height: 80vh;
+  overflow: auto;
+}
+.card{
+  width: 100%;
+}
