@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Answer } from 'src/app/models/answer';
 import { Country } from 'src/app/models/country';
 import { QuestionsGeneratorService } from 'src/app/services/questions-generator.service';
 import { RatingService } from 'src/app/services/rating.service';
@@ -11,7 +12,7 @@ import { RatingService } from 'src/app/services/rating.service';
 export class CardComponent implements OnInit {
   questions: Array<Country> = [];
   currentCountry = new Country('', '', '');
-  answers: Array<boolean> = [];
+  answers: Array<Answer> = [];
   currentIndex: number = 0;
   score: number = 0;
   showNext: boolean = false;
@@ -36,6 +37,7 @@ export class CardComponent implements OnInit {
         this.score = this.score + 100;
       }
       this.answers.push(rating);
+      console.log(this.answers);
     });
   }
 

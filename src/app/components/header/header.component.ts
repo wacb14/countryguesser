@@ -58,7 +58,7 @@ export class HeaderComponent implements OnInit {
   showResult() {
     this.ratingService.ratingSender.subscribe((rating) => {
       this.showTimer = false;
-      if (rating) {
+      if (rating.isCorrect()) {
         this.message = 'CORRECT!';
         this.stopTimer();
       } else {
