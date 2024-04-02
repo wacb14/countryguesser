@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Answer } from 'src/app/models/answer';
 import { Country } from 'src/app/models/country';
 import { AlternativesGeneratorService } from 'src/app/services/alternatives-generator.service';
 import { QuestionsGeneratorService } from 'src/app/services/questions-generator.service';
@@ -57,13 +58,23 @@ export class AlternativesViewerComponent implements OnInit {
 
   rateQuestion(index: number) {
     this.colors = ['b', 'b', 'b', 'b'];
+    //-- If didn't answered or answered wrong
     if (index == -1 || this.alternatives[index].code != this.answer.code) {
-      this.ratingService.ratingSender.emit(false); //-- If didn't answered or answered wrong
+      let userAnswer = null;
+      if (index == -1) {
+        userAnswer = new Answer(this.answer, new Country('', '', '')); //-- Didn't answer
+      } else {
+        userAnswer = new Answer(this.answer, this.alternatives[index]);
+      }
+      this.ratingService.ratingSender.emit(userAnswer);
       this.colors[index] = 'w';
       let correctIndex = this.findAnswerIndex();
       this.colors[correctIndex] = 'c';
-    } else {
-      this.ratingService.ratingSender.emit(true); //-- Answered correctly
+    }
+    //-- Answered correctly
+    else {
+      let userAnswer = new Answer(this.answer, this.alternatives[index]);
+      this.ratingService.ratingSender.emit(userAnswer);
       this.colors[index] = 'c';
     }
     this.disableButtons = true;
