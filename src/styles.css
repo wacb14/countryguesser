@@ -4,16 +4,21 @@
 
   --background-color: #7edcd5;
   --primary-color: #328bc3;
-  --primary-hover:#0078c3;
+  --primary-hover: #0078c3;
   --secondary-color: #0b3c5d;
   --warning-color: #f63340;
   --confirmation-color: #02c9a8;
   --text-color: #e0dce4;
   --aux-text-color: #f9be03;
 }
+html,
 body {
-  font-family: "Segoe UI", Arial, sans-serif;
+  height: 100%;
+}
+body {
   background-color: var(--background-color);
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 .text-center {
   text-align: center;
@@ -28,5 +33,12 @@ body {
   cursor: pointer;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.h-100 {
+  height: 100%;
+}
+.h-fit {
+  height: fit-content;
+}
+.w-100 {
+  width: 100%;
+}
