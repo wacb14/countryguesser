@@ -25,14 +25,14 @@
   display: flex;
   justify-content: center;
 }
-.circle-container{
+.circle-container {
   position: relative;
 }
-.circle-background{
+.circle-background {
   position: absolute;
   z-index: 0;
 }
-.circle{
+.circle {
   z-index: 1;
 }
 .spinner-title {
@@ -65,6 +65,22 @@
   height: 80vh;
   overflow: auto;
 }
+.scrollbar-custom {
+  scrollbar-width: thin;
+  scrollbar-color: var(--confirmation-color) var(--text-color);
+}
+.scrollbar-custom::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background-color: var(--confirmation-color); 
+  border-radius: 4px;
+}
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background-color: #03947c;
+}
+
 .card {
   width: 100%;
 }

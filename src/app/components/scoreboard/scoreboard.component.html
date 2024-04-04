@@ -56,11 +56,11 @@
           <p class="title text-center">Your answers</p>
           <div class="container p-0 m-0">
             <div class="row p-0 m-0 justify-content-center">
-              <div class="col-11 col-md-9 col-lg-8 scroll-window p-0 m-0 py-2">
+              <div class="col-12 col-md-9 col-lg-8 scroll-window p-0 m-0 py-2 scrollbar-custom">
                 <ng-container *ngFor="let i = index; let answer; of: answers">
                   <app-answer-card
                     [answer]="answer"
-                    [number]="i + 1"
+                    [id]="i + 1"
                   ></app-answer-card>
                 </ng-container>
               </div>
