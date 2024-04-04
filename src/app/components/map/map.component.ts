@@ -25,6 +25,13 @@ export class MapComponent implements AfterViewInit {
 
   constructor(private questionsGeneratorService: QuestionsGeneratorService) {}
   ngAfterViewInit(): void {
+    //-- Load initial map
+    try {
+      this.loadMap(this.continentName, this.countryCode);
+    } catch (error) {
+      console.log('error loading map');
+    }
+    //-- Change map
     this.questionsGeneratorService.questionSender.subscribe((response) => {
       this.countryCode = response.code;
       this.continentName = response.continent;

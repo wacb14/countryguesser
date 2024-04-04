@@ -11,6 +11,10 @@
 .text-correction {
   color: var(--aux-text-color);
 }
-.text-answer{
-    font-weight: bold;
+.text-answer {
+  font-weight: bold;
+}
+.map-container {
+  height: 6rem;
+  width: 90%;
 }

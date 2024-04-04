@@ -12,5 +12,5 @@ export class AnswerCardComponent {
     new Country('', '', ''),
     new Country('', '', '')
   );
-  @Input() number: number = 0;
+  @Input() id: number = 0;
 }

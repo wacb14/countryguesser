@@ -35,8 +35,8 @@ export class ScoreboardComponent implements OnInit {
       new Country('pe', 'Peru', 'south-america_en')
     ),
     new Answer(
-      new Country('', '', ''),
-      new Country('pe', 'Peru', 'south-america_en')
+      new Country('pe', 'Peru', 'south-america_en'),
+      new Country('', '', '')
     ),
     new Answer(
       new Country('ar', 'Argentina', 'south-america_en'),
@@ -47,8 +47,8 @@ export class ScoreboardComponent implements OnInit {
       new Country('pe', 'Peru', 'south-america_en')
     ),
     new Answer(
-      new Country('', '', ''),
-      new Country('pe', 'Peru', 'south-america_en')
+      new Country('pe', 'Peru', 'south-america_en'),
+      new Country('', '', '')
     ),
     new Answer(
       new Country('ar', 'Argentina', 'south-america_en'),
