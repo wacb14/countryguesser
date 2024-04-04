@@ -8,9 +8,16 @@ declare var $: any;
   styleUrls: ['./map-viewer.component.css'],
 })
 export class MapViewerComponent implements AfterViewInit {
-  
+  //idMapViewer=1
   countryCode: string = '';
   continentName: string = '';
+
+  @Input() color: string = '#f4f3f0';
+  @Input() enableZoom: boolean = true;
+  @Input() hoverOpacity: boolean = true;
+  @Input() selectedColor: string = null!;
+  @Input() colors: object = null!;
+  @Input() showTooltip: boolean = false;
 
   constructor(private questionsGeneratorService: QuestionsGeneratorService) {}
 
@@ -18,7 +25,7 @@ export class MapViewerComponent implements AfterViewInit {
     this.questionsGeneratorService.questionSender.subscribe((response) => {
       this.countryCode = response.code;
       this.continentName = response.continent;
-      this.loadMap(response.continent,response.code);
+      this.loadMap(response.continent, response.code);
     });
   }
 
@@ -28,16 +35,13 @@ export class MapViewerComponent implements AfterViewInit {
     var map: any = $('#mapViewer');
     map.vectorMap({
       map: continentName,
-      color: '#f4f3f0',
-      enableZoom: true,
-      hoverOpacity: true,
+      color: this.color,
+      enableZoom: this.enableZoom,
+      hoverOpacity: this.hoverOpacity,
       normalizeFunction: 'linear',
-      selectedColor: null,
-      // selectedColor: null,
-      // colors: {
-      //   za: '#2980b9',
-      // },
-      showTooltip: false,
+      selectedColor: this.selectedColor,
+      colors: this.colors,
+      showTooltip: this.showTooltip,
     });
     map.vectorMap('set', 'colors', countryCode, '#f63340');
   }
