@@ -1,51 +1,53 @@
-<div class="container card px-0 pb-3">
-  <div class="row p-0 m-0">
+<div class="container-md card px-0 pb-3">
+  <div class="row p-0 m-0 justify-content-center">
     <div class="col-12 col-md-6 p-0 m-0">
-      <div class="row p-0 m-0">
-        <div class="col-12 p-0 m-0">
-          <p class="title text-center">Your score</p>
-        </div>
-        <div class="col-12 p-0 m-0">
-          <div class="spinner-container my-4">
-            <div class="spinner-title text-center">
-              <div class="card-congrats">{{ message }}</div>
-              <div>
-                <p class="rating mt-5 mb-2">
-                  {{ rating[0] + "/" + rating[1] }}
-                </p>
-                <p class="points my-1">{{ points }} points</p>
+      <div class="d-flex align-items-center h-100">
+        <div class="row p-0 m-0 h-fit justify-content-end w-100">
+          <div class="col-12 col-lg-10 p-0 m-0">
+            <p class="title text-center">Your score</p>
+          </div>
+          <div class="col-12 col-lg-10 p-0 m-0">
+            <div class="spinner-container my-4">
+              <div class="spinner-title text-center">
+                <div class="card-congrats">{{ message }}</div>
+                <div>
+                  <p class="rating mt-5 mb-2">
+                    {{ rating[0] + "/" + rating[1] }}
+                  </p>
+                  <p class="points my-1">{{ points }} points</p>
+                </div>
               </div>
-            </div>
-            <div class="spinner">
-              <div class="circle-container">
-                <mat-progress-spinner
-                  class="circle-background"
-                  [color]="backgroundColor"
-                  [mode]="mode"
-                  [value]="100"
-                  [diameter]="diameter"
-                  [strokeWidth]="strokeWidth"
-                >
-                </mat-progress-spinner>
-                <mat-progress-spinner
-                  class="circle"
-                  [color]="color"
-                  [mode]="mode"
-                  [value]="value"
-                  [diameter]="diameter"
-                  [strokeWidth]="strokeWidth"
-                >
-                </mat-progress-spinner>
+              <div class="spinner">
+                <div class="circle-container">
+                  <mat-progress-spinner
+                    class="circle-background"
+                    [color]="backgroundColor"
+                    [mode]="mode"
+                    [value]="100"
+                    [diameter]="diameter"
+                    [strokeWidth]="strokeWidth"
+                  >
+                  </mat-progress-spinner>
+                  <mat-progress-spinner
+                    class="circle"
+                    [color]="color"
+                    [mode]="mode"
+                    [value]="value"
+                    [diameter]="diameter"
+                    [strokeWidth]="strokeWidth"
+                  >
+                  </mat-progress-spinner>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-12 p-0 m-0 mt-4">
-          <div class="row m-0 p-0 justify-content-center">
-            <button class="btn btn-again">
-              <mat-icon fontIcon="rotate_right" class="icon"></mat-icon>
-              Play again
-            </button>
+          <div class="col-12 col-lg-10 p-0 m-0 mt-4">
+            <div class="row m-0 p-0 justify-content-center">
+              <button class="btn btn-again">
+                <mat-icon fontIcon="rotate_right" class="icon"></mat-icon>
+                Play again
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -53,17 +55,19 @@
     <div class="col-12 col-md-6 p-0 m-0">
       <div class="row p-0 m-0">
         <div class="col-12 p-0 m-0">
-          <p class="title text-center">Your answers</p>
-          <div class="container p-0 m-0">
-            <div class="row p-0 m-0 justify-content-center">
-              <div class="col-12 col-md-9 col-lg-8 scroll-window p-0 m-0 py-2 scrollbar-custom">
-                <ng-container *ngFor="let i = index; let answer; of: answers">
-                  <app-answer-card
-                    [answer]="answer"
-                    [id]="i + 1"
-                  ></app-answer-card>
-                </ng-container>
-              </div>
+          <div class="row p-0 m-0 justify-content-start">
+            <div class="col-12 col-lg-10">
+              <p class="title text-center">Your answers</p>
+            </div>
+            <div
+              class="col-12 col-lg-10 scroll-window p-0 m-0 py-2 scrollbar-custom"
+            >
+              <ng-container *ngFor="let i = index; let answer; of: answers">
+                <app-answer-card
+                  [answer]="answer"
+                  [id]="i + 1"
+                ></app-answer-card>
+              </ng-container>
             </div>
           </div>
         </div>
