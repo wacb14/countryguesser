@@ -25,10 +25,20 @@
   display: flex;
   justify-content: center;
 }
+.circle-container{
+  position: relative;
+}
+.circle-background{
+  position: absolute;
+  z-index: 0;
+}
+.circle{
+  z-index: 1;
+}
 .spinner-title {
   position: absolute;
   width: 100%;
-  z-index: 1;
+  z-index: 2;
 }
 .card-congrats {
   width: 9rem;
@@ -51,10 +61,10 @@
   font-size: x-large;
   color: var(--text-color);
 }
-.scroll-window{
+.scroll-window {
   height: 80vh;
   overflow: auto;
 }
-.card{
+.card {
   width: 100%;
 }

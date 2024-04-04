@@ -17,14 +17,26 @@
               </div>
             </div>
             <div class="spinner">
-              <mat-progress-spinner
-                [color]="color"
-                [mode]="mode"
-                [value]="value"
-                [diameter]="diameter"
-                [strokeWidth]="strokeWidth"
-              >
-              </mat-progress-spinner>
+              <div class="circle-container">
+                <mat-progress-spinner
+                  class="circle-background"
+                  [color]="backgroundColor"
+                  [mode]="mode"
+                  [value]="100"
+                  [diameter]="diameter"
+                  [strokeWidth]="strokeWidth"
+                >
+                </mat-progress-spinner>
+                <mat-progress-spinner
+                  class="circle"
+                  [color]="color"
+                  [mode]="mode"
+                  [value]="value"
+                  [diameter]="diameter"
+                  [strokeWidth]="strokeWidth"
+                >
+                </mat-progress-spinner>
+              </div>
             </div>
           </div>
         </div>
@@ -45,8 +57,11 @@
           <div class="container p-0 m-0">
             <div class="row p-0 m-0 justify-content-center">
               <div class="col-11 col-md-9 col-lg-8 scroll-window p-0 m-0 py-2">
-                <ng-container *ngFor="let i = index; let answer of answers">
-                  <app-answer-card [answer]="answer" [number]="i+1"></app-answer-card>
+                <ng-container *ngFor="let i = index; let answer; of: answers">
+                  <app-answer-card
+                    [answer]="answer"
+                    [number]="i + 1"
+                  ></app-answer-card>
                 </ng-container>
               </div>
             </div>

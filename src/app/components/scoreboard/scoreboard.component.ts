@@ -12,6 +12,7 @@ import { Country } from 'src/app/models/country';
 export class ScoreboardComponent implements OnInit {
   //-- Spinner attributes
   color: ThemePalette = 'primary';
+  backgroundColor: ThemePalette = 'accent';
   mode: ProgressSpinnerMode = 'determinate';
   value = 0;
   diameter = 300;
