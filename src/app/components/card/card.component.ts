@@ -37,7 +37,6 @@ export class CardComponent implements OnInit {
         this.score = this.score + 100;
       }
       this.answers.push(rating);
-      console.log(this.answers);
     });
   }
 
