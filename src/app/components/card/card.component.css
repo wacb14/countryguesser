@@ -1,12 +1,15 @@
-.card{
-    border-radius: var(--border-radius);
-    background-color: var(--secondary-color);
+.card {
+  border-radius: var(--border-radius);
+  background-color: var(--secondary-color);
 }
-.btn-next{
-    width: 10rem;
-    background-color: var(--primary-color);
-    color: var(--text-color);
+.btn-next {
+  width: 10rem;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
-.btn-next:hover{
-    background-color: var(--primary-hover);
+.btn-next:hover {
+  background-color: var(--primary-hover);
 }
