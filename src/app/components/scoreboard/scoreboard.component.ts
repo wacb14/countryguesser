@@ -10,57 +10,33 @@ import { Country } from 'src/app/models/country';
   styleUrls: ['./scoreboard.component.css'],
 })
 export class ScoreboardComponent implements OnInit {
-  //-- Spinner attributes
+  //-- Spinner default attributes
   color: ThemePalette = 'primary';
   backgroundColor: ThemePalette = 'accent';
   mode: ProgressSpinnerMode = 'determinate';
   value = 0;
   diameter = 300;
   strokeWidth = 16;
-
+  //-- Component default attributes
   message: string = 'Congrats!';
-  rating: Array<number> = [50, 100];
+  rating: Array<number> = [0, 0];
   points: string = '0';
-  answers: Array<Answer> = [
-    new Answer(
-      new Country('pe', 'Peru', 'south-america_en'),
-      new Country('', '', '')
-    ),
-    new Answer(
-      new Country('ar', 'Argentina', 'south-america_en'),
-      new Country('pe', 'Peru', 'south-america_en')
-    ),
-    new Answer(
-      new Country('pe', 'Peru', 'south-america_en'),
-      new Country('pe', 'Peru', 'south-america_en')
-    ),
-    new Answer(
-      new Country('pe', 'Peru', 'south-america_en'),
-      new Country('', '', '')
-    ),
-    new Answer(
-      new Country('ar', 'Argentina', 'south-america_en'),
-      new Country('pe', 'Peru', 'south-america_en')
-    ),
-    new Answer(
-      new Country('pe', 'Peru', 'south-america_en'),
-      new Country('pe', 'Peru', 'south-america_en')
-    ),
-    new Answer(
-      new Country('pe', 'Peru', 'south-america_en'),
-      new Country('', '', '')
-    ),
-    new Answer(
-      new Country('ar', 'Argentina', 'south-america_en'),
-      new Country('pe', 'Peru', 'south-america_en')
-    ),
-    new Answer(
-      new Country('pe', 'Peru', 'south-america_en'),
-      new Country('pe', 'Peru', 'south-america_en')
-    ),
-  ];
+  answers: Array<Answer> = [];
 
   ngOnInit(): void {
+    this.answers = history.state.answers.map(
+      (ans: any) => new Answer(ans.country, ans.answer)
+    );
+    this.points = history.state.points;
+    this.countRightAnswers();
+  }
+  countRightAnswers() {
+    for (const answer of this.answers) {
+      if (answer.isCorrect()) {
+        this.rating[0]++;
+      }
+    }
+    this.rating[1] = this.answers.length;
     this.value = (this.rating[0] / this.rating[1]) * 100;
   }
 }

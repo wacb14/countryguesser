@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 import { Answer } from 'src/app/models/answer';
 import { Country } from 'src/app/models/country';
 import { QuestionsGeneratorService } from 'src/app/services/questions-generator.service';
@@ -15,16 +16,18 @@ export class CardComponent implements OnInit {
   answers: Array<Answer> = [];
   currentIndex: number = 0;
   score: number = 0;
-  showNext: boolean = false;
+  showBtnNext: boolean = false;
+  showBtnResults: boolean = false;
 
   constructor(
     private questionsGeneratorService: QuestionsGeneratorService,
-    private ratingService: RatingService
+    private ratingService: RatingService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     let continent = 'south-america_en';
-    let number_questions = 10;
+    let number_questions = 5;
     this.questions = this.questionsGeneratorService.generateQuestions(
       number_questions,
       continent
@@ -32,18 +35,33 @@ export class CardComponent implements OnInit {
     this.currentCountry = this.questions[0];
 
     this.ratingService.ratingSender.subscribe((rating) => {
-      this.showNext = true;
-      if (rating) {
+      if (rating.isCorrect()) {
         this.score = this.score + 100;
       }
       this.answers.push(rating);
+      //-- Check if it's the last question
+      if (this.answers.length == this.questions.length) {
+        this.showBtnResults = true;
+      } else {
+        this.showBtnNext = true;
+      }
     });
   }
 
   nextQuestion() {
     this.currentIndex++;
     this.currentCountry = this.questions[this.currentIndex];
-    this.showNext = false;
+    this.showBtnNext = false;
     this.questionsGeneratorService.questionSender.emit(this.currentCountry);
+  }
+
+  goScoreboard() {
+    const extras: NavigationExtras = {
+      state: {
+        answers: this.answers,
+        points:this.score
+      },
+    };
+    this.router.navigate(['/', 'scoreboard'], extras);
   }
 }

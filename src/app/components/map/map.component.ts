@@ -1,6 +1,5 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input } from '@angular/core';
 import { QuestionsGeneratorService } from 'src/app/services/questions-generator.service';
-import { RatingService } from 'src/app/services/rating.service';
 declare var $: any;
 
 @Component({
@@ -29,20 +28,19 @@ export class MapComponent implements AfterViewInit {
     try {
       this.loadMap(this.continentName, this.countryCode);
     } catch (error) {
-      console.log('error loading map');
+      console.log('There was an error while loading the map. Please refresh the page.');
     }
-    //-- Change map
+    //-- Changing map
     this.questionsGeneratorService.questionSender.subscribe((response) => {
       this.countryCode = response.code;
       this.continentName = response.continent;
-      this.loadMap(this.continentName, this.countryCode);
+      this.reloadMap(this.continentName, this.countryCode);
     });
   }
 
   //-- Changes the map showed in the card
   loadMap(continentName: string, countryCode: string) {
-    this.emptyMapViewer();
-    var map: any = $('#mapViewer' + this.id);
+    let map: any = $('#map' + this.id);
     map.vectorMap({
       map: continentName,
       color: this.color,
@@ -56,8 +54,13 @@ export class MapComponent implements AfterViewInit {
     map.vectorMap('set', 'colors', countryCode, '#f63340');
   }
 
-  //-- Clear the viewer
-  emptyMapViewer() {
-    $('#mapViewer').empty();
+  reloadMap(continentName: string, countryCode: string) {
+    this.emptyMap();
+    this.loadMap(continentName, countryCode);
+  }
+
+  //-- Clear the map
+  emptyMap() {
+    $('#map' + this.id).empty();
   }
 }
