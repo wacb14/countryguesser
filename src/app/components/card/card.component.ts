@@ -42,6 +42,7 @@ export class CardComponent implements OnInit {
       //-- Check if it's the last question
       if (this.answers.length == this.questions.length) {
         this.showBtnResults = true;
+        this.ratingService.finished = true;
       } else {
         this.showBtnNext = true;
       }
@@ -59,7 +60,7 @@ export class CardComponent implements OnInit {
     const extras: NavigationExtras = {
       state: {
         answers: this.answers,
-        points:this.score
+        points: this.score,
       },
     };
     this.router.navigate(['/', 'scoreboard'], extras);
