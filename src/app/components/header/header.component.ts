@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs/internal/Subscription';
 import { QuestionsGeneratorService } from 'src/app/services/questions-generator.service';
 import { RatingService } from 'src/app/services/rating.service';
 
@@ -7,7 +8,7 @@ import { RatingService } from 'src/app/services/rating.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   interval: any;
   time: number = 3;
   timeRemaining: number = 3;
@@ -16,6 +17,8 @@ export class HeaderComponent implements OnInit {
   timeOver = false;
   @Input() questions: Array<number> = [];
   @Input() score: number = 0;
+  ratingSubscription: Subscription = null!;
+  questionGeneratorSubscription: Subscription = null!;
 
   constructor(
     private ratingService: RatingService,
@@ -25,6 +28,12 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.startTimer();
     this.showResult();
+  }
+
+  ngOnDestroy(): void {
+    if (this.ratingSubscription) this.ratingSubscription.unsubscribe();
+    if (this.questionGeneratorSubscription)
+      this.questionGeneratorSubscription.unsubscribe();
   }
 
   startCountDown() {
@@ -46,29 +55,32 @@ export class HeaderComponent implements OnInit {
   }
 
   startTimer() {
-    this.questionGeneratorService.questionSender.subscribe((question) => {
-      this.timeRemaining = this.timeRemaining;
-      this.showTimer = true;
-      this.message = '';
-      this.timeOver = false;
-      this.startCountDown();
-    });
+    this.questionGeneratorSubscription =
+      this.questionGeneratorService.questionSender.subscribe((question) => {
+        this.timeRemaining = this.timeRemaining;
+        this.showTimer = true;
+        this.message = '';
+        this.timeOver = false;
+        this.startCountDown();
+      });
   }
 
   showResult() {
-    this.ratingService.ratingSender.subscribe((rating) => {
-      this.showTimer = false;
-      if (rating.isCorrect()) {
-        this.message = 'CORRECT!';
-        this.stopTimer();
-      } else {
-        if (this.timeOver) {
-          this.message = "TIME'S UP!";
-        } else {
-          this.message = 'WRONG!';
+    this.ratingSubscription = this.ratingService.ratingSender.subscribe(
+      (rating) => {
+        this.showTimer = false;
+        if (rating.isCorrect()) {
+          this.message = 'CORRECT!';
           this.stopTimer();
+        } else {
+          if (this.timeOver) {
+            this.message = "TIME'S UP!";
+          } else {
+            this.message = 'WRONG!';
+            this.stopTimer();
+          }
         }
       }
-    });
+    );
   }
 }

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
+import { Subscription } from 'rxjs/internal/Subscription';
 import { Answer } from 'src/app/models/answer';
 import { Country } from 'src/app/models/country';
 import { QuestionsGeneratorService } from 'src/app/services/questions-generator.service';
@@ -10,7 +11,7 @@ import { RatingService } from 'src/app/services/rating.service';
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.css'],
 })
-export class CardComponent implements OnInit {
+export class CardComponent implements OnInit, OnDestroy {
   questions: Array<Country> = [];
   currentCountry = new Country('', '', '');
   answers: Array<Answer> = [];
@@ -18,6 +19,7 @@ export class CardComponent implements OnInit {
   score: number = 0;
   showBtnNext: boolean = false;
   showBtnResults: boolean = false;
+  ratingSubscription: Subscription = null!;
 
   constructor(
     private questionsGeneratorService: QuestionsGeneratorService,
@@ -34,19 +36,24 @@ export class CardComponent implements OnInit {
     );
     this.currentCountry = this.questions[0];
 
-    this.ratingService.ratingSender.subscribe((rating) => {
-      if (rating.isCorrect()) {
-        this.score = this.score + 100;
+    this.ratingSubscription = this.ratingService.ratingSender.subscribe(
+      (rating) => {
+        if (rating.isCorrect()) {
+          this.score = this.score + 100;
+        }
+        this.answers.push(rating);
+        //-- Check if it's the last question
+        if (this.answers.length == this.questions.length) {
+          this.showBtnResults = true;
+          this.ratingService.finished = true;
+        } else {
+          this.showBtnNext = true;
+        }
       }
-      this.answers.push(rating);
-      //-- Check if it's the last question
-      if (this.answers.length == this.questions.length) {
-        this.showBtnResults = true;
-        this.ratingService.finished = true;
-      } else {
-        this.showBtnNext = true;
-      }
-    });
+    );
+  }
+  ngOnDestroy(): void {
+    if (this.ratingSubscription) this.ratingSubscription.unsubscribe();
   }
 
   nextQuestion() {
