@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, Input } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { QuestionsGeneratorService } from 'src/app/services/questions-generator.service';
 declare var $: any;
 
@@ -21,6 +22,7 @@ export class MapComponent implements AfterViewInit {
   @Input() showTooltip: boolean = false;
   //-- Size attributes
   @Input() height = '90%'; //-- Height of the map in CSS units
+  questionGeneratorSubscription: Subscription = null!;
 
   constructor(private questionsGeneratorService: QuestionsGeneratorService) {}
   ngAfterViewInit(): void {
@@ -28,14 +30,20 @@ export class MapComponent implements AfterViewInit {
     try {
       this.loadMap(this.continentName, this.countryCode);
     } catch (error) {
-      console.log('There was an error while loading the map. Please refresh the page.');
+      console.log(
+        'There was an error while loading the map. Please refresh the page.'
+      );
     }
     //-- Changing map
-    this.questionsGeneratorService.questionSender.subscribe((response) => {
+    this.questionGeneratorSubscription = this.questionsGeneratorService.questionSender.subscribe((response) => {
       this.countryCode = response.code;
       this.continentName = response.continent;
       this.reloadMap(this.continentName, this.countryCode);
     });
+  }
+  ngOnDestroy(): void {
+    if (this.questionGeneratorSubscription)
+      this.questionGeneratorSubscription.unsubscribe();
   }
 
   //-- Changes the map showed in the card

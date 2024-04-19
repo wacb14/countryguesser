@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Answer } from 'src/app/models/answer';
 import { Country } from 'src/app/models/country';
 import { AlternativesGeneratorService } from 'src/app/services/alternatives-generator.service';
@@ -9,11 +10,13 @@ import { RatingService } from 'src/app/services/rating.service';
   templateUrl: './alternatives-viewer.component.html',
   styleUrls: ['./alternatives-viewer.component.css'],
 })
-export class AlternativesViewerComponent implements OnInit {
+export class AlternativesViewerComponent implements OnInit, OnDestroy {
   alternatives: Array<Country> = [];
   answer = new Country('', '', '');
   colors = ['a', 'a', 'a', 'a'];
   disableButtons = false;
+  ratingSubscription: Subscription = null!;
+  questionGeneratorSubscription: Subscription = null!;
 
   constructor(
     private alternativesGeneratorService: AlternativesGeneratorService,
@@ -23,23 +26,31 @@ export class AlternativesViewerComponent implements OnInit {
 
   ngOnInit(): void {
     this.showNewAlternatives();
-    this.ratingService.timeOverSender.subscribe((timeOver) => {
-      if (timeOver) this.rateQuestion(-1);
-    });
+    this.ratingSubscription = this.ratingService.timeOverSender.subscribe(
+      (timeOver) => {
+        if (timeOver) this.rateQuestion(-1);
+      }
+    );
+  }
+  ngOnDestroy(): void {
+    if (this.ratingSubscription) this.ratingSubscription.unsubscribe();
+    if (this.questionGeneratorSubscription)
+      this.questionGeneratorSubscription.unsubscribe();
   }
 
   showNewAlternatives() {
-    this.questionsGeneratorService.questionSender.subscribe((question) => {
-      this.answer = question;
-      this.alternatives =
-        this.alternativesGeneratorService.generateAlternatives(
-          this.answer.code,
-          this.answer.continent
-        );
-      //-- Reset attributes
-      this.colors = ['a', 'a', 'a', 'a'];
-      this.disableButtons = false;
-    });
+    this.questionGeneratorSubscription =
+      this.questionsGeneratorService.questionSender.subscribe((question) => {
+        this.answer = question;
+        this.alternatives =
+          this.alternativesGeneratorService.generateAlternatives(
+            this.answer.code,
+            this.answer.continent
+          );
+        //-- Reset attributes
+        this.colors = ['a', 'a', 'a', 'a'];
+        this.disableButtons = false;
+      });
   }
 
   findAnswerIndex() {
