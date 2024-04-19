@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
+import { Router } from '@angular/router';
 import { Answer } from 'src/app/models/answer';
 import { Country } from 'src/app/models/country';
 
@@ -22,7 +23,7 @@ export class ScoreboardComponent implements OnInit {
   rating: Array<number> = [0, 0];
   points: string = '0';
   answers: Array<Answer> = [];
-
+  constructor(private router: Router) {}
   ngOnInit(): void {
     this.answers = history.state.answers.map(
       (ans: any) => new Answer(ans.country, ans.answer)
@@ -38,5 +39,8 @@ export class ScoreboardComponent implements OnInit {
     }
     this.rating[1] = this.answers.length;
     this.value = (this.rating[0] / this.rating[1]) * 100;
+  }
+  newGame() {
+    this.router.navigate(['/']);
   }
 }
