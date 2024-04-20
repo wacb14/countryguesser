@@ -29,7 +29,7 @@ export class CardComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     let continent = 'south-america_en';
-    let number_questions = 5;
+    let number_questions = 10;
     this.questions = this.questionsGeneratorService.generateQuestions(
       number_questions,
       continent

@@ -10,8 +10,8 @@ import { RatingService } from 'src/app/services/rating.service';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   interval: any;
-  time: number = 3;
-  timeRemaining: number = 3;
+  time: number = 15;
+  timeRemaining: number = 15;
   showTimer: boolean = true;
   message: string = '';
   timeOver = false;
