@@ -43,3 +43,8 @@ Thumbs.db
 
 # Design
 *.xd
+
+#Firebase
+firebase.json
+.firebase*
+.github

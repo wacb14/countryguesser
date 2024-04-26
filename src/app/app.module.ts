@@ -13,7 +13,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import { AnswerCardComponent } from './components/answer-card/answer-card.component';
 import { MapComponent } from './components/map/map.component';
-
+import { MainMenuComponent } from './components/main-menu/main-menu.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,8 @@ import { MapComponent } from './components/map/map.component';
     HeaderComponent,
     ScoreboardComponent,
     AnswerCardComponent,
-    MapComponent
+    MapComponent,
+    MainMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,10 @@ import { MapComponent } from './components/map/map.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonToggleModule,
+    MatSelectModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent],
