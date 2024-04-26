@@ -35,11 +35,12 @@ export class MapComponent implements AfterViewInit {
       );
     }
     //-- Changing map
-    this.questionGeneratorSubscription = this.questionsGeneratorService.questionSender.subscribe((response) => {
-      this.countryCode = response.code;
-      this.continentName = response.continent;
-      this.reloadMap(this.continentName, this.countryCode);
-    });
+    this.questionGeneratorSubscription =
+      this.questionsGeneratorService.questionSender.subscribe((response) => {
+        this.countryCode = response.code;
+        this.continentName = response.continent;
+        this.reloadMap(this.continentName, this.countryCode);
+      });
   }
   ngOnDestroy(): void {
     if (this.questionGeneratorSubscription)
@@ -54,10 +55,10 @@ export class MapComponent implements AfterViewInit {
       color: this.color,
       enableZoom: this.enableZoom,
       hoverOpacity: this.hoverOpacity,
-      normalizeFunction: 'linear',
+      normalizeFunction: 'polynomial',
       selectedColor: this.selectedColor,
       colors: this.colors,
-      showTooltip: this.showTooltip,
+      showTooltip: this.showTooltip
     });
     map.vectorMap('set', 'colors', countryCode, '#f63340');
   }

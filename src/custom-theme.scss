@@ -24,25 +24,58 @@ $primary-palette: (
   700: #008e65,
   800: #007e57,
   900: #00603a,
-  A100: #b3e4f9,
-  A200: #81d3f5,
-  A400: #2eb4ee,
-  A700: #0287c9,
+  A100: #f63340,
+  A200: #e2303c,
+  A400: #d32c37,
+  A700: #b32630,
   contrast: (
-    50: #ffeaee,
-    100: #ffcad1,
-    200: #f19598,
-    300: #e76b70,
-    400: #f2454c,
-    500: #f72d31,
-    600: #e82131,
-    700: #d6122b,
-    800: #c90223,
-    900: #bb0016,
-    A100: #c5efc9,
-    A200: #9fe5a7,
-    A400: #4ad264,
-    A700: #00a62e,
+    50: #051f2f,
+    100: #07283d,
+    200: #082f48,
+    300: #0b3c5d,
+    400: #0e4b73,
+    500: #105786,
+    600: #13669d,
+    700: #1572b0,
+    800: #328bc3,
+    900: #0078c3,
+    A100: #f5d771,
+    A200: #f9be03,
+    A400: #deac08,
+    A700: #b58b03,
+  ),
+);
+
+$warning-palette: (
+  50: #851a21,
+  100: #a1242c,
+  200: #c22d37,
+  300: #d32631,
+  400: #f63340,
+  500: #ec1a28,
+  600: #ee1120,
+  700: #f60717,
+  800: #fa0515,
+  900: #ff0000,
+  A100: #f5d771,
+  A200: #f9be03,
+  A400: #deac08,
+  A700: #b58b03,
+  contrast: (
+    50: #051f2f,
+    100: #07283d,
+    200: #082f48,
+    300: #0b3c5d,
+    400: #0e4b73,
+    500: #105786,
+    600: #13669d,
+    700: #1572b0,
+    800: #328bc3,
+    900: #0078c3,
+    A100: #f5d771,
+    A200: #f9be03,
+    A400: #deac08,
+    A700: #b58b03,
   ),
 );
 
@@ -51,7 +84,7 @@ $countryguesser-primary: mat.define-palette($primary-palette, 300, 200, 500);
 $countryguesser-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
-$countryguesser-warn: mat.define-palette(mat.$red-palette);
+$countryguesser-warn: mat.define-palette($warning-palette, 400, 300, 500);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".

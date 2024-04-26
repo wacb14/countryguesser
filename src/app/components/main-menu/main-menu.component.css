@@ -1,0 +1,79 @@
+.map {
+  border-radius: var(--border-radius);
+  height: 80vh;
+  position: relative;
+  z-index: 0;
+}
+.card-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  color: var(--text-color);
+}
+.card {
+  background-color: var(--secondary-color);
+  max-width: 22rem;
+  height: fit-content;
+  border-radius: var(--border-radius);
+}
+.title {
+  color: var(--aux-text-color);
+}
+.continents-select {
+  height: 2.25rem;
+  width: 10rem;
+  font-size: medium;
+  background-color: var(--warning-color);
+  border: solid grey 1px;
+  border-radius: 8px;
+  color: var(--aux-text-color);
+}
+.continents-option {
+  font-size: medium;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  padding: 0;
+  margin: 0;
+}
+.continents-option:hover {
+  background-color: var(--warning-color);
+  color: var(--aux-text-color);
+}
+.btn-start {
+  font-size: large;
+  padding: 0 2rem;
+  height: 2.25rem;
+  border-radius: 8px;
+  border: none;
+  color: var(--text-color);
+  background-color: var(--primary-color);
+}
+.btn-start:hover {
+  background-color: var(--confirmation-color);
+  color: var(--warning-color);
+  cursor: pointer;
+}
+
+/* Button toggle */
+.mat-button-toggle-group {
+  border: solid grey 1px;
+}
+.mat-button-toggle {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  width: 3.1rem;
+  height: 3rem;
+  border: solid grey 1px !important;
+  font-size: larger;
+}
+.mat-button-toggle:hover {
+  background-color: var(--confirmation-color);
+  color: var(--warning-color);
+}
+.mat-button-toggle-checked {
+  background-color: var(--warning-color) !important;
+  color: var(--aux-text-color) !important;
+}
+
+/* Material select's styles customization in global styles */

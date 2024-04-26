@@ -1,0 +1,59 @@
+<div class="container map px-0 pb-3">
+  <app-map
+    [height]="'100%'"
+    [continentName]="'world_en'"
+    [countryCode]="'null'"
+    [showTooltip]="true"
+    [enableZoom]="false"
+    [colors]="this.colors"
+  ></app-map>
+  <div
+    class="row card-container p-0 m-0 w-100 h-100 justify-content-center align-content-center"
+  >
+    <div class="col card">
+      <div class="row mx-4">
+        <div class="col-12">
+          <h1 class="title text-center my-3">Country Guesser</h1>
+        </div>
+
+        <div class="col-12">
+          <h3 class="mt-1 mb-2">Continent</h3>
+          <mat-form-field>
+            <mat-select [value]="'wh'">
+              <mat-option value="wh">Whole world</mat-option>
+              <mat-option value="af">Africa</mat-option>
+              <mat-option value="am">America</mat-option>
+              <mat-option value="as">Asia</mat-option>
+              <mat-option value="eu">Europe</mat-option>
+              <mat-option value="oc">Oceania</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <!-- <div class="col-12">
+          <h3 class="mt-1 mb-2">Continent</h3>
+          <select class="mb-3 continents-select text-center">
+            <option value="wh" class="continents-option">Whole world</option>
+            <option value="af" class="continents-option">Africa</option>
+            <option value="am" class="continents-option">America</option>
+            <option value="as" class="continents-option">Asia</option>
+            <option value="eu" class="continents-option">Europe</option>
+            <option value="oc" class="continents-option">Oceania</option>
+          </select>
+        </div> -->
+        <div class="col-12">
+          <h3 class="mt-1 mb-2">Number of questions</h3>
+          <mat-button-toggle-group [value]="10">
+            <mat-button-toggle [value]="10">10</mat-button-toggle>
+            <mat-button-toggle [value]="15">15</mat-button-toggle>
+            <mat-button-toggle [value]="25">25</mat-button-toggle>
+            <mat-button-toggle [value]="35">35</mat-button-toggle>
+            <mat-button-toggle [value]="50">50</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+        <div class="col-12 text-center">
+          <button class="my-3 btn-start">Start</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

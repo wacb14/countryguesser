@@ -25,7 +25,7 @@ body {
 }
 .btn {
   font-size: larger;
-  border: 0px;
+  border: 0;
   padding: 0.5rem;
   height: 3rem;
   border-radius: 15px;
@@ -41,4 +41,40 @@ body {
 }
 .w-100 {
   width: 100%;
+}
+
+/* Select */
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: var(--primary-color) !important;
+  height: 3rem;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.mat-mdc-select,
+.mat-mdc-select-arrow {
+  color: var(--text-color) !important;
+  font-size: large!important;
+}
+div.mat-mdc-select-panel {
+  background-color: var(--primary-color) !important;
+  border-top: none !important;
+}
+.mat-mdc-option {
+  color: var(--text-color) !important;
+}
+.mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled):not(
+    .mat-mdc-option-multiple
+  ) {
+  background-color: var(--warning-color) !important;
+}
+.mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled)
+  .mdc-list-item__primary-text {
+  color: var(--aux-text-color) !important;
+}
+.mat-primary .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after, .mat-primary .mat-pseudo-checkbox-indeterminate.mat-pseudo-checkbox-minimal::after {
+  color: var(--aux-text-color) !important;
+}
+.mat-mdc-option:hover:not(.mdc-list-item--disabled) {
+  background-color: var(--confirmation-color) !important;
+  color: var(--warning-color) !important;
 }
