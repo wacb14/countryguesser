@@ -78,3 +78,10 @@ div.mat-mdc-select-panel {
   background-color: var(--confirmation-color) !important;
   color: var(--warning-color) !important;
 }
+.mat-mdc-text-field-wrapper{
+  border-radius: var(--border-radius)!important;
+}
+.mdc-text-field--focused{
+  border-bottom-left-radius: 0!important;
+  border-bottom-right-radius: 0!important;
+}
