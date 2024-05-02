@@ -26,7 +26,7 @@
   font-size: medium;
   background-color: var(--warning-color);
   border: solid grey 1px;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   color: var(--aux-text-color);
 }
 .continents-option {
@@ -44,7 +44,7 @@
   font-size: large;
   padding: 0 2rem;
   height: 2.25rem;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   border: none;
   color: var(--text-color);
   background-color: var(--primary-color);
@@ -77,3 +77,6 @@
 }
 
 /* Material select's styles customization in global styles */
+.rounded{
+  border-radius: var(--border-radius)!important;
+}
