@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { QuestionsGeneratorService } from 'src/app/services/questions-generator.service';
-import { MapsColors } from 'src/assets/mapsColors';
+import { MapsColors } from 'src/app/models/mapsColors';
 @Component({
   selector: 'app-main-menu',
   templateUrl: './main-menu.component.html',
