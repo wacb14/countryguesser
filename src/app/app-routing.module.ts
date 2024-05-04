@@ -4,10 +4,11 @@ import { ScoreboardComponent } from './components/scoreboard/scoreboard.componen
 import { CardComponent } from './components/card/card.component';
 import { resultsGuard } from './guards/results.guard';
 import { MainMenuComponent } from './components/main-menu/main-menu.component';
+import { gameGuard } from './guards/game.guard';
 
 const routes: Routes = [
   { path: '', component: MainMenuComponent },
-  { path: 'maps', component: CardComponent },
+  { path: 'maps', component: CardComponent, canActivate: [gameGuard] },
   {
     path: 'scoreboard',
     component: ScoreboardComponent,

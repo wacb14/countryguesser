@@ -4,6 +4,9 @@
   position: relative;
   z-index: 0;
 }
+.map-container{
+  height: 100%;
+}
 .card-container {
   position: absolute;
   top: 0;
@@ -79,4 +82,21 @@
 /* Material select's styles customization in global styles */
 .rounded{
   border-radius: var(--border-radius)!important;
+}
+
+@media (max-width: 768px) {
+  .map {
+    height: 100vh;
+    position: static;
+  }
+  .map-container{
+    height: 15rem;
+    width: 22rem;
+    display: block;
+    margin: auto;
+  }
+  .card-container {
+    position: static;
+    height: 50%;
+  }
 }
