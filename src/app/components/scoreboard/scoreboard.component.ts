@@ -3,7 +3,6 @@ import { ThemePalette } from '@angular/material/core';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { Router } from '@angular/router';
 import { Answer } from 'src/app/models/answer';
-import { Country } from 'src/app/models/country';
 
 @Component({
   selector: 'app-scoreboard',

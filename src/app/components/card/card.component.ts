@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { Answer } from 'src/app/models/answer';
 import { Country } from 'src/app/models/country';
@@ -24,18 +24,20 @@ export class CardComponent implements OnInit, OnDestroy {
   constructor(
     private questionsGeneratorService: QuestionsGeneratorService,
     private ratingService: RatingService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    let continent = 'south-america_en';
-    let number_questions = 10;
-    this.questions = this.questionsGeneratorService.generateQuestions(
-      number_questions,
-      continent
-    );
-    this.currentCountry = this.questions[0];
-
+    //-- Receive parameters
+    let continent = history.state.continent;
+      let number_questions = history.state.numberQuestions;
+      this.questions = this.questionsGeneratorService.generateQuestions(
+        number_questions,
+        continent
+      );
+      this.currentCountry = this.questions[0];
+      console.log(this.questions)
     this.ratingSubscription = this.ratingService.ratingSender.subscribe(
       (rating) => {
         if (rating.isCorrect()) {
