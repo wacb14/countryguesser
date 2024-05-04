@@ -1,16 +1,21 @@
-<div class="container card px-0 pb-3">
-  <app-header
-    [score]="score"
-    [questions]="[currentIndex + 1, questions.length]"
-  ></app-header>
-  <app-map-viewer></app-map-viewer>
-  <app-alternatives-viewer></app-alternatives-viewer>
-  <div class="row justify-content-center" *ngIf="showBtnNext">
-    <button class="btn btn-next" (click)="nextQuestion()">Next</button>
-  </div>
-  <div class="row justify-content-center" *ngIf="showBtnResults">
-    <button class="btn btn-next" (click)="goScoreboard()">
-      See Results <mat-icon fontIcon="arrow_forward" class="icon"></mat-icon>
-    </button>
+<div class="container h-100 p-0">
+  <div class="row m-0 align-content-center h-100">
+    <div class="container card px-0 pb-3">
+      <app-header
+        [score]="score"
+        [questions]="[currentIndex + 1, questions.length]"
+      ></app-header>
+      <app-map-viewer></app-map-viewer>
+      <app-alternatives-viewer></app-alternatives-viewer>
+      <div class="row justify-content-center m-0" *ngIf="showBtnNext">
+        <button class="btn btn-next" (click)="nextQuestion()">Next</button>
+      </div>
+      <div class="row justify-content-center m-0" *ngIf="showBtnResults">
+        <button class="btn btn-next" (click)="goScoreboard()">
+          See Results
+          <mat-icon fontIcon="arrow_forward" class="icon"></mat-icon>
+        </button>
+      </div>
+    </div>
   </div>
 </div>

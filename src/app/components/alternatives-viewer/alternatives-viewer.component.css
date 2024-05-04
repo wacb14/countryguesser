@@ -1,5 +1,5 @@
 .btn-alternative {
-  width: 85%;
+  width: 100%;
   background-color: var(--primary-color);
   color: var(--text-color);
 }
@@ -19,11 +19,11 @@
 }
 @media (min-width: 768px) {
   .btn-alternative {
-    width: 80%;
+    width: 85%;
   }
 }
 @media (min-width: 992px) {
   .btn-alternative {
-    width: 60%;
+    width: 55%;
   }
 }

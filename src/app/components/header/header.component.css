@@ -34,3 +34,8 @@
     width: 3.5rem;
   }
 }
+@media (max-width: 512px) {
+  .header{
+    border-radius: 0;
+  }
+}

@@ -74,7 +74,7 @@
 }
 
 .scrollbar-custom::-webkit-scrollbar-thumb {
-  background-color: var(--confirmation-color); 
+  background-color: var(--confirmation-color);
   border-radius: 4px;
 }
 .scrollbar-custom::-webkit-scrollbar-thumb:hover {
@@ -82,4 +82,14 @@
 }
 .card {
   width: 100%;
+}
+@media (min-width: 768px) {
+  .h-md-100 {
+    height: 100%;
+  }
+}
+@media (max-width: 576px) {
+  .card {
+    border-radius: 0;
+  }
 }

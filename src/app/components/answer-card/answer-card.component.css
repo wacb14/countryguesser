@@ -18,3 +18,6 @@
   height: 6rem;
   width: 90%;
 }
+.card-text{
+  width: fit-content;
+}
