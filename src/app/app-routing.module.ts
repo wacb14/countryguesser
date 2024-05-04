@@ -8,11 +8,10 @@ import { gameGuard } from './guards/game.guard';
 
 const routes: Routes = [
   { path: '', component: MainMenuComponent },
-  { path: 'maps', component: CardComponent, canActivate: [gameGuard] },
+  { path: 'maps', component: CardComponent},
   {
     path: 'scoreboard',
     component: ScoreboardComponent,
-    canActivate: [resultsGuard],
   },
 ];
 
