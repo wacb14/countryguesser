@@ -15,7 +15,7 @@
   color: var(--text-color);
 }
 .card {
-  background-color: var(--secondary-color);
+  background-color: #0b3c5de4;
   max-width: 22rem;
   height: fit-content;
   border-radius: var(--border-radius);
@@ -82,21 +82,4 @@
 /* Material select's styles customization in global styles */
 .rounded{
   border-radius: var(--border-radius)!important;
-}
-
-@media (max-width: 768px) {
-  .map {
-    height: 100vh;
-    position: static;
-  }
-  .map-container{
-    height: 15rem;
-    width: 22rem;
-    display: block;
-    margin: auto;
-  }
-  .card-container {
-    position: static;
-    height: 50%;
-  }
 }

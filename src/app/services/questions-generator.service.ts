@@ -80,18 +80,20 @@ export class QuestionsGeneratorService {
       generated.push(countries[random]);
       countries.splice(random, 1);
 
-      //-- Complete countries' info
-      this.restCountriesService
-        .getInfoByCode(generated[i])
-        .subscribe((response) => {
-          questions.push(
-            new Country(generated[i], response[0].name.common, region)
-          );
-          //-- Send the first question to map viewer
-          if (i == 0) {
-            this.questionSender.emit(questions[0]);
-          }
-        });
+      if (generated[i] != undefined) {
+        //-- Complete countries' info
+        this.restCountriesService
+          .getInfoByCode(generated[i])
+          .subscribe((response) => {
+            questions.push(
+              new Country(generated[i], response[0].name.common, region)
+            );
+            //-- Send the first question to map viewer
+            if (i == 0) {
+              this.questionSender.emit(questions[0]);
+            }
+          });
+      }
     }
     return questions;
   }
