@@ -10,8 +10,8 @@ declare var $: any;
 })
 export class MapComponent implements AfterViewInit {
   //-- Critical attributes
-  @Input() countryCode: string = 'pe';
-  @Input() continentName: string = 'south-america_en';
+  @Input() countryCode: string = 'fj';
+  @Input() continentName: string = 'world_en';
   @Input() id: number = 99999;
   //-- Style attributes
   @Input() color: string = '#f4f3f0';
@@ -31,7 +31,7 @@ export class MapComponent implements AfterViewInit {
       this.loadMap(this.continentName, this.countryCode);
     } catch (error) {
       console.log(
-        'There was an error while loading the map. Please refresh the page.'
+        'There was an error while loading the map. Please refresh the page'
       );
     }
     //-- Changing map

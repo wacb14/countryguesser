@@ -31,13 +31,16 @@ export class CardComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     //-- Receive parameters
     let continent = history.state.continent;
-      let number_questions = history.state.numberQuestions;
+    let number_questions = history.state.numberQuestions;
+    try {
       this.questions = this.questionsGeneratorService.generateQuestions(
         number_questions,
         continent
       );
       this.currentCountry = this.questions[0];
-      console.log(this.questions)
+    } catch (error) {
+      console.log('There was an error: ' + error);
+    }
     this.ratingSubscription = this.ratingService.ratingSender.subscribe(
       (rating) => {
         if (rating.isCorrect()) {
