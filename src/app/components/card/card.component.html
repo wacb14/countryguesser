@@ -7,11 +7,28 @@
       ></app-header>
       <app-map-viewer></app-map-viewer>
       <app-alternatives-viewer></app-alternatives-viewer>
-      <div class="row justify-content-center m-0" *ngIf="showBtnNext">
-        <button class="btn btn-next" (click)="nextQuestion()">Next</button>
+      <div
+        class="row justify-content-center m-0"
+        [ngClass]="!showBtnNext ? 'hidden' : ''"
+        *ngIf="!showBtnResults"
+      >
+        <button
+          class="btn btn-next"
+          (click)="nextQuestion()"
+          [disabled]="!showBtnNext"
+        >
+          Next
+        </button>
       </div>
-      <div class="row justify-content-center m-0" *ngIf="showBtnResults">
-        <button class="btn btn-next" (click)="goScoreboard()">
+      <div
+        class="row justify-content-center m-0"
+        *ngIf="showBtnResults"
+      >
+        <button
+          class="btn btn-next"
+          (click)="goScoreboard()"
+          [disabled]="!showBtnResults"
+        >
           See Results
           <mat-icon fontIcon="arrow_forward" class="icon"></mat-icon>
         </button>

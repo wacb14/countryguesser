@@ -4,7 +4,7 @@
   position: relative;
   z-index: 0;
 }
-.map-container{
+.map-container {
   height: 100%;
 }
 .card-container {
@@ -78,8 +78,11 @@
   background-color: var(--warning-color) !important;
   color: var(--aux-text-color) !important;
 }
-
+.button-toggle-text {
+  font-size: 0.9rem;
+  margin: 0;
+}
 /* Material select's styles customization in global styles */
-.rounded{
-  border-radius: var(--border-radius)!important;
+.rounded {
+  border-radius: var(--border-radius) !important;
 }
