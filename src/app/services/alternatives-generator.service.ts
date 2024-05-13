@@ -87,7 +87,12 @@ export class AlternativesGeneratorService {
     for (const item of generated) {
       this.restCountriesService.getInfoByCode(item).subscribe((response) => {
         alternatives.push(
-          new Country(item, response[0].name.common, region)
+          new Country(
+            item,
+            response[0].name.common,
+            response[0].flags.svg,
+            region
+          )
         );
       });
     }

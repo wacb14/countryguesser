@@ -13,7 +13,7 @@ import { RatingService } from 'src/app/services/rating.service';
 })
 export class CardComponent implements OnInit, OnDestroy {
   questions: Array<Country> = [];
-  currentCountry = new Country('', '', '');
+  currentCountry = new Country('', '', '', '');
   answers: Array<Answer> = [];
   currentIndex: number = 0;
   score: number = 0;

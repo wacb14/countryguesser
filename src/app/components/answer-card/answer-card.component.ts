@@ -9,8 +9,8 @@ import { Country } from 'src/app/models/country';
 })
 export class AnswerCardComponent {
   @Input() answer: Answer = new Answer(
-    new Country('', '', ''),
-    new Country('', '', '')
+    new Country('', '', '', ''),
+    new Country('', '', '', '')
   );
   @Input() id: number = 0;
 }

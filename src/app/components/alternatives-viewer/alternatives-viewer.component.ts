@@ -12,7 +12,7 @@ import { RatingService } from 'src/app/services/rating.service';
 })
 export class AlternativesViewerComponent implements OnInit, OnDestroy {
   alternatives: Array<Country> = [];
-  answer = new Country('', '', '');
+  answer = new Country('', '', '', '');
   colors = ['a', 'a', 'a', 'a'];
   disableButtons = false;
   ratingSubscription: Subscription = null!;
@@ -73,7 +73,7 @@ export class AlternativesViewerComponent implements OnInit, OnDestroy {
     if (index == -1 || this.alternatives[index].code != this.answer.code) {
       let userAnswer = null;
       if (index == -1) {
-        userAnswer = new Answer(this.answer, new Country('', '', '')); //-- Didn't answer
+        userAnswer = new Answer(this.answer, new Country('', '', '','')); //-- Didn't answer
       } else {
         userAnswer = new Answer(this.answer, this.alternatives[index]);
       }

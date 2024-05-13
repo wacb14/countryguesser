@@ -86,7 +86,12 @@ export class QuestionsGeneratorService {
           .getInfoByCode(generated[i])
           .subscribe((response) => {
             questions.push(
-              new Country(generated[i], response[0].name.common, region)
+              new Country(
+                generated[i],
+                response[0].name.common,
+                response[0].flags.svg,
+                region
+              )
             );
             //-- Send the first question to map viewer
             if (i == 0) {
