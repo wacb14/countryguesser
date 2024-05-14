@@ -15,7 +15,8 @@ export class QuestionsGeneratorService {
   southA = Object.keys(codes['south-america_en']);
   world = Object.keys(codes['world_en']);
   @Output() questionSender = new EventEmitter<Country>();
-  optionsSelected: boolean = false;
+  startGame: boolean = false;
+  gameType: string = 'maps';
 
   constructor(private restCountriesService: RestCountriesService) {}
 

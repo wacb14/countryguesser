@@ -3,3 +3,8 @@
   height: 100%;
   object-fit: contain;
 }
+@media (min-width: 992px){
+  .flag {
+    height: 90%;
+  }
+}

@@ -10,14 +10,19 @@ import { MapsColors } from 'src/app/models/mapsColors';
 export class MainMenuComponent {
   colors = new MapsColors().colors;
 
-  constructor(private router: Router,
-    private questionsGeneratorService:QuestionsGeneratorService
+  constructor(
+    private router: Router,
+    private questionsGeneratorService: QuestionsGeneratorService
   ) {}
-  startGame(continent: string, numberQuestions: string) {
-    this.questionsGeneratorService.optionsSelected=true;
+  startGame(gameType: string, continent: string, numberQuestions: string) {
+    this.questionsGeneratorService.startGame = true;
+    this.questionsGeneratorService.gameType = gameType;
     const extras: NavigationExtras = {
-      state: { continent: continent, numberQuestions: numberQuestions },
+      state: {
+        continent: continent,
+        numberQuestions: numberQuestions,
+      },
     };
-    this.router.navigate(['/', 'maps'],extras);
+    this.router.navigate(['/', 'maps'], extras);
   }
 }

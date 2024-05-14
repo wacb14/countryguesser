@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input } from '@angular/core';
+import { AfterViewInit, Component, Input, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { QuestionsGeneratorService } from 'src/app/services/questions-generator.service';
 
@@ -7,8 +7,8 @@ import { QuestionsGeneratorService } from 'src/app/services/questions-generator.
   templateUrl: './flag.component.html',
   styleUrls: ['./flag.component.css'],
 })
-export class FlagComponent implements AfterViewInit {
-  flagUrl: string = '';
+export class FlagComponent implements AfterViewInit, OnDestroy {
+  @Input() flagUrl: string = '';
   @Input() id = 999999;
 
   questionGeneratorSubscription: Subscription = null!;
@@ -20,5 +20,8 @@ export class FlagComponent implements AfterViewInit {
       this.questionsGeneratorService.questionSender.subscribe((response) => {
         this.flagUrl = response.flag;
       });
+  }
+  ngOnDestroy(): void {
+    this.questionGeneratorSubscription.unsubscribe();
   }
 }

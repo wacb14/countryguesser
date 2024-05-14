@@ -20,22 +20,30 @@
             <div class="col-12">
               <h1 class="title text-center my-3">Country Guesser</h1>
             </div>
-
+            <div class="col-12">
+              <h3 class="mt-1 mb-2">Type</h3>
+              <mat-form-field>
+                <mat-select value="maps" #gameType>
+                  <mat-option value="maps">Maps</mat-option>
+                  <mat-option value="flags">Flags</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
             <div class="col-12">
               <h3 class="mt-1 mb-2">Continent</h3>
               <mat-form-field>
                 <mat-select value="world_en" #continent>
                   <mat-option value="world_en">Whole world</mat-option>
                   <mat-option value="africa_en">Africa</mat-option>
+                  <mat-option value="asia_en">Asia</mat-option>
+                  <mat-option value="europe_en">Europe</mat-option>
                   <mat-option value="north-america_en"
                     >North America</mat-option
                   >
+                  <mat-option value="australia_en">Oceania</mat-option>
                   <mat-option value="south-america_en"
                     >South America</mat-option
                   >
-                  <mat-option value="asia_en">Asia</mat-option>
-                  <mat-option value="europe_en">Europe</mat-option>
-                  <mat-option value="australia_en">Oceania</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
@@ -55,7 +63,7 @@
             <div class="col-12 text-center">
               <button
                 class="my-3 btn-start"
-                (click)="startGame(continent.value, questions.value)"
+                (click)="startGame(gameType.value, continent.value, questions.value)"
               >
                 Start
               </button>
