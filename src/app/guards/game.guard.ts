@@ -13,8 +13,8 @@ export const gameGuard: CanActivateFn = (
 ) => {
   const ratingService = inject(QuestionsGeneratorService);
   const router = inject(Router);
-  if (!ratingService.optionsSelected) {
+  if (!ratingService.startGame) {
     router.navigate(['/']);
   }
-  return ratingService.optionsSelected;
+  return ratingService.startGame;
 };

@@ -5,14 +5,20 @@
     </div>
     <div class="col-9 col-lg-8">
       <div class="card-body">
-        <div class="map-container">
+        <div class="element-container">
           <app-map
             [id]="id"
             [enableZoom]="false"
             [height]="'100%'"
             [continentName]="answer.country.continent"
             [countryCode]="answer.country.code"
+            *ngIf="gameType === 'maps'"
           ></app-map>
+          <app-flag
+            [flagUrl]="answer.country.flag"
+            *ngIf="gameType === 'flags'"
+            [id]="id"
+          ></app-flag>
         </div>
         <p
           class="card-text m-1 text-answer"

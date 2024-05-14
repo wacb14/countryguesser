@@ -24,14 +24,14 @@ export class CardComponent implements OnInit, OnDestroy {
   constructor(
     private questionsGeneratorService: QuestionsGeneratorService,
     private ratingService: RatingService,
-    private router: Router,
-    private route: ActivatedRoute
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     //-- Receive parameters
     let continent = history.state.continent;
     let number_questions = history.state.numberQuestions;
+
     try {
       this.questions = this.questionsGeneratorService.generateQuestions(
         number_questions,
