@@ -21,9 +21,9 @@
               <h1 class="title text-center my-3">Country Guesser</h1>
             </div>
             <div class="col-12">
-              <h3 class="mt-1 mb-2">Type</h3>
+              <h3 class="mt-1 mb-2">Mode</h3>
               <mat-form-field>
-                <mat-select value="maps" #gameType>
+                <mat-select value="maps" #gameMode>
                   <mat-option value="maps">Maps</mat-option>
                   <mat-option value="flags">Flags</mat-option>
                 </mat-select>
@@ -63,7 +63,7 @@
             <div class="col-12 text-center">
               <button
                 class="my-3 btn-start"
-                (click)="startGame(gameType.value, continent.value, questions.value)"
+                (click)="startGame(gameMode.value, continent.value, questions.value)"
               >
                 Start
               </button>

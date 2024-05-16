@@ -7,11 +7,11 @@ import { QuestionsGeneratorService } from 'src/app/services/questions-generator.
   styleUrls: ['./viewer.component.css'],
 })
 export class ViewerComponent implements OnInit {
-  gameType = 'maps';
+  gameMode = 'maps';
   
   constructor(private questionsGeneratorService: QuestionsGeneratorService) {}
 
   ngOnInit(): void {
-    this.gameType = this.questionsGeneratorService.gameType;
+    this.gameMode = this.questionsGeneratorService.gameMode;
   }
 }

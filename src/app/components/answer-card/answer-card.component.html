@@ -12,11 +12,11 @@
             [height]="'100%'"
             [continentName]="answer.country.continent"
             [countryCode]="answer.country.code"
-            *ngIf="gameType === 'maps'"
+            *ngIf="gameMode === 'maps'"
           ></app-map>
           <app-flag
             [flagUrl]="answer.country.flag"
-            *ngIf="gameType === 'flags'"
+            *ngIf="gameMode === 'flags'"
             [id]="id"
           ></app-flag>
         </div>
