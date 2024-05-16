@@ -14,11 +14,11 @@ export class AnswerCardComponent implements OnInit {
     new Country('', '', '', '')
   );
   @Input() id: number = 0;
-  gameType = 'maps';
+  gameMode = 'maps';
 
   constructor(private questionsGeneratorService: QuestionsGeneratorService) {}
 
   ngOnInit(): void {
-    this.gameType = this.questionsGeneratorService.gameType;
+    this.gameMode = this.questionsGeneratorService.gameMode;
   }
 }

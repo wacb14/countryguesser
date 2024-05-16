@@ -14,9 +14,9 @@ export class MainMenuComponent {
     private router: Router,
     private questionsGeneratorService: QuestionsGeneratorService
   ) {}
-  startGame(gameType: string, continent: string, numberQuestions: string) {
+  startGame(gameMode: string, continent: string, numberQuestions: string) {
     this.questionsGeneratorService.startGame = true;
-    this.questionsGeneratorService.gameType = gameType;
+    this.questionsGeneratorService.gameMode = gameMode;
     const extras: NavigationExtras = {
       state: {
         continent: continent,
