@@ -15,40 +15,63 @@
       <div
         class="row card-container w-100 m-0 h-100 justify-content-center align-content-center"
       >
+        <div class="col-11 p-0 d-flex justify-content-end">
+          <app-language-selector></app-language-selector>
+        </div>
         <div class="col card">
           <div class="row mx-4">
             <div class="col-12">
               <h1 class="title text-center my-3">Country Guesser</h1>
             </div>
             <div class="col-12">
-              <h3 class="mt-1 mb-2">Mode</h3>
+              <h3 class="mt-1 mb-2">
+                {{ "main-menu.mode.title" | translate }}
+              </h3>
               <mat-form-field>
                 <mat-select value="maps" #gameMode>
-                  <mat-option value="maps">Maps</mat-option>
-                  <mat-option value="flags">Flags</mat-option>
+                  <mat-option value="maps">{{
+                    "main-menu.mode.options.maps" | translate
+                  }}</mat-option>
+                  <mat-option value="flags">{{
+                    "main-menu.mode.options.flags" | translate
+                  }}</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
             <div class="col-12">
-              <h3 class="mt-1 mb-2">Continent</h3>
+              <h3 class="mt-1 mb-2">
+                {{ "main-menu.continent.title" | translate }}
+              </h3>
               <mat-form-field>
                 <mat-select value="world_en" #continent>
-                  <mat-option value="world_en">Whole world</mat-option>
-                  <mat-option value="africa_en">Africa</mat-option>
-                  <mat-option value="asia_en">Asia</mat-option>
-                  <mat-option value="europe_en">Europe</mat-option>
-                  <mat-option value="north-america_en"
-                    >North America</mat-option
-                  >
-                  <mat-option value="australia_en">Oceania</mat-option>
-                  <mat-option value="south-america_en"
-                    >South America</mat-option
-                  >
+                  <mat-option value="world_en">{{
+                    "main-menu.continent.options.whole-world" | translate
+                  }}</mat-option>
+                  <mat-option value="africa_en">{{
+                    "main-menu.continent.options.africa" | translate
+                  }}</mat-option>
+                  <mat-option value="asia_en">{{
+                    "main-menu.continent.options.asia" | translate
+                  }}</mat-option>
+                  <mat-option value="europe_en">{{
+                    "main-menu.continent.options.europe" | translate
+                  }}</mat-option>
+                  <mat-option value="north-america_en">{{
+                    "main-menu.continent.options.north-america" | translate
+                  }}</mat-option>
+                  <mat-option value="australia_en">{{
+                    "main-menu.continent.options.oceania" | translate
+                  }}</mat-option>
+                  <mat-option value="south-america_en">{{
+                    "main-menu.continent.options.south-america" | translate
+                  }}</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
             <div class="col-12">
-              <h3 class="mt-1 mb-2">Number of questions</h3>
+              <h3 class="mt-1 mb-2">
+                {{ "main-menu.number-questions" | translate }}
+              </h3>
               <mat-button-toggle-group
                 [value]="5"
                 #questions="matButtonToggleGroup"
@@ -57,15 +80,19 @@
                 <mat-button-toggle [value]="10">10</mat-button-toggle>
                 <mat-button-toggle [value]="15">15</mat-button-toggle>
                 <mat-button-toggle [value]="20">20</mat-button-toggle>
-                <mat-button-toggle [value]="300"><p class="button-toggle-text">Max</p></mat-button-toggle>
+                <mat-button-toggle [value]="300"
+                  ><p class="button-toggle-text">Max</p></mat-button-toggle
+                >
               </mat-button-toggle-group>
             </div>
             <div class="col-12 text-center">
               <button
                 class="my-3 btn-start"
-                (click)="startGame(gameMode.value, continent.value, questions.value)"
+                (click)="
+                  startGame(gameMode.value, continent.value, questions.value)
+                "
               >
-                Start
+                {{ "main-menu.start" | translate }}
               </button>
             </div>
           </div>

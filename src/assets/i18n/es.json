@@ -1,0 +1,53 @@
+{
+  "main-menu": {
+    "mode": {
+      "title": "Modo",
+      "options": {
+        "maps": "Mapas",
+        "flags": "Banderas"
+      }
+    },
+    "languages": {
+      "english": "Inglés",
+      "spanish": "Español"
+    },
+    "continent": {
+      "title": "Continente",
+      "options": {
+        "whole-world": "Todo el mundo",
+        "africa": "África",
+        "asia": "Asia",
+        "europe": "Europa",
+        "north-america": "Norteamérica",
+        "oceania": "Oceanía",
+        "south-america": "Sudamérica"
+      }
+    },
+    "number-questions": "Número de preguntas",
+    "start": "Iniciar"
+  },
+  "card": {
+    "of": "de",
+    "message": {
+      "correct": "¡CORRECTO!",
+      "timeUp": "¡SE ACABÓ EL TIEMPO!",
+      "wrong": "¡INCORRECTO!"
+    },
+    "score": "Puntuación",
+    "next": "Siguiente",
+    "seeResults": "Ver resultados"
+  },
+  "scoreboard": {
+    "yourScore": "Tu Puntuación",
+    "message": {
+      "congrats": "¡Felicidades!",
+      "notBad": "¡Nada mal!",
+      "tryHarder": "¡Esfuérzate más!"
+    },
+    "points": "puntos",
+    "playAgain": "Jugar de nuevo",
+    "yourAnswers": "Tus respuestas",
+    "yourAnswer": "Tu respuesta",
+    "correctAnswer": "Respuesta correcta"
+  }
+}
