@@ -24,13 +24,14 @@
           class="card-text m-1 text-answer"
           [ngClass]="answer.isCorrect() ? 'text-correct' : 'text-wrong'"
         >
-          Your answer: {{ answer.answer.name }}
+          {{ "scoreboard.yourAnswer" | translate }}: {{ answer.answer.name }}
         </p>
         <p
           class="card-text m-1 text-correction text-answer"
           *ngIf="!answer.isCorrect()"
         >
-          Correct answer: {{ answer.country.name }}
+          {{ "scoreboard.correctAnswer" | translate }}:
+          {{ answer.country.name }}
         </p>
       </div>
     </div>

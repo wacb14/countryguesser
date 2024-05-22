@@ -38,6 +38,9 @@ export class ScoreboardComponent implements OnInit {
     }
     this.rating[1] = this.answers.length;
     this.value = (this.rating[0] / this.rating[1]) * 100;
+    if (this.value >= 80) this.message = 'scoreboard.message.congrats';
+    else if (this.value > 50) this.message = 'scoreboard.message.notBad';
+    else this.message = 'scoreboard.message.tryHarder';
   }
   newGame() {
     this.router.navigate(['/']);

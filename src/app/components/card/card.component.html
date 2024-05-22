@@ -17,19 +17,16 @@
           (click)="nextQuestion()"
           [disabled]="!showBtnNext"
         >
-          Next
+        {{ "card.next" | translate }}
         </button>
       </div>
-      <div
-        class="row justify-content-center m-0"
-        *ngIf="showBtnResults"
-      >
+      <div class="row justify-content-center m-0" *ngIf="showBtnResults">
         <button
           class="btn btn-next"
           (click)="goScoreboard()"
           [disabled]="!showBtnResults"
         >
-          See Results
+          {{ "card.seeResults" | translate }}
           <mat-icon fontIcon="arrow_forward" class="icon"></mat-icon>
         </button>
       </div>

@@ -14,10 +14,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { AnswerCardComponent } from './components/answer-card/answer-card.component';
 import { MapComponent } from './components/map/map.component';
 import { MainMenuComponent } from './components/main-menu/main-menu.component';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {MatSelectModule} from '@angular/material/select';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { FlagComponent } from './components/flag/flag.component';
+//Translation
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient } from '@angular/common/http';
+import { LanguageSelectorComponent } from './components/language-selector/language-selector.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +35,8 @@ import { FlagComponent } from './components/flag/flag.component';
     AnswerCardComponent,
     MapComponent,
     MainMenuComponent,
-    FlagComponent
+    FlagComponent,
+    LanguageSelectorComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +47,17 @@ import { FlagComponent } from './components/flag/flag.component';
     MatIconModule,
     MatButtonToggleModule,
     MatSelectModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (http: HttpClient) => {
+          return new TranslateHttpLoader(http);
+        },
+        deps: [HttpClient],
+      },
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

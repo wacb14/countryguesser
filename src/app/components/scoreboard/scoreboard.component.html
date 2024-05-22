@@ -4,19 +4,23 @@
       <div class="row justify-content-center m-0">
         <div class="col-12 col-md-6 p-0">
           <div class="d-flex align-items-center justify-content-center h-100">
-            <div class="row h-fit justify-content-end w-100 ">
+            <div class="row h-fit justify-content-end w-100">
               <div class="col-12 col-lg-10 p-0">
-                <p class="title text-center">Your score</p>
+                <p class="title text-center">
+                  {{ "scoreboard.yourScore" | translate }}
+                </p>
               </div>
               <div class="col-12 col-lg-10 p-0">
                 <div class="spinner-container my-4">
                   <div class="spinner-title text-center">
-                    <div class="card-congrats">{{ message }}</div>
+                    <div class="card-congrats">{{ message | translate }}</div>
                     <div>
                       <p class="rating mt-5 mb-2">
                         {{ rating[0] + "/" + rating[1] }}
                       </p>
-                      <p class="points my-1">{{ points }} points</p>
+                      <p class="points my-1">
+                        {{ points }} {{ "scoreboard.points" | translate }}
+                      </p>
                     </div>
                   </div>
                   <div class="spinner">
@@ -47,7 +51,7 @@
                 <div class="row justify-content-center m-0">
                   <button class="btn btn-again" (click)="newGame()">
                     <mat-icon fontIcon="rotate_right" class="icon"></mat-icon>
-                    Play again
+                    {{ "scoreboard.playAgain" | translate }}
                   </button>
                 </div>
               </div>
@@ -59,7 +63,9 @@
             <div class="col-12 p-0">
               <div class="row justify-content-start m-0">
                 <div class="col-12 col-lg-10 p-0">
-                  <p class="title text-center">Your answers</p>
+                  <p class="title text-center">
+                    {{ "scoreboard.yourAnswers" | translate }}
+                  </p>
                 </div>
                 <div
                   class="col-12 col-lg-10 scroll-window p-0 py-2 scrollbar-custom"

@@ -1,0 +1,25 @@
+<div class="dropdown">
+  <button
+    class="dropbtn"
+    (click)="toggleDropdown()"
+    [ngClass]="dropdownVisible ? 'btn--half-rounded' : ''"
+  >
+    {{ showActiveLanguage().emoji + " "
+    }}{{ showActiveLanguage().name | translate }}
+  </button>
+  <div
+    class="dropdown-content"
+    [ngClass]="dropdownVisible ? 'dropdown-content--visible' : ''"
+  >
+    <ul class="dropdown-list">
+      <ng-container *ngFor="let i = index; let language; of: languages">
+        <li class="dropdown-element">
+          <a class="dropdown-link" (click)="onSelectionChanged(language.code)"
+            >{{ language.emoji + " " }}{{ language.name | translate }}</a
+          >
+        </li>
+        <hr *ngIf="i != languages.length - 1" class="m-0" />
+      </ng-container>
+    </ul>
+  </div>
+</div>

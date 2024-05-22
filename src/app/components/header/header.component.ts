@@ -70,13 +70,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
       (rating) => {
         this.showTimer = false;
         if (rating.isCorrect()) {
-          this.message = 'CORRECT!';
+          this.message = 'card.message.correct';
           this.stopTimer();
         } else {
           if (this.timeOver) {
-            this.message = "TIME'S UP!";
+            this.message = "card.message.timeUp";
           } else {
-            this.message = 'WRONG!';
+            this.message = 'card.message.wrong';
             this.stopTimer();
           }
         }
