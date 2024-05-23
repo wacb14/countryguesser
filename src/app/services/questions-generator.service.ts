@@ -2,6 +2,8 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 import codes from '../../assets/maps_files/codes_name_continent_en.json';
 import { Country } from '../models/country';
 import { RestCountriesService } from './rest-countries.service';
+import { TranslateService } from '@ngx-translate/core';
+import { Languages } from '../models/languages';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +20,10 @@ export class QuestionsGeneratorService {
   startGame: boolean = false;
   gameMode: string = 'maps';
 
-  constructor(private restCountriesService: RestCountriesService) {}
+  constructor(
+    private restCountriesService: RestCountriesService,
+    private translateService: TranslateService
+  ) {}
 
   loadAllCountries() {
     this.africa = Object.keys(codes['africa_en']);
@@ -69,7 +74,14 @@ export class QuestionsGeneratorService {
     }
     return countries;
   }
-
+  //-- Returns the translation code for the current language of the app.
+  private getTranslationCode() {
+    let langAux = new Languages();
+    let index = langAux.languages
+      .map((l) => l.code)
+      .indexOf(this.translateService.currentLang);
+    return langAux.languages[index].translation;
+  }
   generateQuestions(quantity: number, region: string) {
     this.loadAllCountries(); //-- To avoid the disappearance of countries
     let generated: Array<string> = [];
@@ -86,18 +98,16 @@ export class QuestionsGeneratorService {
         this.restCountriesService
           .getInfoByCode(generated[i])
           .subscribe((response) => {
-            questions.push(
-              new Country(
-                generated[i],
-                response[0].name.common,
-                response[0].flags.svg,
-                region
-              )
-            );
-            //-- Send the first question to map viewer
-            if (i == 0) {
-              this.questionSender.emit(questions[0]);
+            //-- English as default language
+            let name = response[0].name.common;
+            if (this.translateService.currentLang != 'en') {
+              name = response[0].translations[this.getTranslationCode()].common;
             }
+            questions.push(
+              new Country(generated[i], name, response[0].flags.svg, region)
+            );
+            //-- Send the first question to viewer
+            if (i == 0) this.questionSender.emit(questions[0]);
           });
       }
     }
