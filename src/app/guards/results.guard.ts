@@ -5,13 +5,13 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
-import { RatingService } from '../services/rating.service';
+import { AuthFlagsService } from '../services/auth-flags.service';
 
 export const resultsGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ) => {
-  const ratingService = inject(RatingService);
+  const ratingService = inject(AuthFlagsService);
   const router = inject(Router);
   if (!ratingService.finished) {
     router.navigate(['/']);
