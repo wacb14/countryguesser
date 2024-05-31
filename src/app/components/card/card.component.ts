@@ -3,6 +3,7 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { Answer } from 'src/app/models/answer';
 import { Country } from 'src/app/models/country';
+import { AuthFlagsService } from 'src/app/services/auth-flags.service';
 import { QuestionsGeneratorService } from 'src/app/services/questions-generator.service';
 import { RatingService } from 'src/app/services/rating.service';
 
@@ -24,7 +25,8 @@ export class CardComponent implements OnInit, OnDestroy {
   constructor(
     private questionsGeneratorService: QuestionsGeneratorService,
     private ratingService: RatingService,
-    private router: Router
+    private router: Router,
+    private authFlagsService:AuthFlagsService
   ) {}
 
   ngOnInit(): void {
@@ -50,7 +52,7 @@ export class CardComponent implements OnInit, OnDestroy {
         //-- Check if it's the last question
         if (this.answers.length == this.questions.length) {
           this.showBtnResults = true;
-          this.ratingService.finished = true;
+          this.authFlagsService.finished = true;
         } else {
           this.showBtnNext = true;
         }

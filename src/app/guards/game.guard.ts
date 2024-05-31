@@ -5,13 +5,13 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
-import { QuestionsGeneratorService } from '../services/questions-generator.service';
+import { AuthFlagsService } from '../services/auth-flags.service';
 
 export const gameGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ) => {
-  const ratingService = inject(QuestionsGeneratorService);
+  const ratingService = inject(AuthFlagsService);
   const router = inject(Router);
   if (!ratingService.startGame) {
     router.navigate(['/']);

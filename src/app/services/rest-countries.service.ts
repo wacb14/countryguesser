@@ -7,9 +7,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class RestCountriesService {
-  constructor(private htpp: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   getInfoByCode(code: string): Observable<any> {
-    return this.htpp.get<any>(environment.apiURL + code);
+    return this.http.get<any>(environment.apiURL + code);
   }
 }

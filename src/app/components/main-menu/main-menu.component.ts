@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { QuestionsGeneratorService } from 'src/app/services/questions-generator.service';
 import { mapsColors } from 'src/app/models/mapsColors';
+import { AuthFlagsService } from 'src/app/services/auth-flags.service';
 @Component({
   selector: 'app-main-menu',
   templateUrl: './main-menu.component.html',
@@ -12,10 +13,11 @@ export class MainMenuComponent {
 
   constructor(
     private router: Router,
-    private questionsGeneratorService: QuestionsGeneratorService
+    private questionsGeneratorService: QuestionsGeneratorService,
+    private authFlagsService: AuthFlagsService
   ) {}
   startGame(gameMode: string, continent: string, numberQuestions: string) {
-    this.questionsGeneratorService.startGame = true;
+    this.authFlagsService.startGame = true;
     this.questionsGeneratorService.gameMode = gameMode;
     const extras: NavigationExtras = {
       state: {
