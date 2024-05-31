@@ -3,7 +3,7 @@ import codes from '../../assets/maps_files/codes_name_continent_en.json';
 import { Country } from '../models/country';
 import { RestCountriesService } from './rest-countries.service';
 import { TranslateService } from '@ngx-translate/core';
-import { Languages } from '../models/languages';
+import { languages } from '../models/languages';
 
 @Injectable({
   providedIn: 'root',
@@ -76,11 +76,10 @@ export class QuestionsGeneratorService {
   }
   //-- Returns the translation code for the current language of the app.
   private getTranslationCode() {
-    let langAux = new Languages();
-    let index = langAux.languages
+    let index = languages
       .map((l) => l.code)
       .indexOf(this.translateService.currentLang);
-    return langAux.languages[index].translation;
+    return languages[index].translation;
   }
   generateQuestions(quantity: number, region: string) {
     this.loadAllCountries(); //-- To avoid the disappearance of countries

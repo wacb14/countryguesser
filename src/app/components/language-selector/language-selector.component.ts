@@ -6,7 +6,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Languages } from 'src/app/models/languages';
+import { languages } from 'src/app/models/languages';
 
 @Component({
   selector: 'app-language-selector',
@@ -15,7 +15,7 @@ import { Languages } from 'src/app/models/languages';
 })
 export class LanguageSelectorComponent implements AfterViewInit {
   public activeLanguage = 'en';
-  languages = new Languages().languages;
+  languages = languages;
   dropdownVisible = false;
   @ViewChild('dropdown') dropdown!: ElementRef;
 
