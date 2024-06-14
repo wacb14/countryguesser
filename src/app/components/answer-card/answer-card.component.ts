@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Answer } from 'src/app/models/answer';
 import { Country } from 'src/app/models/country';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { QuestionsGeneratorService } from 'src/app/services/questions-generator.service';
 
 @Component({
@@ -16,9 +17,11 @@ export class AnswerCardComponent implements OnInit {
   @Input() id: number = 0;
   gameMode = 'maps';
 
-  constructor(private questionsGeneratorService: QuestionsGeneratorService) {}
+  constructor(
+    private localStorageService:LocalStorageService
+  ) {}
 
   ngOnInit(): void {
-    this.gameMode = this.questionsGeneratorService.gameMode;
+    this.gameMode = this.localStorageService.get('gameMode');
   }
 }
