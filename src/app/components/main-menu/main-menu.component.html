@@ -15,7 +15,9 @@
       <div
         class="row card-container w-100 m-0 h-100 justify-content-center align-content-center"
       >
-        <div class="col-10 col-sm-11 p-0 pb-1  pb-md-0 d-flex justify-content-end">
+        <div
+          class="col-10 col-sm-11 p-0 pb-1 pb-md-0 d-flex justify-content-end"
+        >
           <app-language-selector></app-language-selector>
         </div>
         <div class="col card">
@@ -43,7 +45,7 @@
                 {{ "main-menu.continent.title" | translate }}
               </h3>
               <mat-form-field>
-                <mat-select value="world_en" #continent>
+                <mat-select [value]="preferences.continent" #continent>
                   <mat-option value="world_en">{{
                     "main-menu.continent.options.whole-world" | translate
                   }}</mat-option>
@@ -73,7 +75,7 @@
                 {{ "main-menu.number-questions" | translate }}
               </h3>
               <mat-button-toggle-group
-                [value]="5"
+                [value]="preferences.numberQuestions"
                 #questions="matButtonToggleGroup"
               >
                 <mat-button-toggle [value]="5">5</mat-button-toggle>
@@ -89,7 +91,7 @@
               <button
                 class="my-3 btn-start"
                 (click)="
-                  startGame(gameMode.value, continent.value, questions.value)
+                  startGame(gameMode.value, continent.value, questions.value);
                 "
               >
                 {{ "main-menu.start" | translate }}
