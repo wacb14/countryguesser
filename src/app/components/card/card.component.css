@@ -13,9 +13,6 @@
 .btn-next:hover {
   background-color: var(--primary-hover);
 }
-.hidden{
-  visibility: hidden;
-}
 @media(max-width:576px){
   .card{
     border-radius: 0;
