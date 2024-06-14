@@ -87,19 +87,6 @@ div.mat-mdc-select-panel {
   border-bottom-left-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
 }
-/* 
-#language-select .mat-mdc-form-field-infix {
-  padding: 0;
-  width: fit-content;
+.hidden{
+  visibility: hidden;
 }
-#language-select .mat-mdc-select-value-text {
-  display: block;
-  height: 3rem;
-  width: auto;
-}
-#language-select .language-flag{
-  height: 3rem;
-}
-#language-select .mdc-text-field--filled:not(.mdc-text-field--disabled){
-  padding: 0;
-} */
