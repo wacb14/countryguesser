@@ -38,6 +38,10 @@ export class AlternativesViewerComponent implements OnInit, OnDestroy {
       this.questionGeneratorSubscription.unsubscribe();
   }
 
+  isComplete(): boolean {
+    return this.alternatives.length == 4;
+  }
+
   showNewAlternatives() {
     this.questionGeneratorSubscription =
       this.questionsGeneratorService.questionSender.subscribe((question) => {
@@ -53,18 +57,10 @@ export class AlternativesViewerComponent implements OnInit, OnDestroy {
       });
   }
 
-  findAnswerIndex() {
-    let i = 0,
-      found = false,
-      index = -1;
-    while (i < this.alternatives.length && !found) {
-      if (this.alternatives[i].code == this.answer.code) {
-        found = true;
-        index = i;
-      }
-      i++;
-    }
-    return index;
+  findAnswerIndex(): number {
+    return this.alternatives.findIndex((a) => {
+      return a.code == this.answer.code;
+    });
   }
 
   rateQuestion(index: number) {
@@ -73,7 +69,7 @@ export class AlternativesViewerComponent implements OnInit, OnDestroy {
     if (index == -1 || this.alternatives[index].code != this.answer.code) {
       let userAnswer = null;
       if (index == -1) {
-        userAnswer = new Answer(this.answer, new Country('', '', '','')); //-- Didn't answer
+        userAnswer = new Answer(this.answer, new Country('', '', '', '')); //-- Didn't answer
       } else {
         userAnswer = new Answer(this.answer, this.alternatives[index]);
       }

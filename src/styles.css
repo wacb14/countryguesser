@@ -90,3 +90,6 @@ div.mat-mdc-select-panel {
 .hidden{
   visibility: hidden;
 }
+.not-rendered{
+  display: none;
+}
