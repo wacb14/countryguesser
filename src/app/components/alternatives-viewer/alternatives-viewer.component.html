@@ -1,24 +1,44 @@
 <div
   class="container-fluid mb-3 mx-0 p-0"
-  [ngClass]="alternatives.length != 4 ? 'hidden' : ''"
+  [ngClass]="!isComplete() ? 'hidden' : ''"
 >
-  <div class="row justify-content-center gx-0 gy-2 gx-sm-1 gy-sm-3 m-0">
+  <!-- This row is used to reserve space while the alternatives are displayed -->
+  <div
+    class="row justify-content-center gx-0 gy-2 gx-sm-1 gy-sm-3 m-0 hidden"
+    *ngIf="!isComplete(); else realAlternatives"
+  >
     <div
       class="col-11 col-sm-10 col-md-6 text-center p-0"
-      *ngFor="let i = index; let alternative; of: alternatives"
+      *ngFor="let i = index; let color; of: colors"
     >
-      <button
-        class="btn btn-alternative"
-        (click)="rateQuestion(i)"
-        [ngClass]="{
-          'btn-correct': colors[i] == 'c',
-          'btn-wrong': colors[i] == 'w',
-          'btn-disabled': colors[i] == 'b'
-        }"
-        [disabled]="disableButtons"
-      >
-        {{ alternative.name }}
+      <button class="btn btn-alternative" [disabled]="true">
+        {{ "Alternative " + i }}
       </button>
     </div>
   </div>
+  <ng-template #realAlternatives>
+    <div class="row justify-content-center gx-0 gy-2 gx-sm-1 gy-sm-3 m-0">
+      <div
+        class="col-11 col-sm-10 col-md-6 text-center p-0"
+        *ngFor="let i = index; let alternative; of: alternatives"
+      >
+        <button
+          class="btn btn-alternative"
+          (click)="rateQuestion(i)"
+          [ngClass]="{
+          'btn-correct': colors[i] == 'c',
+          'btn-wrong': colors[i] == 'w',
+          'btn-disabled': colors[i] == 'b',
+          
+        }"
+          [ngClass]="
+            isComplete() ? 'fade_in-animation-' + (i + 1) : ''
+          "
+          [disabled]="disableButtons"
+        >
+          {{ alternative.name }}
+        </button>
+      </div>
+    </div>
+  </ng-template>
 </div>

@@ -6,17 +6,40 @@
 .btn-alternative:hover {
   background-color: var(--primary-hover);
 }
-.btn-disabled{
+.btn-disabled {
   background-color: var(--primary-hover);
 }
-.btn-correct,.btn-correct:hover {
+.btn-correct,
+.btn-correct:hover {
   background-color: var(--confirmation-color);
   color: black;
 }
-.btn-wrong,.btn-wrong:hover {
+.btn-wrong,
+.btn-wrong:hover {
   background-color: var(--warning-color);
   color: var(--aux-text-color);
 }
+.fade_in-animation-1{
+  animation: fadeIn 1s linear forwards;
+}
+.fade_in-animation-2{
+  animation: fadeIn 1.3s linear forwards;
+}
+.fade_in-animation-3{
+  animation: fadeIn 1.6s linear forwards;
+}
+.fade_in-animation-4{
+  animation: fadeIn 1.9s linear forwards;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 @media (min-width: 768px) {
   .btn-alternative {
     width: 85%;
