@@ -27,7 +27,7 @@
                     <div class="circle-container">
                       <mat-progress-spinner
                         class="circle-background"
-                        [color]="backgroundColor"
+                        [color]="color"
                         [mode]="mode"
                         [value]="100"
                         [diameter]="diameter"
@@ -36,9 +36,9 @@
                       </mat-progress-spinner>
                       <mat-progress-spinner
                         class="circle"
-                        [color]="color"
+                        [color]="backgroundColor"
                         [mode]="mode"
-                        [value]="value"
+                        [value]="100 - value"
                         [diameter]="diameter"
                         [strokeWidth]="strokeWidth"
                       >
