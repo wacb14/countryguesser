@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import codes from '../../assets/maps_files/codes_name_continent_en.json';
 import { Country } from '../models/country';
 import { RestCountriesService } from './rest-countries.service';
@@ -16,6 +16,8 @@ export class AlternativesGeneratorService {
   northA = Object.keys(codes['north-america_en']);
   southA = Object.keys(codes['south-america_en']);
   world = Object.keys(codes['world_en']);
+
+  @Output() startTimerSender = new EventEmitter<boolean>();
 
   constructor(
     private restCountriesService: RestCountriesService,
@@ -107,6 +109,8 @@ export class AlternativesGeneratorService {
         alternatives.push(
           new Country(item, name, response[0].flags.svg, region)
         );
+        //-- Send signal about the last completed alternative
+        if (alternatives.length == 4) this.startTimerSender.emit(true);
       });
     }
     return alternatives;
