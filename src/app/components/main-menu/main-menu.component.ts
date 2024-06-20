@@ -4,6 +4,11 @@ import { mapsColors } from 'src/app/models/mapsColors';
 import { AuthFlagsService } from 'src/app/services/auth-flags.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  gameModeSelectOptions,
+  continentSelectOptions,
+  questionsSelectOptions,
+} from 'src/app/models/selectsOptions';
 @Component({
   selector: 'app-main-menu',
   templateUrl: './main-menu.component.html',
@@ -17,6 +22,10 @@ export class MainMenuComponent implements OnInit {
     continent: 'world_en',
     numberQuestions: 5,
   };
+  gameModeSelectOptions = gameModeSelectOptions;
+  continentSelectOptions = continentSelectOptions;
+  questionsSelectOptions = questionsSelectOptions;
+
   constructor(
     private router: Router,
     private authFlagsService: AuthFlagsService,
@@ -27,6 +36,7 @@ export class MainMenuComponent implements OnInit {
   ngOnInit(): void {
     this.loadPreferences();
   }
+
   savePreferences(
     gameMode: string,
     continent: string,
@@ -37,7 +47,9 @@ export class MainMenuComponent implements OnInit {
     this.localStorageService.set('continent', continent);
     this.localStorageService.set('numberQuestions', numberQuestions);
   }
+
   startGame(gameMode: string, continent: string, numberQuestions: string) {
+    console.log(continent);
     this.authFlagsService.startGame = true;
     this.savePreferences(gameMode, continent, numberQuestions);
     const extras: NavigationExtras = {
@@ -48,6 +60,7 @@ export class MainMenuComponent implements OnInit {
     };
     this.router.navigate(['/', 'maps'], extras);
   }
+
   loadPreferences() {
     this.preferences.language = this.localStorageService.get('language');
     this.preferences.gameMode = this.localStorageService.get('gameMode');
