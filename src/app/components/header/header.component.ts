@@ -1,5 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/internal/Subscription';
+import { AlternativesGeneratorService } from 'src/app/services/alternatives-generator.service';
 import { QuestionsGeneratorService } from 'src/app/services/questions-generator.service';
 import { RatingService } from 'src/app/services/rating.service';
 
@@ -22,7 +23,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(
     private ratingService: RatingService,
-    private questionGeneratorService: QuestionsGeneratorService
+    private questionGeneratorService: QuestionsGeneratorService,
+    private alternativesGeneratorService: AlternativesGeneratorService
   ) {}
 
   ngOnInit(): void {
@@ -56,13 +58,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   startTimer() {
     this.questionGeneratorSubscription =
-      this.questionGeneratorService.questionSender.subscribe((question) => {
-        this.timeRemaining = this.timeRemaining;
-        this.showTimer = true;
-        this.message = '';
-        this.timeOver = false;
-        this.startCountDown();
-      });
+      this.alternativesGeneratorService.startTimerSender.subscribe(
+        (response) => {
+          this.timeRemaining = this.timeRemaining;
+          this.showTimer = true;
+          this.message = '';
+          this.timeOver = false;
+          this.startCountDown();
+        }
+      );
   }
 
   showResult() {
@@ -74,7 +78,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
           this.stopTimer();
         } else {
           if (this.timeOver) {
-            this.message = "card.message.timeUp";
+            this.message = 'card.message.timeUp';
           } else {
             this.message = 'card.message.wrong';
             this.stopTimer();
