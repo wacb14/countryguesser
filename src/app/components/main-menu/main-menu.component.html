@@ -30,7 +30,7 @@
                 {{ "main-menu.mode.title" | translate }}
               </h3>
               <mat-form-field>
-                <mat-select [value]="gameModeSelectOptions[0].value" #gameMode>
+                <mat-select [value]="preferences.gameMode" #gameMode>
                   <mat-option
                     *ngFor="let option of gameModeSelectOptions"
                     [value]="option.value"
