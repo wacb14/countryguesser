@@ -7,6 +7,19 @@
   font-size: xx-large;
   font-weight: bolder;
 }
+.input-name{
+  height: 2.5rem;
+  width: 45%;
+  border-radius: var(--border-radius);
+  font-size: larger;
+}
+.btn-send {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
 .btn-again {
   width: 9rem;
   background-color: var(--primary-color);
@@ -91,5 +104,8 @@
 @media (max-width: 576px) {
   .card {
     border-radius: 0;
+  }
+  .input-name{
+    width: 70%;
   }
 }

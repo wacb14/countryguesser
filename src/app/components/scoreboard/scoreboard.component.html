@@ -4,7 +4,9 @@
       <div class="row justify-content-center m-0">
         <div class="col-12 col-md-6 p-0">
           <div class="d-flex align-items-center justify-content-center h-100">
-            <div class="row h-fit justify-content-end w-100">
+            <div
+              class="row h-fit justify-content-center justify-content-lg-end w-100"
+            >
               <div class="col-12 col-lg-10 p-0">
                 <p class="title text-center">
                   {{ "scoreboard.yourScore" | translate }}
@@ -47,10 +49,29 @@
                   </div>
                 </div>
               </div>
-              <div class="col-12 col-lg-10 mt-4 p-0">
+              <div class="col-12 col-lg-9 mt-4 p-0">
+                <label for="inpPlayerName" class="points ms-5"
+                  >Enter your name</label
+                >
+              </div>
+              <div
+                class="col-12 col-lg-10 mt-4 p-0 d-flex justify-content-center align-items-center"
+              >
+                <input
+                  type="text"
+                  id="inpPlayerName"
+                  placeholder="10 characters max"
+                  [maxLength]="10"
+                  class="input-name"
+                />
+                <button class="btn btn-send ms-4">
+                  <mat-icon fontIcon="send"></mat-icon>
+                </button>
+              </div>
+              <div class="col-12 col-lg-10 mt-4 mb-4 mb-md-0 p-0">
                 <div class="row justify-content-center m-0">
                   <button class="btn btn-again" (click)="newGame()">
-                    <mat-icon fontIcon="rotate_right" class="icon"></mat-icon>
+                    <mat-icon fontIcon="rotate_right"></mat-icon>
                     {{ "scoreboard.playAgain" | translate }}
                   </button>
                 </div>
@@ -61,7 +82,9 @@
         <div class="col-12 col-md-6 p-0">
           <div class="row m-0">
             <div class="col-12 p-0">
-              <div class="row justify-content-start m-0">
+              <div
+                class="row justify-content-center justify-content-lg-start m-0"
+              >
                 <div class="col-12 col-lg-10 p-0">
                   <p class="title text-center">
                     {{ "scoreboard.yourAnswers" | translate }}
