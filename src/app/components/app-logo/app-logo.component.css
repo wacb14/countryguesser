@@ -1,0 +1,23 @@
+.title-container{
+    width: fit-content;
+    display: inline-block;
+    margin-left: 0.8rem;
+  }
+  .title {
+    color: var(--aux-text-color);
+  }
+  .logo-container {
+    object-fit: contain;
+    height: fit-content;
+    border: solid 5px var(--aux-text-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0px 0px 15px var(--aux-text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo {
+    object-fit: contain;
+    width: 35%;
+    display: inline-block;
+  }

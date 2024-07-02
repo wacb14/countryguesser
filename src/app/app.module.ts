@@ -23,6 +23,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { LanguageSelectorComponent } from './components/language-selector/language-selector.component';
+import { AppLogoComponent } from './components/app-logo/app-logo.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { LanguageSelectorComponent } from './components/language-selector/langua
     MainMenuComponent,
     FlagComponent,
     LanguageSelectorComponent,
+    AppLogoComponent,
   ],
   imports: [
     BrowserModule,

@@ -20,9 +20,6 @@
   height: fit-content;
   border-radius: var(--border-radius);
 }
-.title {
-  color: var(--aux-text-color);
-}
 .continents-select {
   height: 2.25rem;
   width: 10rem;
