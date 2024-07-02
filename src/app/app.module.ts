@@ -24,6 +24,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { LanguageSelectorComponent } from './components/language-selector/language-selector.component';
 import { AppLogoComponent } from './components/app-logo/app-logo.component';
+import { HighscoresComponent } from './components/highscores/highscores.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { AppLogoComponent } from './components/app-logo/app-logo.component';
     FlagComponent,
     LanguageSelectorComponent,
     AppLogoComponent,
+    HighscoresComponent,
   ],
   imports: [
     BrowserModule,
