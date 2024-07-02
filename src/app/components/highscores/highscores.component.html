@@ -1,0 +1,41 @@
+<div class="container p-0 h-100">
+  <div class="row m-0 align-content-center h-100">
+    <div class="container card p-0">
+      <div class="row m-0 align-content-center justify-content-center h-100">
+        <div class="col-10 col-sm-8 col-md-6 col-lg-4">
+          <app-app-logo></app-app-logo>
+        </div>
+        <div class="col-12">
+          <h1 class="text-center title">Top 10 players</h1>
+        </div>
+        <div class="col-12 text-center table mb-3">
+          <div class="row m-0 justify-content-center">
+            <span class="col-1 table-header"></span>
+            <span class="col-3 col-md-2 table-header">Score</span>
+            <span class="col-3 table-header">Name</span>
+            <span class="col-2 col-md-2 table-header">Time</span>
+            <span class="col-3 col-md-2 table-header">Mode</span>
+          </div>
+          <div
+            class="row m-0 justify-content-center"
+            *ngFor="let highScore of highScores; let i = index"
+          >
+            <span class="col-1 table-content"> {{ i + 1 }} </span>
+            <span class="col-3 col-md-2 table-content">
+              {{ highScore.score }}
+            </span>
+            <span class="col-3 table-content">
+              {{ highScore.name }}
+            </span>
+            <span class="col-2 col-md-2 table-content">
+              {{ highScore.time }}
+            </span>
+            <span class="col-3 col-md-2 table-content">
+              {{ highScore.mode }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
