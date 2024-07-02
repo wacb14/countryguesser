@@ -17,7 +17,7 @@ export class ScoreboardComponent implements OnInit {
   value = 0;
   diameter = 300;
   strokeWidth = 16;
-  
+
   //-- Component default attributes
   message: string = 'Congrats!';
   rating: Array<number> = [0, 0];
@@ -27,11 +27,15 @@ export class ScoreboardComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.answers = history.state.answers.map(
-      (ans: any) => new Answer(ans.country, ans.answer)
-    );
-    this.points = history.state.points;
-    this.countRightAnswers();
+    try {
+      this.answers = history.state.answers.map(
+        (ans: any) => new Answer(ans.country, ans.answer)
+      );
+      this.points = history.state.points;
+      this.countRightAnswers();
+    } catch (e) {
+      console.log('Error:' + e);
+    }
   }
 
   countRightAnswers() {
