@@ -6,6 +6,6 @@ import { Injectable } from '@angular/core';
 export class AuthFlagsService {
   startGame: boolean = false;
   finished: boolean = false;
-  
+
   constructor() { }
 }

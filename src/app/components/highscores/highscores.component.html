@@ -8,7 +8,10 @@
         <div class="col-12">
           <h1 class="text-center title">Top 10 players</h1>
         </div>
-        <div class="col-12 text-center table mb-3">
+        <div
+          class="col-12 text-center table mb-3"
+          [ngClass]="{ hidden: !tableVisible }"
+        >
           <div class="row m-0 justify-content-center">
             <span class="col-1 table-header"></span>
             <span class="col-3 col-md-2 table-header">Score</span>
