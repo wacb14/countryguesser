@@ -12,12 +12,12 @@
   color: var(--confirmation-color);
   font-weight: bolder;
   font-size: xx-large;
-  padding: 1rem 1.6rem;
+  padding: 0.6rem 1.6rem;
 }
 .table-content {
   color: var(--text-color);
   font-size: x-large;
-  padding: 0.8rem 1.4rem;
+  padding: 0.6rem 1.4rem;
 }
 @media (max-width: 992px) {
   .title {

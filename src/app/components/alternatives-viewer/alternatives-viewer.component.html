@@ -29,11 +29,8 @@
           'btn-correct': colors[i] == 'c',
           'btn-wrong': colors[i] == 'w',
           'btn-disabled': colors[i] == 'b',
-          
         }"
-          [ngClass]="
-            isComplete() ? 'fade_in-animation-' + (i + 1) : ''
-          "
+          [ngClass]="isComplete() ? 'fade_in-animation-' + (i + 1) : ''"
           [disabled]="disableButtons"
         >
           {{ alternative.name }}
