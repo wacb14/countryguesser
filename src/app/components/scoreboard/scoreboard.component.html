@@ -17,11 +17,14 @@
                   <div class="spinner-title text-center">
                     <div class="card-congrats">{{ message | translate }}</div>
                     <div>
-                      <p class="rating mt-5 mb-2">
+                      <p class="rating mt-3 mt-lg-4 mb-2">
                         {{ rating[0] + "/" + rating[1] }}
                       </p>
                       <p class="points my-1">
                         {{ points }} {{ "scoreboard.points" | translate }}
+                      </p>
+                      <p class="points my-1">
+                        {{ timeClock(totalTime()) }}
                       </p>
                     </div>
                   </div>
@@ -93,12 +96,13 @@
                 <div
                   class="col-12 col-lg-10 scroll-window p-0 py-2 scrollbar-custom"
                 >
-                  <ng-container *ngFor="let i = index; let answer; of: answers">
+                  <div *ngFor="let i = index; let answer; of: answers" class="card-container">
                     <app-answer-card
                       [answer]="answer"
                       [id]="i + 1"
+                      [time]="times[i]"
                     ></app-answer-card>
-                  </ng-container>
+                  </div>
                 </div>
               </div>
             </div>

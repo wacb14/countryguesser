@@ -49,8 +49,8 @@ export class MainMenuComponent implements OnInit {
   }
 
   startGame(gameMode: string, continent: string, numberQuestions: string) {
-    console.log(continent);
     this.authFlagsService.startGame = true;
+    this.authFlagsService.currentGameMode = gameMode;
     this.savePreferences(gameMode, continent, numberQuestions);
     const extras: NavigationExtras = {
       state: {

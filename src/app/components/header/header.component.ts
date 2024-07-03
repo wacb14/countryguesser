@@ -1,7 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { AlternativesGeneratorService } from 'src/app/services/alternatives-generator.service';
-import { QuestionsGeneratorService } from 'src/app/services/questions-generator.service';
 import { RatingService } from 'src/app/services/rating.service';
 
 @Component({
@@ -11,19 +10,20 @@ import { RatingService } from 'src/app/services/rating.service';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   interval: any;
-  time: number = 15;
-  timeRemaining: number = 15;
+  time: number = 20;
+  timeRemaining: number = 20;
   showTimer: boolean = true;
   message: string = '';
   timeOver = false;
+
   @Input() questions: Array<number> = [];
   @Input() score: number = 0;
+
   ratingSubscription: Subscription = null!;
   questionGeneratorSubscription: Subscription = null!;
 
   constructor(
     private ratingService: RatingService,
-    private questionGeneratorService: QuestionsGeneratorService,
     private alternativesGeneratorService: AlternativesGeneratorService
   ) {}
 
@@ -40,7 +40,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   startCountDown() {
     this.timeRemaining = this.time;
-
     this.interval = setInterval(() => {
       if (this.timeRemaining == 0) {
         this.stopTimer();
@@ -58,15 +57,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   startTimer() {
     this.questionGeneratorSubscription =
-      this.alternativesGeneratorService.startTimerSender.subscribe(
-        (response) => {
-          this.timeRemaining = this.timeRemaining;
-          this.showTimer = true;
-          this.message = '';
-          this.timeOver = false;
-          this.startCountDown();
-        }
-      );
+      this.alternativesGeneratorService.startTimerSender.subscribe((res) => {
+        this.showTimer = true;
+        this.message = '';
+        this.timeOver = false;
+        this.startCountDown();
+      });
   }
 
   showResult() {
@@ -84,6 +80,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
             this.stopTimer();
           }
         }
+        this.ratingService.pointingSender.emit({
+          rating: rating,
+          time: this.time - this.timeRemaining,
+        });
       }
     );
   }

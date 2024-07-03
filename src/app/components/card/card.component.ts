@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { Answer } from 'src/app/models/answer';
 import { Country } from 'src/app/models/country';
@@ -16,17 +16,19 @@ export class CardComponent implements OnInit, OnDestroy {
   questions: Array<Country> = [];
   currentCountry = new Country('', '', '', '');
   answers: Array<Answer> = [];
+  times: Array<number> = [];
   currentIndex: number = 0;
   score: number = 0;
   showBtnNext: boolean = false;
   showBtnResults: boolean = false;
-  ratingSubscription: Subscription = null!;
+
+  pointingSubscription: Subscription = null!;
 
   constructor(
     private questionsGeneratorService: QuestionsGeneratorService,
     private ratingService: RatingService,
     private router: Router,
-    private authFlagsService:AuthFlagsService
+    private authFlagsService: AuthFlagsService
   ) {}
 
   ngOnInit(): void {
@@ -43,12 +45,15 @@ export class CardComponent implements OnInit, OnDestroy {
     } catch (error) {
       console.log('There was an error: ' + error);
     }
-    this.ratingSubscription = this.ratingService.ratingSender.subscribe(
-      (rating) => {
-        if (rating.isCorrect()) {
-          this.score = this.score + 100;
+
+    this.pointingSubscription = this.ratingService.pointingSender.subscribe(
+      (res: any) => {
+        if (res.rating.isCorrect()) {
+          this.score += 100 - res.time;
         }
-        this.answers.push(rating);
+        this.answers.push(res.rating);
+        this.times.push(res.time);
+
         //-- Check if it's the last question
         if (this.answers.length == this.questions.length) {
           this.showBtnResults = true;
@@ -60,7 +65,7 @@ export class CardComponent implements OnInit, OnDestroy {
     );
   }
   ngOnDestroy(): void {
-    if (this.ratingSubscription) this.ratingSubscription.unsubscribe();
+    if (this.pointingSubscription) this.pointingSubscription.unsubscribe();
   }
 
   nextQuestion() {
@@ -74,6 +79,7 @@ export class CardComponent implements OnInit, OnDestroy {
     const extras: NavigationExtras = {
       state: {
         answers: this.answers,
+        times: this.times,
         points: this.score,
       },
     };
