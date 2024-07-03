@@ -3,6 +3,7 @@ import { ThemePalette } from '@angular/material/core';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { Router } from '@angular/router';
 import { Answer } from 'src/app/models/answer';
+import { timeClock } from 'src/app/utils/timeClock';
 
 @Component({
   selector: 'app-scoreboard',
@@ -23,6 +24,7 @@ export class ScoreboardComponent implements OnInit {
   rating: Array<number> = [0, 0];
   points: string = '0';
   answers: Array<Answer> = [];
+  times: Array<number> = [];
 
   constructor(private router: Router) {}
 
@@ -32,6 +34,7 @@ export class ScoreboardComponent implements OnInit {
         (ans: any) => new Answer(ans.country, ans.answer)
       );
       this.points = history.state.points;
+      this.times = history.state.times;
       this.countRightAnswers();
     } catch (e) {
       console.log('Error:' + e);
@@ -54,4 +57,13 @@ export class ScoreboardComponent implements OnInit {
   newGame() {
     this.router.navigate(['/']);
   }
+
+  totalTime() {
+    let total = 0;
+    for (const time of this.times) {
+      total += time;
+    }
+    return total;
+  }
+  timeClock = timeClock;
 }

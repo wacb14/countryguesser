@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Answer } from 'src/app/models/answer';
 import { Country } from 'src/app/models/country';
-import { LocalStorageService } from 'src/app/services/local-storage.service';
-import { QuestionsGeneratorService } from 'src/app/services/questions-generator.service';
+import { AuthFlagsService } from 'src/app/services/auth-flags.service';
+import { timeClock } from 'src/app/utils/timeClock';
 
 @Component({
   selector: 'app-answer-card',
@@ -15,13 +15,12 @@ export class AnswerCardComponent implements OnInit {
     new Country('', '', '', '')
   );
   @Input() id: number = 0;
+  @Input() time: number = 0;
   gameMode = 'maps';
-
-  constructor(
-    private localStorageService:LocalStorageService
-  ) {}
+  constructor(private authFlagsService: AuthFlagsService) {}
 
   ngOnInit(): void {
-    this.gameMode = this.localStorageService.get('gameMode');
+    this.gameMode = this.authFlagsService.currentGameMode;
   }
+  timeClock = timeClock;
 }
