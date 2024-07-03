@@ -34,7 +34,7 @@
     width: 3.5rem;
   }
 }
-@media (max-width: 512px) {
+@media (max-width: 576px) {
   .header{
     border-radius: 0;
   }

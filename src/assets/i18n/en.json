@@ -51,5 +51,18 @@
     "yourAnswers": "Your answers",
     "yourAnswer": "Your answer",
     "correctAnswer": "Correct answer"
+  },
+  "high-scores": {
+    "players": "players",
+    "headers": {
+      "score": "Score",
+      "name": "Name",
+      "time": "Time",
+      "mode": "Mode"
+    },
+    "modes": {
+      "maps": "Maps",
+      "flags": "Flags"
+    }
   }
 }
