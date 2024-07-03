@@ -46,6 +46,8 @@
     },
     "points": "puntos",
     "playAgain": "Jugar de nuevo",
+    "yourName": "Ingresa tu nombre",
+    "characters":"caracteres máximo",
     "yourAnswers": "Tus respuestas",
     "yourAnswer": "Tu respuesta",
     "correctAnswer": "Respuesta correcta"
