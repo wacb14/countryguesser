@@ -2,6 +2,15 @@
   border-radius: var(--border-radius);
   background-color: var(--secondary-color);
 }
+.header {
+  position: relative;
+}
+.language-select {
+  position: absolute;
+  width: fit-content;
+  top: 0.3rem;
+  right: 0.3rem;
+}
 .title {
   color: var(--warning-color);
   font-size: 2.5rem;
@@ -31,6 +40,17 @@
     color: var(--text-color);
     font-size: large;
     padding: 0.3rem 0.5rem;
+  }
+}
+@media (max-width: 768px) {
+  .header {
+    position: initial;
+  }
+  .language-select {
+    position: initial;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
   }
 }
 @media (max-width: 576px) {
