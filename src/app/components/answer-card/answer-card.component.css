@@ -18,6 +18,15 @@
   height: 6rem;
   width: 90%;
 }
-.card-text{
+.card-text {
   width: fit-content;
+}
+.card-body {
+  position: relative;
+}
+.time {
+  color: white;
+  position: absolute;
+  top: 0.3rem;
+  right: 0.3rem;
 }

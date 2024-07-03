@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthFlagsService {
   startGame: boolean = false;
   finished: boolean = false;
-  
-  constructor() { }
+  currentGameMode: string = 'maps';
+
+  constructor() {}
 }

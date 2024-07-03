@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AuthFlagsService } from 'src/app/services/auth-flags.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
@@ -9,9 +10,9 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 export class ViewerComponent implements OnInit {
   gameMode = 'maps';
 
-  constructor(private localStorageService: LocalStorageService) {}
+  constructor(private authFlagsService: AuthFlagsService) {}
 
   ngOnInit(): void {
-    this.gameMode = this.localStorageService.get('gameMode');
+    this.gameMode = this.authFlagsService.currentGameMode;
   }
 }
