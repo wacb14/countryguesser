@@ -7,5 +7,7 @@ import { Answer } from '../models/answer';
 export class RatingService {
   @Output() ratingSender = new EventEmitter<Answer>();
   @Output() timeOverSender = new EventEmitter<boolean>();
+  @Output() pointingSender = new EventEmitter<object>();
+
   constructor() {}
 }
