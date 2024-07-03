@@ -50,9 +50,9 @@
                 </div>
               </div>
               <div class="col-12 col-lg-9 mt-4 p-0">
-                <label for="inpPlayerName" class="points ms-5"
-                  >Enter your name</label
-                >
+                <label for="inpPlayerName" class="points ms-5">{{
+                  "scoreboard.yourName" | translate
+                }}</label>
               </div>
               <div
                 class="col-12 col-lg-10 mt-4 p-0 d-flex justify-content-center align-items-center"
@@ -60,9 +60,9 @@
                 <input
                   type="text"
                   id="inpPlayerName"
-                  placeholder="10 characters max"
                   [maxLength]="10"
-                  class="input-name"
+                  class="input-name text-center"
+                  [placeholder]="'10 ' + ('scoreboard.characters' | translate)"
                 />
                 <button class="btn btn-send ms-4">
                   <mat-icon fontIcon="send"></mat-icon>
