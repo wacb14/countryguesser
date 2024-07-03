@@ -5,15 +5,17 @@ import { CardComponent } from './components/card/card.component';
 import { resultsGuard } from './guards/results.guard';
 import { MainMenuComponent } from './components/main-menu/main-menu.component';
 import { gameGuard } from './guards/game.guard';
+import { HighscoresComponent } from './components/highscores/highscores.component';
 
 const routes: Routes = [
-  { path: '', component: MainMenuComponent},
-  { path: 'maps', component: CardComponent, canActivate:[gameGuard]},
+  { path: '', component: MainMenuComponent },
+  { path: 'maps', component: CardComponent, canActivate: [gameGuard] },
   {
     path: 'scoreboard',
     component: ScoreboardComponent,
-    canActivate:[resultsGuard]
+    canActivate: [resultsGuard],
   },
+  { path: 'highscores', component: HighscoresComponent },
 ];
 
 @NgModule({
