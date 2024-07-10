@@ -47,10 +47,14 @@
     "points": "points",
     "playAgain": "Play again",
     "yourName": "Enter your name",
-    "characters":"characters max.",
+    "characters": "characters max.",
     "yourAnswers": "Your answers",
     "yourAnswer": "Your answer",
-    "correctAnswer": "Correct answer"
+    "correctAnswer": "Correct answer",
+    "updateSuccess": "Your score has been submitted successfully!",
+    "updateError": "Sorry. There was an error when uploading your score",
+    "topPlayers": "Top players",
+    "required":"This field is required"
   },
   "high-scores": {
     "players": "players",
