@@ -37,7 +37,7 @@ export class ScoreboardComponent implements OnInit {
     return this.form.get('inpPlayerName');
   }
   formHidden = false;
-  responseMessage = 'Your score has been submitted successfully!';
+  responseMessage = '';
   success = true;
 
   constructor(
@@ -108,12 +108,12 @@ export class ScoreboardComponent implements OnInit {
       .then(() => {
         this.authFlagsService.gameFinished = false;
         this.success = true;
+        this.responseMessage = 'scoreboard.updateSuccess';
       })
       .catch((error) => {
         console.log('An error has ocurred: ' + error);
         this.success = false;
-        this.responseMessage =
-          'Sorry. There was an error when uploading your score';
+        this.responseMessage = 'scoreboard.updateError';
       });
     this.formHidden = true;
   }
