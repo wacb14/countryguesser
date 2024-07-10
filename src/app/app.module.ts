@@ -18,6 +18,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FlagComponent } from './components/flag/flag.component';
+import { ReactiveFormsModule } from '@angular/forms';
 //Translation
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -65,6 +66,7 @@ import { AngularFireModule } from '@angular/fire/compat';
       },
     }),
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

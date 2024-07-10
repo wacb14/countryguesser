@@ -8,11 +8,15 @@
   font-size: xx-large;
   font-weight: bolder;
 }
-.input-name{
+.input-name {
   height: 2.5rem;
-  width: 45%;
   border-radius: var(--border-radius);
   font-size: larger;
+  width: 90%;
+}
+.input-name-container {
+  height: fit-content;
+  width: 45%;
 }
 .btn-send {
   background-color: var(--primary-color);
@@ -75,6 +79,15 @@
   font-size: x-large;
   color: var(--text-color);
 }
+.msg {
+  font-size: x-large;
+}
+.warning-msg {
+  color: red;
+}
+.success-msg {
+  color: var(--confirmation-color);
+}
 .scroll-window {
   height: 80vh;
   overflow: auto;
@@ -102,7 +115,7 @@
   .card {
     border-radius: 0;
   }
-  .input-name{
+  .input-name-container {
     width: 70%;
   }
 }
