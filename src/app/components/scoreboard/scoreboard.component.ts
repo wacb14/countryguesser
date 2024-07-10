@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { Router } from '@angular/router';
@@ -29,11 +30,22 @@ export class ScoreboardComponent implements OnInit {
   answers: Array<Answer> = [];
   times: Array<number> = [];
 
+  form = this.formBuilder.group({
+    inpPlayerName: ['', Validators.required],
+  });
+  get inpPlayerName() {
+    return this.form.get('inpPlayerName');
+  }
+  formHidden = false;
+  responseMessage = 'Your score has been submitted successfully!';
+  success = true;
+
   constructor(
     private router: Router,
     private scoresService: ScoresService,
     private authFlagsService: AuthFlagsService,
-    private authService: AuthService
+    private authService: AuthService,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -84,15 +96,28 @@ export class ScoreboardComponent implements OnInit {
 
   timeClock = timeClock;
 
-  saveHighScore(name: string) {
+  saveHighScore() {
     let data = {
       mode: this.authFlagsService.currentGameMode,
-      name: name,
+      name: this.inpPlayerName?.value,
       time: this.totalTime(),
       score: this.points,
     };
-    this.scoresService.createScore(data);
-    this.router.navigate(['/', 'highscores']);
-    this.authFlagsService.gameFinished = false;
+    this.scoresService
+      .createScore(data)
+      .then(() => {
+        this.authFlagsService.gameFinished = false;
+        this.success = true;
+      })
+      .catch((error) => {
+        console.log('An error has ocurred: ' + error);
+        this.success = false;
+        this.responseMessage =
+          'Sorry. There was an error when uploading your score';
+      });
+    this.formHidden = true;
+  }
+  goHighScores() {
+    this.router.navigate(['', 'highscores']);
   }
 }

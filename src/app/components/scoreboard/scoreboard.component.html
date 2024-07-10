@@ -52,28 +52,55 @@
                   </div>
                 </div>
               </div>
-              <div class="col-12 col-lg-9 mt-4 p-0">
+              <div class="col-12 col-lg-9 mt-4 p-0" *ngIf="!formHidden">
                 <label for="inpPlayerName" class="points ms-5">{{
                   "scoreboard.yourName" | translate
                 }}</label>
               </div>
-              <div
-                class="col-12 col-lg-10 mt-4 p-0 d-flex justify-content-center align-items-center"
-              >
-                <input
-                  type="text"
-                  id="inpPlayerName"
-                  [maxLength]="10"
-                  class="input-name text-center"
-                  [placeholder]="'10 ' + ('scoreboard.characters' | translate)"
-                  #inpPlayerName
-                />
-                <button class="btn btn-send ms-4" (click)="saveHighScore(inpPlayerName.value)">
-                  <mat-icon fontIcon="send"></mat-icon>
-                </button>
+              <div class="col-12 col-lg-10 mt-4 p-0">
+                <ng-template #success>
+                  <p
+                    [ngClass]="success ? 'success-msg' : 'warning-msg'"
+                    class="msg text-center mt-0"
+                  >
+                    {{ responseMessage }}
+                  </p>
+                </ng-template>
+                <form
+                  [formGroup]="form"
+                  (ngSubmit)="form.valid && saveHighScore()"
+                  class="d-flex justify-content-center align-items-start"
+                  *ngIf="!formHidden; else success"
+                >
+                  <div class="input-name-container text-center">
+                    <input
+                      type="text"
+                      id="inpPlayerName"
+                      [maxLength]="10"
+                      class="input-name text-center"
+                      [placeholder]="
+                        '10 ' + ('scoreboard.characters' | translate)
+                      "
+                      formControlName="inpPlayerName"
+                    />
+                    <small
+                      class="warning-msg"
+                      *ngIf="!inpPlayerName?.valid && inpPlayerName?.touched"
+                    >
+                      This field is required
+                    </small>
+                  </div>
+                  <button class="btn btn-send ms-4" type="submit">
+                    <mat-icon fontIcon="send"></mat-icon>
+                  </button>
+                </form>
               </div>
               <div class="col-12 col-lg-10 mt-4 mb-4 mb-md-0 p-0">
-                <div class="row justify-content-center m-0">
+                <div class="row justify-content-evenly m-0">
+                  <button class="btn btn-again" (click)="goHighScores()">
+                    <mat-icon fontIcon="score"></mat-icon>
+                    High scores
+                  </button>
                   <button class="btn btn-again" (click)="newGame()">
                     <mat-icon fontIcon="rotate_right"></mat-icon>
                     {{ "scoreboard.playAgain" | translate }}
@@ -97,7 +124,10 @@
                 <div
                   class="col-12 col-lg-10 scroll-window p-0 py-2 scrollbar-custom"
                 >
-                  <div *ngFor="let i = index; let answer; of: answers" class="card-container">
+                  <div
+                    *ngFor="let i = index; let answer; of: answers"
+                    class="card-container"
+                  >
                     <app-answer-card
                       [answer]="answer"
                       [id]="i + 1"
