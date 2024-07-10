@@ -23,9 +23,8 @@ export class HighscoresComponent implements OnInit {
 
   constructor(private scoresService: ScoresService) {}
   ngOnInit(): void {
-    this.scoresService.getHighScores().subscribe((res: any) => {
+    this.scoresService.getTopScores().subscribe((res: any) => {
       this.highScores = res;
-      this.highScores = this.highScores.slice(0, 10);
       this.tableVisible = true;
     });
   }

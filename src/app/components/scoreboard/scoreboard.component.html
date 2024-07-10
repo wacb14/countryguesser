@@ -66,8 +66,9 @@
                   [maxLength]="10"
                   class="input-name text-center"
                   [placeholder]="'10 ' + ('scoreboard.characters' | translate)"
+                  #inpPlayerName
                 />
-                <button class="btn btn-send ms-4">
+                <button class="btn btn-send ms-4" (click)="saveHighScore(inpPlayerName.value)">
                   <mat-icon fontIcon="send"></mat-icon>
                 </button>
               </div>

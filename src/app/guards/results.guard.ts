@@ -13,8 +13,8 @@ export const resultsGuard: CanActivateFn = (
 ) => {
   const ratingService = inject(AuthFlagsService);
   const router = inject(Router);
-  if (!ratingService.finished) {
+  if (!ratingService.gameFinished) {
     router.navigate(['/']);
   }
-  return ratingService.finished;
+  return ratingService.gameFinished;
 };

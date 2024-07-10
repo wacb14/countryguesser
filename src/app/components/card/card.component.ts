@@ -57,7 +57,7 @@ export class CardComponent implements OnInit, OnDestroy {
         //-- Check if it's the last question
         if (this.answers.length == this.questions.length) {
           this.showBtnResults = true;
-          this.authFlagsService.finished = true;
+          this.authFlagsService.gameFinished = true;
         } else {
           this.showBtnNext = true;
         }
