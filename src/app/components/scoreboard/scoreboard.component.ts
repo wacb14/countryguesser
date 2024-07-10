@@ -3,6 +3,9 @@ import { ThemePalette } from '@angular/material/core';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { Router } from '@angular/router';
 import { Answer } from 'src/app/models/answer';
+import { AuthFlagsService } from 'src/app/services/auth-flags.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { ScoresService } from 'src/app/services/scores.service';
 import { timeClock } from 'src/app/utils/timeClock';
 
 @Component({
@@ -26,7 +29,12 @@ export class ScoreboardComponent implements OnInit {
   answers: Array<Answer> = [];
   times: Array<number> = [];
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private scoresService: ScoresService,
+    private authFlagsService: AuthFlagsService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     try {
@@ -39,6 +47,14 @@ export class ScoreboardComponent implements OnInit {
     } catch (e) {
       console.log('Error:' + e);
     }
+    this.authService
+      .signInAnonymously()
+      .then((userCredential) => {
+        console.log('User signed in anonymously successfully');
+      })
+      .catch((error) => {
+        console.error('Error signing in anonymously: ', error);
+      });
   }
 
   countRightAnswers() {
@@ -65,5 +81,18 @@ export class ScoreboardComponent implements OnInit {
     }
     return total;
   }
+
   timeClock = timeClock;
+
+  saveHighScore(name: string) {
+    let data = {
+      mode: this.authFlagsService.currentGameMode,
+      name: name,
+      time: this.totalTime(),
+      score: this.points,
+    };
+    this.scoresService.createScore(data);
+    this.router.navigate(['/', 'highscores']);
+    this.authFlagsService.gameFinished = false;
+  }
 }
