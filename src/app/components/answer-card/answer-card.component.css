@@ -25,7 +25,10 @@
   position: relative;
 }
 .time {
-  color: white;
+  border-radius: 0.5rem;
+  background-color: var(--warning-color);
+  padding: 0.3rem;
+  color: var(--text-color);
   position: absolute;
   top: 0.3rem;
   right: 0.3rem;
