@@ -26,7 +26,7 @@ import { HttpClient } from '@angular/common/http';
 import { LanguageSelectorComponent } from './components/language-selector/language-selector.component';
 import { AppLogoComponent } from './components/app-logo/app-logo.component';
 import { HighscoresComponent } from './components/highscores/highscores.component';
-import { environment } from 'src/app/environments/environment';
+import { environment } from 'src/app/environments/environment.prod';
 import { AngularFireModule } from '@angular/fire/compat';
 
 @NgModule({

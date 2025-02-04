@@ -34,11 +34,6 @@ export class AlternativesGeneratorService {
     this.world = Object.keys(codes['world_en']);
   }
 
-  generateRandom(maximum: number) {
-    let min = 0;
-    let max = maximum;
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
   getCountriesByContinent(region: string) {
     let countries: Array<string> = [];
     switch (region) {
@@ -80,6 +75,18 @@ export class AlternativesGeneratorService {
     return languages[index].translation;
   }
 
+  private shuffle(array: Array<string>) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+  generateRandom(maximum: number) {
+    let min = 0;
+    let max = maximum;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
   generateAlternatives(countryCode: string, region: string) {
     this.loadAllCountries(); //-- To avoid the disappearance of countries
     let generated: Array<string> = [];
@@ -97,7 +104,7 @@ export class AlternativesGeneratorService {
     }
     //-- Randomize alternatives
     generated.push(countryCode);
-    generated.sort(() => Math.random() - 0.5);
+    generated = this.shuffle(generated);
 
     for (const item of generated) {
       this.restCountriesService.getInfoByCode(item).subscribe((response) => {
@@ -109,10 +116,11 @@ export class AlternativesGeneratorService {
         alternatives.push(
           new Country(item, name, response[0].flags.svg, region)
         );
-        //-- Send signal about the last completed alternative
+        //-- Send signal about the last alternative is complete
         if (alternatives.length == 4) this.startTimerSender.emit(true);
       });
     }
+
     return alternatives;
   }
 }
