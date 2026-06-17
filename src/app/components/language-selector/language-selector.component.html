@@ -1,29 +1,17 @@
-<div class="relative inline-block">
-  <button
-    class="bg-cg-panel/90 h-12 w-40 rounded-lg text-base text-white shadow-lg"
-    (click)="toggleDropdown()"
-    [ngClass]="dropdownVisible ? 'rounded-b-none' : ''"
+<div class="relative inline-block rounded-lg">
+  <select
+    #selectLanguages
+    class="bg-cg-primary text-cg-text focus:border-cg-accent mt-2 h-12 w-40 cursor-pointer rounded-lg border border-slate-400 px-3 text-lg outline-none"
+    [value]="activeLanguage"
+    (change)="changeLanguage(selectLanguages.value)"
   >
-    {{ showActiveLanguage().emoji + " "
-    }}{{ showActiveLanguage().name | translate }}
-  </button>
-  <div
-    class="bg-cg-primary absolute z-10 hidden w-40 rounded-b-lg shadow-lg"
-    [ngClass]="dropdownVisible ? '!block' : ''"
-  >
-    <ul class="m-0 p-0">
-      @for (language of languages; track language.code; let i = $index) {
-        <li class="list-none">
-          <a
-            class="text-cg-text hover:bg-cg-success hover:text-cg-danger block cursor-pointer px-4 py-3 no-underline"
-            (click)="onSelectionChanged(language.code)"
-            >{{ language.emoji + " " }}{{ language.name | translate }}</a
-          >
-        </li>
-        @if (i != languages.length - 1) {
-          <hr class="border-cg-text/30 m-0" />
-        }
-      }
-    </ul>
-  </div>
+    @for (language of languages; track $index) {
+      <option
+        class="bg-cg-primary text-cg-text cursor-pointer"
+        [value]="language.code"
+      >
+        {{ language.emoji + " " }}{{ language.name | translate }}
+      </option>
+    }
+  </select>
 </div>

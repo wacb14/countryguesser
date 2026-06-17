@@ -3,7 +3,7 @@ import { NgClass } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
-import { AnswerCardComponent } from '../answer-card/answer-card.component';
+import { AnswerCardComponent } from '../../components/answer-card/answer-card.component';
 import { Answer } from 'src/app/models/answer';
 import { AuthFlagsService } from 'src/app/services/auth-flags.service';
 import { AuthService } from 'src/app/services/auth.service';

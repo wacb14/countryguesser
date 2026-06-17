@@ -1,8 +1,7 @@
 <div class="bg-cg-bg min-h-screen">
-  <div class="relative mx-auto h-screen max-w-6xl">
+  <div class="relative mx-auto flex h-screen max-w-6xl items-center">
     <app-map
-      class="block h-[80vh] overflow-hidden rounded-lg"
-      [height]="'100%'"
+      class="flex h-[80vh] w-full items-center overflow-hidden rounded-lg"
       [continentName]="'world_en'"
       [countryCode]="'fj'"
       [showTooltip]="true"
@@ -12,7 +11,7 @@
     ></app-map>
 
     <div
-      class="text-cg-text absolute inset-0 flex items-center justify-center px-4"
+      class="text-cg-text absolute inset-0 flex items-center justify-center max-sm:px-4"
     >
       <div class="absolute top-4 right-4">
         <app-language-selector></app-language-selector>
@@ -29,11 +28,14 @@
         <select
           id="gameMode"
           #gameMode
-          class="bg-cg-primary text-cg-text focus:border-cg-accent mt-2 h-12 w-full rounded-lg border border-slate-400 px-3 text-lg outline-none"
+          class="bg-cg-primary text-cg-text focus:border-cg-accent mt-2 h-12 w-full cursor-pointer rounded-lg border border-slate-400 px-3 text-lg outline-none"
           [value]="preferences.gameMode"
         >
           @for (option of gameModeSelectOptions; track option.value) {
-            <option class="bg-cg-primary text-cg-text" [value]="option.value">
+            <option
+              class="bg-cg-primary text-cg-text cursor-pointer"
+              [value]="option.value"
+            >
               {{ option.text | translate }}
             </option>
           }
@@ -45,11 +47,14 @@
         <select
           id="continent"
           #continent
-          class="bg-cg-primary text-cg-text focus:border-cg-accent mt-2 h-12 w-full rounded-lg border border-slate-400 px-3 text-lg outline-none"
+          class="bg-cg-primary text-cg-text focus:border-cg-accent mt-2 h-12 w-full cursor-pointer rounded-lg border border-slate-400 px-3 text-lg outline-none"
           [value]="preferences.continent"
         >
           @for (option of continentSelectOptions; track option.value) {
-            <option class="bg-cg-primary text-cg-text" [value]="option.value">
+            <option
+              class="bg-cg-primary text-cg-text cursor-pointer"
+              [value]="option.value"
+            >
               {{ option.text | translate }}
             </option>
           }
@@ -96,7 +101,7 @@
         </div>
 
         <button
-          class="bg-cg-primary text-cg-text hover:bg-cg-success hover:text-cg-danger mx-auto mt-6 flex h-10 min-w-36 items-center justify-center rounded-lg px-8 text-lg font-bold"
+          class="bg-cg-primary text-cg-text hover:bg-cg-success hover:text-cg-danger mx-auto mt-6 flex h-10 min-w-36 cursor-pointer items-center justify-center rounded-lg px-8 text-lg font-bold"
           (click)="
             startGame(
               gameMode.value,

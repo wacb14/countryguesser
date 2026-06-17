@@ -5,14 +5,13 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { NgClass } from '@angular/common';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { languages } from 'src/app/models/languages';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
   selector: 'app-language-selector',
-  imports: [NgClass, TranslatePipe],
+  imports: [TranslatePipe],
   templateUrl: './language-selector.component.html',
 })
 export class LanguageSelectorComponent implements OnInit {

@@ -1,0 +1,135 @@
+<div class="bg-cg-bg min-h-screen md:h-full">
+  <div class="m-0 flex min-h-screen items-center max-sm:px-2">
+    <div
+      class="bg-cg-panel mx-auto w-full max-w-6xl rounded-lg p-3 py-5 max-sm:rounded-none"
+    >
+      <div class="grid grid-cols-1 md:grid-cols-2 md:px-10 lg:px-20">
+        <div class="flex h-full items-center justify-center">
+          <div class="h-fit w-full">
+            <p class="text-cg-text text-center text-3xl font-black">
+              {{ "scoreboard.yourScore" | translate }}
+            </p>
+            <div class="relative my-4">
+              <div class="absolute z-10 w-full text-center">
+                <div
+                  class="bg-cg-success text-cg-text mx-auto block w-36 rounded-2xl px-2 py-4 text-2xl"
+                >
+                  {{ message | translate }}
+                </div>
+                <div>
+                  <p class="text-cg-text mt-3 mb-2 text-6xl font-black lg:mt-4">
+                    {{ rating[0] + "/" + rating[1] }}
+                  </p>
+                  <p class="text-cg-text my-1 text-2xl">
+                    {{ points }} {{ "scoreboard.points" | translate }}
+                  </p>
+                  <p class="text-cg-text my-1 text-2xl">
+                    {{ timeClock(totalTime()) }}
+                  </p>
+                </div>
+              </div>
+              <div class="flex justify-center">
+                <div
+                  class="h-75 w-75 rounded-full"
+                  [style.background]="
+                    'conic-gradient(#02c9a8 ' + value + '%, #f63340 0)'
+                  "
+                >
+                  <div class="bg-cg-panel m-4 h-67 w-67 rounded-full"></div>
+                </div>
+              </div>
+            </div>
+            @if (!formHidden) {
+              <div class="mt-4 lg:ml-auto">
+                <label for="inpPlayerName" class="text-cg-text ml-12 text-2xl"
+                  >{{ "scoreboard.yourName" | translate }}:</label
+                >
+              </div>
+            }
+            <div class="mt-4">
+              @if (!formHidden) {
+                <form
+                  [formGroup]="form"
+                  (ngSubmit)="form.valid && saveHighScore()"
+                >
+                  <div class="flex w-full flex-col items-center gap-1">
+                    <div
+                      class="focus-within:border-cg-accent flex w-fit rounded-lg border border-slate-400"
+                    >
+                      <input
+                        type="text"
+                        id="inpPlayerName"
+                        [maxLength]="30"
+                        class="bg-cg-primary h-10 rounded-s-lg p-1 text-center text-lg text-white outline-none"
+                        [placeholder]="
+                          '30 ' + ('scoreboard.characters' | translate)
+                        "
+                        formControlName="inpPlayerName"
+                      />
+                      <button
+                        class="bg-cg-primary text-cg-text col-span-2 flex h-10 cursor-pointer items-center justify-center rounded-e-lg border-0 p-2 text-lg"
+                        type="submit"
+                        aria-label="Send"
+                      >
+                        <i
+                          class="iconify text-2xl"
+                          data-icon="ic:baseline-send"
+                        ></i>
+                      </button>
+                    </div>
+                    @if (!inpPlayerName?.valid && inpPlayerName?.touched) {
+                      <small class="text-center text-red-500">
+                        {{ "scoreboard.required" | translate }}
+                      </small>
+                    }
+                  </div>
+                </form>
+              } @else {
+                <p
+                  [ngClass]="success ? 'text-cg-success' : 'text-red-600'"
+                  class="mt-0 text-center text-2xl"
+                >
+                  {{ responseMessage | translate }}
+                </p>
+              }
+            </div>
+            <div class="mt-4 mb-4 md:mb-0">
+              <div class="m-0 flex justify-evenly gap-3">
+                <button
+                  class="bg-cg-primary text-cg-text hover:bg-cg-primary-hover flex h-12 w-36 cursor-pointer items-center justify-around rounded-lg border-0 p-2"
+                  (click)="goHighScores()"
+                >
+                  <i class="iconify text-2xl" data-icon="ion:podium"></i>
+                  {{ "scoreboard.topPlayers" | translate }}
+                </button>
+                <button
+                  class="bg-cg-primary text-cg-text hover:bg-cg-primary-hover flex h-12 w-36 cursor-pointer items-center justify-around rounded-lg border-0 p-2"
+                  (click)="newGame()"
+                >
+                  <i class="iconify text-2xl" data-icon="uim:redo"></i>
+                  {{ "scoreboard.playAgain" | translate }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex w-full flex-col items-center space-y-4">
+          <p class="text-cg-text text-center text-3xl font-black">
+            {{ "scoreboard.yourAnswers" | translate }}
+          </p>
+          <div
+            class="flex h-[70vh] w-full max-w-md scrollbar-thin [scrollbar-color:#02c9a8_#e0dce4] flex-col gap-2 overflow-auto"
+          >
+            @for (answer of answers; track answer; let i = $index) {
+              <app-answer-card
+                [answer]="answer"
+                [id]="i + 1"
+                [time]="times[i]"
+              ></app-answer-card>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

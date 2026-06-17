@@ -23,7 +23,9 @@ export class ScoresService {
   private firestore = inject(Firestore);
 
   getScores(): Observable<any[]> {
-    return this.collectionValues(collection(this.firestore, this.collectionName));
+    return this.collectionValues(
+      collection(this.firestore, this.collectionName),
+    );
   }
 
   createScore(data: any): Promise<void> {
@@ -50,7 +52,9 @@ export class ScoresService {
     return this.collectionValues(topScoresQuery);
   }
 
-  private collectionValues(sourceQuery: Query<DocumentData>): Observable<any[]> {
+  private collectionValues(
+    sourceQuery: Query<DocumentData>,
+  ): Observable<any[]> {
     return from(getDocs(sourceQuery)).pipe(
       map((snapshot) =>
         snapshot.docs.map((document) => ({

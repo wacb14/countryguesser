@@ -7,7 +7,7 @@
       @for (option of [0, 1, 2, 3]; track option; let i = $index) {
         <div class="w-11/12 p-0 text-center sm:w-10/12 md:w-full">
           <button
-            class="bg-cg-primary text-cg-text h-12 w-full rounded-lg border-0 p-2 text-lg md:w-[85%] lg:w-[55%]"
+            class="bg-cg-primary text-cg-text h-12 w-full cursor-pointer rounded-lg border-0 p-2 text-lg md:w-[85%] lg:w-[55%]"
             [disabled]="true"
           >
             {{ "Alternative " + i }}
@@ -26,16 +26,16 @@
       ) {
         <div class="w-11/12 p-0 text-center sm:w-10/12 md:w-full">
           <button
-            class="bg-cg-primary text-cg-text hover:bg-cg-primary-hover h-12 w-full rounded-lg border-0 p-2 text-lg md:w-[85%] lg:w-[55%]"
+            class="bg-cg-primary text-cg-text hover:bg-cg-primary-hover h-12 w-full cursor-pointer rounded-lg border-0 p-2 text-lg md:w-[85%] lg:w-[55%]"
             (click)="rateQuestion(i)"
             [ngClass]="{
-              '!bg-cg-success !text-black': colors[i] == 'c',
-              '!bg-cg-danger !text-cg-accent': colors[i] == 'w',
-              '!bg-cg-primary-hover': colors[i] == 'b',
-              '[animation:fadeIn_1s_linear_forwards]': i == 0,
-              '[animation:fadeIn_1.3s_linear_forwards]': i == 1,
-              '[animation:fadeIn_1.6s_linear_forwards]': i == 2,
-              '[animation:fadeIn_1.9s_linear_forwards]': i == 3,
+              'bg-cg-success! text-black!': colors[i] == 'c',
+              'bg-cg-danger! text-cg-accent!': colors[i] == 'w',
+              'bg-cg-primary-hover!': colors[i] == 'b',
+              'animate-[fadeIn_1s_linear_forwards]': i == 0,
+              'animate-[fadeIn_1.3s_linear_forwards]': i == 1,
+              'animate-[fadeIn_1.6s_linear_forwards]': i == 2,
+              'animate-[fadeIn_1.9s_linear_forwards]': i == 3,
             }"
             [disabled]="disableButtons"
           >

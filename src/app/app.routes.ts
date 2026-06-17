@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { ScoreboardComponent } from './components/scoreboard/scoreboard.component';
-import { CardComponent } from './components/card/card.component';
+import { ScoreboardComponent } from './pages/scoreboard/scoreboard.component';
+import { CardComponent } from './pages/card/card.component';
 import { resultsGuard } from './guards/results.guard';
 import { MainMenuComponent } from './pages/main-menu/main-menu.component';
 import { gameGuard } from './guards/game.guard';

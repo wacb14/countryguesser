@@ -28,3 +28,7 @@ body {
     opacity: 1;
   }
 }
+.jqvmap-zoomin,
+.jqvmap-zoomout {
+  box-sizing: unset;
+}
