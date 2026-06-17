@@ -2,9 +2,9 @@ import { Routes } from '@angular/router';
 import { ScoreboardComponent } from './components/scoreboard/scoreboard.component';
 import { CardComponent } from './components/card/card.component';
 import { resultsGuard } from './guards/results.guard';
-import { MainMenuComponent } from './components/main-menu/main-menu.component';
+import { MainMenuComponent } from './pages/main-menu/main-menu.component';
 import { gameGuard } from './guards/game.guard';
-import { HighscoresComponent } from './components/highscores/highscores.component';
+import { HighscoresComponent } from './pages/highscores/highscores.component';
 
 export const routes: Routes = [
   { path: '', component: MainMenuComponent },

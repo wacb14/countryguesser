@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
-import { AppLogoComponent } from '../app-logo/app-logo.component';
-import { LanguageSelectorComponent } from '../language-selector/language-selector.component';
+import { AppLogoComponent } from '../../components/app-logo/app-logo.component';
+import { LanguageSelectorComponent } from '../../components/language-selector/language-selector.component';
 import { ScoresService } from 'src/app/services/scores.service';
 
 @Component({
