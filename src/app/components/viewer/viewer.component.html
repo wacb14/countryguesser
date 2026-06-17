@@ -1,8 +1,14 @@
-<div class="container p-0">
-  <div class="row justify-content-center m-0">
-    <div class="col-11 col-sm-10 col-md-9 col-lg-8 card p-0">
-      <app-map class="m-3" [id]="888888" *ngIf="gameMode === 'maps'"></app-map>
-      <app-flag *ngIf="gameMode === 'flags'"></app-flag>
+<div class="p-0">
+  <div class="mx-0 flex justify-center">
+    <div
+      class="h-[40vh] w-11/12 rounded-lg p-0 sm:w-10/12 md:h-[45vh] md:w-9/12 lg:h-[55vh] lg:w-8/12"
+    >
+      @if (gameMode === "maps") {
+        <app-map class="m-3 block h-full" [id]="888888"></app-map>
+      }
+      @if (gameMode === "flags") {
+        <app-flag></app-flag>
+      }
     </div>
   </div>
 </div>

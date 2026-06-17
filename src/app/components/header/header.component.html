@@ -1,18 +1,32 @@
-<div class="container-fluid px-0 py-2 header">
-  <div class="row justify-content-evenly m-0">
-    <div class="col-4 col-lg-3 header-item p-0 p-sm-2">
-      <p>{{ questions[0] }} {{ "card.of" | translate }} {{ questions[1] }}</p>
+<div class="bg-cg-primary rounded-t-lg px-0 py-2 max-sm:rounded-none">
+  <div class="m-0 grid grid-cols-3 items-center justify-items-center gap-2">
+    <div
+      class="text-cg-text flex items-center justify-center p-0 text-center text-lg font-bold sm:p-2 lg:text-2xl"
+    >
+      <p class="m-0">
+        {{ questions[0] }} {{ "card.of" | translate }} {{ questions[1] }}
+      </p>
     </div>
-    <div class="col-3 col-lg-3 header-item p-0 p-sm-2">
-      <div class="timer" *ngIf="showTimer">
-        <p>{{ timeRemaining }}</p>
-      </div>
-      <div class="message text-center" *ngIf="!showTimer">
-        <p>{{ message | translate }}</p>
-      </div>
+    <div
+      class="text-cg-text flex items-center justify-center p-0 text-center text-lg font-bold sm:p-2 lg:text-2xl"
+    >
+      @if (showTimer) {
+        <div
+          class="flex h-14 w-14 items-center justify-center rounded-full border-[0.3rem] border-red-600 text-2xl lg:h-16 lg:w-16 lg:text-4xl"
+        >
+          <p class="m-0">{{ timeRemaining }}</p>
+        </div>
+      }
+      @if (!showTimer) {
+        <div class="text-cg-accent text-center">
+          <p class="m-0">{{ message | translate }}</p>
+        </div>
+      }
     </div>
-    <div class="col-4 col-lg-3 header-item p-0 p-sm-2">
-      <p>{{ "card.score" | translate }} {{ ": " + score }}</p>
+    <div
+      class="text-cg-text flex items-center justify-center p-0 text-center text-lg font-bold sm:p-2 lg:text-2xl"
+    >
+      <p class="m-0">{{ "card.score" | translate }} {{ ": " + score }}</p>
     </div>
   </div>
 </div>

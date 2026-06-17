@@ -1,14 +1,15 @@
 // src/app/services/auth.service.ts
-import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { inject, Injectable } from '@angular/core';
+import { Auth } from '@angular/fire/auth';
+import { signInAnonymously, UserCredential } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private afAuth: AngularFireAuth) {}
+  private auth = inject(Auth);
 
-  signInAnonymously(): Promise<any> {
-    return this.afAuth.signInAnonymously();
+  signInAnonymously(): Promise<UserCredential> {
+    return signInAnonymously(this.auth);
   }
 }

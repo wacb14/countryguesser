@@ -1,6 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NgClass } from '@angular/common';
 import { NavigationExtras, Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Subscription } from 'rxjs/internal/Subscription';
+import { AlternativesViewerComponent } from '../alternatives-viewer/alternatives-viewer.component';
+import { HeaderComponent } from '../header/header.component';
+import { ViewerComponent } from '../viewer/viewer.component';
 import { Answer } from 'src/app/models/answer';
 import { Country } from 'src/app/models/country';
 import { AuthFlagsService } from 'src/app/services/auth-flags.service';
@@ -9,8 +14,14 @@ import { RatingService } from 'src/app/services/rating.service';
 
 @Component({
   selector: 'app-card',
+  imports: [
+    AlternativesViewerComponent,
+    HeaderComponent,
+    NgClass,
+    TranslatePipe,
+    ViewerComponent,
+  ],
   templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css'],
 })
 export class CardComponent implements OnInit, OnDestroy {
   questions: Array<Country> = [];
@@ -28,7 +39,7 @@ export class CardComponent implements OnInit, OnDestroy {
     private questionsGeneratorService: QuestionsGeneratorService,
     private ratingService: RatingService,
     private router: Router,
-    private authFlagsService: AuthFlagsService
+    private authFlagsService: AuthFlagsService,
   ) {}
 
   ngOnInit(): void {
@@ -39,7 +50,7 @@ export class CardComponent implements OnInit, OnDestroy {
     try {
       this.questions = this.questionsGeneratorService.generateQuestions(
         number_questions,
-        continent
+        continent,
       );
       this.currentCountry = this.questions[0];
     } catch (error) {
@@ -61,7 +72,7 @@ export class CardComponent implements OnInit, OnDestroy {
         } else {
           this.showBtnNext = true;
         }
-      }
+      },
     );
   }
   ngOnDestroy(): void {

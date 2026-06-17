@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { ThemePalette } from '@angular/material/core';
-import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
+import { NgClass } from '@angular/common';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
+import { AnswerCardComponent } from '../answer-card/answer-card.component';
 import { Answer } from 'src/app/models/answer';
 import { AuthFlagsService } from 'src/app/services/auth-flags.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -11,17 +12,11 @@ import { timeClock } from 'src/app/utils/timeClock';
 
 @Component({
   selector: 'app-scoreboard',
+  imports: [AnswerCardComponent, NgClass, ReactiveFormsModule, TranslatePipe],
   templateUrl: './scoreboard.component.html',
-  styleUrls: ['./scoreboard.component.css'],
 })
 export class ScoreboardComponent implements OnInit {
-  //-- Spinner default attributes
-  color: ThemePalette = 'primary';
-  backgroundColor: ThemePalette = 'warn';
-  mode: ProgressSpinnerMode = 'determinate';
   value = 0;
-  diameter = 300;
-  strokeWidth = 16;
 
   //-- Component default attributes
   message: string = 'Congrats!';
@@ -45,13 +40,13 @@ export class ScoreboardComponent implements OnInit {
     private scoresService: ScoresService,
     private authFlagsService: AuthFlagsService,
     private authService: AuthService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
   ) {}
 
   ngOnInit(): void {
     try {
       this.answers = history.state.answers.map(
-        (ans: any) => new Answer(ans.country, ans.answer)
+        (ans: any) => new Answer(ans.country, ans.answer),
       );
       this.points = history.state.points;
       this.times = history.state.times;

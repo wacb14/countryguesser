@@ -6,7 +6,6 @@ declare var $: any;
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css'],
 })
 export class MapComponent implements AfterViewInit {
   //-- Critical attributes
@@ -31,7 +30,7 @@ export class MapComponent implements AfterViewInit {
       this.loadMap(this.continentName, this.countryCode);
     } catch (error) {
       console.log(
-        'There was an error while loading the map. Please refresh the page'
+        'There was an error while loading the map. Please refresh the page',
       );
     }
     //-- Changing map
@@ -58,7 +57,7 @@ export class MapComponent implements AfterViewInit {
       normalizeFunction: 'polynomial',
       selectedColor: this.selectedColor,
       colors: this.colors,
-      showTooltip: this.showTooltip
+      showTooltip: this.showTooltip,
     });
     map.vectorMap('set', 'colors', countryCode, '#f63340');
   }

@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NgClass } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { Answer } from 'src/app/models/answer';
 import { Country } from 'src/app/models/country';
@@ -7,8 +8,8 @@ import { QuestionsGeneratorService } from 'src/app/services/questions-generator.
 import { RatingService } from 'src/app/services/rating.service';
 @Component({
   selector: 'app-alternatives-viewer',
+  imports: [NgClass],
   templateUrl: './alternatives-viewer.component.html',
-  styleUrls: ['./alternatives-viewer.component.css'],
 })
 export class AlternativesViewerComponent implements OnInit, OnDestroy {
   alternatives: Array<Country> = [];
@@ -21,7 +22,7 @@ export class AlternativesViewerComponent implements OnInit, OnDestroy {
   constructor(
     private alternativesGeneratorService: AlternativesGeneratorService,
     private questionsGeneratorService: QuestionsGeneratorService,
-    private ratingService: RatingService
+    private ratingService: RatingService,
   ) {}
 
   ngOnInit(): void {
@@ -29,7 +30,7 @@ export class AlternativesViewerComponent implements OnInit, OnDestroy {
     this.ratingSubscription = this.ratingService.timeOverSender.subscribe(
       (timeOver) => {
         if (timeOver) this.rateQuestion(-1);
-      }
+      },
     );
   }
   ngOnDestroy(): void {
@@ -49,7 +50,7 @@ export class AlternativesViewerComponent implements OnInit, OnDestroy {
         this.alternatives =
           this.alternativesGeneratorService.generateAlternatives(
             this.answer.code,
-            this.answer.continent
+            this.answer.continent,
           );
         //-- Reset attributes
         this.colors = ['a', 'a', 'a', 'a'];

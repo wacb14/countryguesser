@@ -1,41 +1,48 @@
-<div
-  class="container-fluid mb-3 mx-0 p-0"
-  [ngClass]="!isComplete() ? 'hidden' : ''"
->
+<div class="mx-0 mb-3 p-0" [ngClass]="!isComplete() ? 'hidden' : ''">
   <!-- This row is used to reserve space while the alternatives are displayed -->
-  <div
-    class="row justify-content-center gx-0 gy-2 gx-sm-1 gy-sm-3 m-0 hidden"
-    *ngIf="!isComplete(); else realAlternatives"
-  >
+  @if (!isComplete()) {
     <div
-      class="col-11 col-sm-10 col-md-6 text-center p-0"
-      *ngFor="let i = index; let color; of: colors"
+      class="m-0 hidden grid-cols-1 justify-items-center gap-2 sm:gap-3 md:grid-cols-2"
     >
-      <button class="btn btn-alternative" [disabled]="true">
-        {{ "Alternative " + i }}
-      </button>
+      @for (option of [0, 1, 2, 3]; track option; let i = $index) {
+        <div class="w-11/12 p-0 text-center sm:w-10/12 md:w-full">
+          <button
+            class="bg-cg-primary text-cg-text h-12 w-full rounded-lg border-0 p-2 text-lg md:w-[85%] lg:w-[55%]"
+            [disabled]="true"
+          >
+            {{ "Alternative " + i }}
+          </button>
+        </div>
+      }
     </div>
-  </div>
-  <ng-template #realAlternatives>
-    <div class="row justify-content-center gx-0 gy-2 gx-sm-1 gy-sm-3 m-0">
-      <div
-        class="col-11 col-sm-10 col-md-6 text-center p-0"
-        *ngFor="let i = index; let alternative; of: alternatives"
-      >
-        <button
-          class="btn btn-alternative"
-          (click)="rateQuestion(i)"
-          [ngClass]="{
-          'btn-correct': colors[i] == 'c',
-          'btn-wrong': colors[i] == 'w',
-          'btn-disabled': colors[i] == 'b',
-        }"
-          [ngClass]="isComplete() ? 'fade_in-animation-' + (i + 1) : ''"
-          [disabled]="disableButtons"
-        >
-          {{ alternative.name }}
-        </button>
-      </div>
+  } @else {
+    <div
+      class="m-0 grid grid-cols-1 justify-items-center gap-2 sm:gap-3 md:grid-cols-2"
+    >
+      @for (
+        alternative of alternatives;
+        track alternative.code;
+        let i = $index
+      ) {
+        <div class="w-11/12 p-0 text-center sm:w-10/12 md:w-full">
+          <button
+            class="bg-cg-primary text-cg-text hover:bg-cg-primary-hover h-12 w-full rounded-lg border-0 p-2 text-lg md:w-[85%] lg:w-[55%]"
+            (click)="rateQuestion(i)"
+            [ngClass]="{
+              '!bg-cg-success !text-black': colors[i] == 'c',
+              '!bg-cg-danger !text-cg-accent': colors[i] == 'w',
+              '!bg-cg-primary-hover': colors[i] == 'b',
+              '[animation:fadeIn_1s_linear_forwards]': i == 0,
+              '[animation:fadeIn_1.3s_linear_forwards]': i == 1,
+              '[animation:fadeIn_1.6s_linear_forwards]': i == 2,
+              '[animation:fadeIn_1.9s_linear_forwards]': i == 3,
+            }"
+            [disabled]="disableButtons"
+          >
+            {{ alternative.name }}
+          </button>
+        </div>
+      }
     </div>
-  </ng-template>
+  }
 </div>

@@ -21,7 +21,7 @@ export class QuestionsGeneratorService {
 
   constructor(
     private restCountriesService: RestCountriesService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
   ) {}
 
   loadAllCountries() {
@@ -67,7 +67,7 @@ export class QuestionsGeneratorService {
           this.australia,
           this.europe,
           this.northA,
-          this.southA
+          this.southA,
         );
         break;
     }
@@ -75,9 +75,8 @@ export class QuestionsGeneratorService {
   }
   //-- Returns the translation code for the current language of the app.
   private getTranslationCode() {
-    let index = languages
-      .map((l) => l.code)
-      .indexOf(this.translateService.currentLang);
+    const currentLang = this.translateService.currentLang() ?? 'en';
+    let index = languages.map((l) => l.code).indexOf(currentLang);
     return languages[index].translation;
   }
   generateQuestions(quantity: number, region: string) {
@@ -97,15 +96,19 @@ export class QuestionsGeneratorService {
           .getInfoByCode(generated[i])
           .subscribe((response) => {
             //-- English as default language
-            let name = response[0].name.common;
-            if (this.translateService.currentLang != 'en') {
-              name = response[0].translations[this.getTranslationCode()].common;
+            let name = response.name.common;
+            if (this.translateService.currentLang() != 'en') {
+              name = response.translations[this.getTranslationCode()].common;
             }
             questions.push(
-              new Country(generated[i], name, response[0].flags.svg, region)
+              new Country(generated[i], name, response.flags.svg, region),
             );
             //-- Send the first question to viewer
-            if (i == 0) this.questionSender.emit(questions[0]);
+            if (i == 0) {
+              setTimeout(() => {
+                this.questionSender.emit(questions[0]);
+              }, 1);
+            }
           });
       }
     }

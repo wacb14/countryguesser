@@ -21,7 +21,7 @@ export class AlternativesGeneratorService {
 
   constructor(
     private restCountriesService: RestCountriesService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
   ) {}
 
   loadAllCountries() {
@@ -61,7 +61,7 @@ export class AlternativesGeneratorService {
           this.australia,
           this.europe,
           this.northA,
-          this.southA
+          this.southA,
         );
         break;
     }
@@ -69,9 +69,8 @@ export class AlternativesGeneratorService {
   }
   //-- Returns the translation code for the current language of the app.
   private getTranslationCode() {
-    let index = languages
-      .map((l) => l.code)
-      .indexOf(this.translateService.currentLang);
+    const currentLang = this.translateService.currentLang() ?? 'en';
+    let index = languages.map((l) => l.code).indexOf(currentLang);
     return languages[index].translation;
   }
 
@@ -109,13 +108,11 @@ export class AlternativesGeneratorService {
     for (const item of generated) {
       this.restCountriesService.getInfoByCode(item).subscribe((response) => {
         //-- English as default language
-        let name = response[0].name.common;
-        if (this.translateService.currentLang != 'en') {
-          name = response[0].translations[this.getTranslationCode()].common;
+        let name = response.name.common;
+        if (this.translateService.currentLang() != 'en') {
+          name = response.translations[this.getTranslationCode()].common;
         }
-        alternatives.push(
-          new Country(item, name, response[0].flags.svg, region)
-        );
+        alternatives.push(new Country(item, name, response.flags.svg, region));
         //-- Send signal about the last alternative is complete
         if (alternatives.length == 4) this.startTimerSender.emit(true);
       });

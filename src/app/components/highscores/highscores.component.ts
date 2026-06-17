@@ -1,10 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { NgClass } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
+import { AppLogoComponent } from '../app-logo/app-logo.component';
+import { LanguageSelectorComponent } from '../language-selector/language-selector.component';
 import { ScoresService } from 'src/app/services/scores.service';
 
 @Component({
   selector: 'app-highscores',
+  imports: [
+    AppLogoComponent,
+    LanguageSelectorComponent,
+    NgClass,
+    TranslatePipe,
+  ],
   templateUrl: './highscores.component.html',
-  styleUrls: ['./highscores.component.css'],
 })
 export class HighscoresComponent implements OnInit {
   tableVisible = false;

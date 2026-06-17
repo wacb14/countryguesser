@@ -1,53 +1,76 @@
-<div class="container p-0 h-100">
-  <div class="row m-0 align-content-center h-100">
-    <div class="container card p-0">
+<div class="bg-cg-bg min-h-screen p-0">
+  <div class="m-0 flex min-h-screen items-center">
+    <div class="bg-cg-panel mx-auto w-full rounded-lg p-0">
       <div
-        class="row m-0 align-content-center justify-content-center h-100 header"
+        class="relative m-0 flex h-full flex-col content-center items-center justify-center"
       >
-        <app-language-selector class="language-select"></app-language-selector>
-        <div class="col-10 col-sm-8 col-md-6 col-lg-4">
+        <app-language-selector
+          class="absolute top-1 right-1 w-fit max-md:static max-md:flex max-md:w-full max-md:justify-end"
+        ></app-language-selector>
+        <div class="w-10/12 sm:w-8/12 md:w-6/12 lg:w-4/12">
           <app-app-logo></app-app-logo>
         </div>
-        <div class="col-12">
-          <h1 class="text-center title">
+        <div class="w-full">
+          <h1
+            class="text-cg-danger m-2 text-center text-2xl font-black sm:text-3xl lg:text-4xl"
+          >
             Top 10 {{ "high-scores.players" | translate }}
           </h1>
         </div>
         <div
-          class="col-12 text-center table mb-3"
+          class="mb-3 w-full text-center"
           [ngClass]="{ hidden: !tableVisible }"
         >
-          <div class="row m-0 justify-content-center">
-            <span class="col-1 table-header"></span>
-            <span class="col-3 col-md-2 table-header">{{
-              "high-scores.headers.score" | translate
-            }}</span>
-            <span class="col-3 table-header">{{
-              "high-scores.headers.name" | translate
-            }}</span>
-            <span class="col-2 col-md-2 table-header">{{
-              "high-scores.headers.time" | translate
-            }}</span>
-            <span class="col-3 col-md-2 table-header">{{
-              "high-scores.headers.mode" | translate
-            }}</span>
-          </div>
           <div
-            class="row m-0 justify-content-center"
-            *ngFor="let highScore of highScores; let i = index"
+            class="m-0 grid grid-cols-[0.5fr_1fr_1.2fr_1fr_1.2fr] justify-center"
           >
-            <span class="col-1 table-content">{{ i + 1 }}</span>
-            <span class="col-3 col-md-2 table-content">{{
-              highScore.score
-            }}</span>
-            <span class="col-3 table-content">{{ highScore.name }}</span>
-            <span class="col-2 col-md-2 table-content">
-              {{ highScore.time }}</span
+            <span
+              class="text-cg-success px-1 py-1 text-lg font-black sm:px-2 sm:text-xl lg:px-6 lg:py-2 lg:text-3xl"
+            ></span>
+            <span
+              class="text-cg-success px-1 py-1 text-lg font-black sm:px-2 sm:text-xl lg:px-6 lg:py-2 lg:text-3xl"
+              >{{ "high-scores.headers.score" | translate }}</span
             >
-            <span class="col-3 col-md-2 table-content">{{
-              "high-scores.modes." + highScore.mode | translate
-            }}</span>
+            <span
+              class="text-cg-success px-1 py-1 text-lg font-black sm:px-2 sm:text-xl lg:px-6 lg:py-2 lg:text-3xl"
+              >{{ "high-scores.headers.name" | translate }}</span
+            >
+            <span
+              class="text-cg-success px-1 py-1 text-lg font-black sm:px-2 sm:text-xl lg:px-6 lg:py-2 lg:text-3xl"
+              >{{ "high-scores.headers.time" | translate }}</span
+            >
+            <span
+              class="text-cg-success px-1 py-1 text-lg font-black sm:px-2 sm:text-xl lg:px-6 lg:py-2 lg:text-3xl"
+              >{{ "high-scores.headers.mode" | translate }}</span
+            >
           </div>
+          @for (highScore of highScores; track highScore; let i = $index) {
+            <div
+              class="m-0 grid grid-cols-[0.5fr_1fr_1.2fr_1fr_1.2fr] justify-center"
+            >
+              <span
+                class="text-cg-text px-1 py-1 text-base sm:px-2 sm:text-lg lg:px-5 lg:py-2 lg:text-2xl"
+                >{{ i + 1 }}</span
+              >
+              <span
+                class="text-cg-text px-1 py-1 text-base sm:px-2 sm:text-lg lg:px-5 lg:py-2 lg:text-2xl"
+                >{{ highScore.score }}</span
+              >
+              <span
+                class="text-cg-text px-1 py-1 text-base sm:px-2 sm:text-lg lg:px-5 lg:py-2 lg:text-2xl"
+                >{{ highScore.name }}</span
+              >
+              <span
+                class="text-cg-text px-1 py-1 text-base sm:px-2 sm:text-lg lg:px-5 lg:py-2 lg:text-2xl"
+              >
+                {{ highScore.time }}</span
+              >
+              <span
+                class="text-cg-text px-1 py-1 text-base sm:px-2 sm:text-lg lg:px-5 lg:py-2 lg:text-2xl"
+                >{{ "high-scores.modes." + highScore.mode | translate }}</span
+              >
+            </div>
+          }
         </div>
       </div>
     </div>

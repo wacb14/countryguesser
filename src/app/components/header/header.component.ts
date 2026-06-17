@@ -1,12 +1,13 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { AlternativesGeneratorService } from 'src/app/services/alternatives-generator.service';
 import { RatingService } from 'src/app/services/rating.service';
 
 @Component({
   selector: 'app-header',
+  imports: [TranslatePipe],
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   interval: any;
@@ -24,7 +25,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(
     private ratingService: RatingService,
-    private alternativesGeneratorService: AlternativesGeneratorService
+    private alternativesGeneratorService: AlternativesGeneratorService,
   ) {}
 
   ngOnInit(): void {
@@ -84,7 +85,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
           rating: rating,
           time: this.time - this.timeRemaining,
         });
-      }
+      },
     );
   }
 }

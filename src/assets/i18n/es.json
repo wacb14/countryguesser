@@ -47,14 +47,14 @@
     "points": "puntos",
     "playAgain": "Jugar de nuevo",
     "yourName": "Ingresa tu nombre",
-    "characters":"caracteres máximo",
+    "characters": "caracteres máximo",
     "yourAnswers": "Tus respuestas",
     "yourAnswer": "Tu respuesta",
     "correctAnswer": "Respuesta correcta",
     "updateSuccess": "¡Tu puntuación ha sido guardada con éxito!",
     "updateError": "Lo siento. Hubo un error al subir tu puntuación",
     "topPlayers": "Mejores jugadores",
-    "required":"Este campo es obligatorio"
+    "required": "Este campo es obligatorio"
   },
   "high-scores": {
     "players": "jugadores",

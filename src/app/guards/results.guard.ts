@@ -9,7 +9,7 @@ import { AuthFlagsService } from '../services/auth-flags.service';
 
 export const resultsGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
-  state: RouterStateSnapshot
+  state: RouterStateSnapshot,
 ) => {
   const ratingService = inject(AuthFlagsService);
   const router = inject(Router);

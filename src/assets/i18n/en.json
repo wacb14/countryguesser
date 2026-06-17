@@ -54,7 +54,7 @@
     "updateSuccess": "Your score has been submitted successfully!",
     "updateError": "Sorry. There was an error when uploading your score",
     "topPlayers": "Top players",
-    "required":"This field is required"
+    "required": "This field is required"
   },
   "high-scores": {
     "players": "players",

@@ -1,87 +1,113 @@
-<div class="container p-0 h-100">
-  <div class="row align-content-center h-100 m-0">
-    <div class="col map p-0">
-      <div class="map-container">
-        <app-map
-          [height]="'100%'"
-          [continentName]="'world_en'"
-          [countryCode]="'fj'"
-          [showTooltip]="true"
-          [enableZoom]="false"
-          [colors]="this.colors"
-          [id]="98989898"
-        ></app-map>
+<div class="bg-cg-bg min-h-screen">
+  <div class="relative mx-auto h-screen max-w-6xl">
+    <app-map
+      class="block h-[80vh] overflow-hidden rounded-lg"
+      [height]="'100%'"
+      [continentName]="'world_en'"
+      [countryCode]="'fj'"
+      [showTooltip]="true"
+      [enableZoom]="false"
+      [colors]="colors"
+      [id]="98989898"
+    ></app-map>
+
+    <div
+      class="text-cg-text absolute inset-0 flex items-center justify-center px-4"
+    >
+      <div class="absolute top-4 right-4">
+        <app-language-selector></app-language-selector>
       </div>
-      <div
-        class="row card-container w-100 m-0 h-100 justify-content-center align-content-center"
+
+      <section
+        class="bg-cg-panel/90 w-full max-w-sm rounded-lg px-8 pt-1 pb-6 shadow-xl"
       >
-        <div
-          class="col-10 col-sm-11 p-0 pb-1 pb-md-0 d-flex justify-content-end"
+        <app-app-logo></app-app-logo>
+
+        <label class="mt-3 block text-xl font-bold" for="gameMode">
+          {{ "main-menu.mode.title" | translate }}
+        </label>
+        <select
+          id="gameMode"
+          #gameMode
+          class="bg-cg-primary text-cg-text focus:border-cg-accent mt-2 h-12 w-full rounded-lg border border-slate-400 px-3 text-lg outline-none"
+          [value]="preferences.gameMode"
         >
-          <app-language-selector></app-language-selector>
-        </div>
-        <div class="col card">
-          <div class="row mx-4 justify-content-center">
-            <app-app-logo></app-app-logo>
-            <div class="col-12">
-              <h3 class="mt-1 mb-2">
-                {{ "main-menu.mode.title" | translate }}
-              </h3>
-              <mat-form-field>
-                <mat-select [value]="preferences.gameMode" #gameMode>
-                  <mat-option
-                    *ngFor="let option of gameModeSelectOptions"
-                    [value]="option.value"
-                    >{{ option.text | translate }}</mat-option
-                  >
-                </mat-select>
-              </mat-form-field>
-            </div>
-            <div class="col-12">
-              <h3 class="mt-1 mb-2">
-                {{ "main-menu.continent.title" | translate }}
-              </h3>
-              <mat-form-field>
-                <mat-select [value]="preferences.continent" #continent>
-                  <mat-option
-                    *ngFor="let option of continentSelectOptions"
-                    [value]="option.value"
-                    >{{ option.text | translate }}</mat-option
-                  >
-                </mat-select>
-              </mat-form-field>
-            </div>
-            <div class="col-12">
-              <h3 class="mt-1 mb-2">
-                {{ "main-menu.number-questions" | translate }}
-              </h3>
-              <mat-button-toggle-group
-                [value]="preferences.numberQuestions"
-                #questions="matButtonToggleGroup"
+          @for (option of gameModeSelectOptions; track option.value) {
+            <option class="bg-cg-primary text-cg-text" [value]="option.value">
+              {{ option.text | translate }}
+            </option>
+          }
+        </select>
+
+        <label class="mt-4 block text-xl font-bold" for="continent">
+          {{ "main-menu.continent.title" | translate }}
+        </label>
+        <select
+          id="continent"
+          #continent
+          class="bg-cg-primary text-cg-text focus:border-cg-accent mt-2 h-12 w-full rounded-lg border border-slate-400 px-3 text-lg outline-none"
+          [value]="preferences.continent"
+        >
+          @for (option of continentSelectOptions; track option.value) {
+            <option class="bg-cg-primary text-cg-text" [value]="option.value">
+              {{ option.text | translate }}
+            </option>
+          }
+        </select>
+
+        <p class="mt-4 text-xl font-bold">
+          {{ "main-menu.number-questions" | translate }}
+        </p>
+        <div
+          class="mt-2 grid grid-cols-5 overflow-hidden rounded-lg border border-slate-400"
+        >
+          @for (option of questionsSelectOptions; track option.value) {
+            <label
+              class="cursor-pointer border-r border-slate-400 last:border-r-0"
+            >
+              <input
+                class="peer sr-only"
+                type="radio"
+                name="questions"
+                [value]="option.value"
+                [(ngModel)]="selectedNumberQuestions"
+              />
+              <span
+                class="bg-cg-primary text-cg-text peer-checked:bg-cg-danger peer-checked:text-cg-accent hover:bg-cg-success hover:text-cg-danger flex h-12 items-center justify-center text-lg"
               >
-                <mat-button-toggle
-                  *ngFor="let option of questionsSelectOptions"
-                  [value]="option.value"
-                  >{{ option.text }}</mat-button-toggle
-                >
-                <mat-button-toggle [value]="200"
-                  ><p class="button-toggle-text">Max</p></mat-button-toggle
-                >
-              </mat-button-toggle-group>
-            </div>
-            <div class="col-12 text-center">
-              <button
-                class="my-3 btn-start"
-                (click)="
-                  startGame(gameMode.value, continent.value, questions.value)
-                "
-              >
-                {{ "main-menu.start" | translate }}
-              </button>
-            </div>
-          </div>
+                {{ option.text }}
+              </span>
+            </label>
+          }
+          <label class="cursor-pointer">
+            <input
+              class="peer sr-only"
+              type="radio"
+              name="questions"
+              [value]="200"
+              [(ngModel)]="selectedNumberQuestions"
+            />
+            <span
+              class="bg-cg-primary text-cg-text peer-checked:bg-cg-danger peer-checked:text-cg-accent hover:bg-cg-success hover:text-cg-danger flex h-12 items-center justify-center text-sm"
+            >
+              Max
+            </span>
+          </label>
         </div>
-      </div>
+
+        <button
+          class="bg-cg-primary text-cg-text hover:bg-cg-success hover:text-cg-danger mx-auto mt-6 flex h-10 min-w-36 items-center justify-center rounded-lg px-8 text-lg font-bold"
+          (click)="
+            startGame(
+              gameMode.value,
+              continent.value,
+              selectedNumberQuestions.toString()
+            )
+          "
+        >
+          {{ "main-menu.start" | translate }}
+        </button>
+      </section>
     </div>
   </div>
 </div>

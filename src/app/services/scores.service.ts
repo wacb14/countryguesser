@@ -1,48 +1,63 @@
-import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import { Firestore } from '@angular/fire/firestore/lite';
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  DocumentData,
+  getDocs,
+  limit,
+  orderBy,
+  query,
+  Query,
+  updateDoc,
+} from 'firebase/firestore/lite';
+import { from, map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ScoresService {
   private collectionName = 'scores';
-
-  constructor(private angularFirestore: AngularFirestore) {}
+  private firestore = inject(Firestore);
 
   getScores(): Observable<any[]> {
-    return this.angularFirestore
-      .collection(this.collectionName)
-      .valueChanges({ idField: 'id' });
+    return this.collectionValues(collection(this.firestore, this.collectionName));
   }
 
   createScore(data: any): Promise<void> {
-    const id = this.angularFirestore.createId();
-    return this.angularFirestore
-      .collection(this.collectionName)
-      .doc(id)
-      .set(data);
+    return addDoc(collection(this.firestore, this.collectionName), data).then(
+      () => undefined,
+    );
   }
 
   updateScore(id: string, data: any): Promise<void> {
-    return this.angularFirestore
-      .collection(this.collectionName)
-      .doc(id)
-      .update(data);
+    return updateDoc(doc(this.firestore, this.collectionName, id), data);
   }
 
   deleteScore(id: string): Promise<void> {
-    return this.angularFirestore
-      .collection(this.collectionName)
-      .doc(id)
-      .delete();
+    return deleteDoc(doc(this.firestore, this.collectionName, id));
   }
 
   getTopScores(): Observable<any[]> {
-    return this.angularFirestore
-      .collection(this.collectionName, (ref) =>
-        ref.orderBy('score', 'desc').limit(10)
-      )
-      .valueChanges({ idField: 'id' });
+    const topScoresQuery = query(
+      collection(this.firestore, this.collectionName),
+      orderBy('score', 'desc'),
+      limit(10),
+    );
+
+    return this.collectionValues(topScoresQuery);
+  }
+
+  private collectionValues(sourceQuery: Query<DocumentData>): Observable<any[]> {
+    return from(getDocs(sourceQuery)).pipe(
+      map((snapshot) =>
+        snapshot.docs.map((document) => ({
+          id: document.id,
+          ...document.data(),
+        })),
+      ),
+    );
   }
 }
